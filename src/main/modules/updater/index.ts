@@ -1,12 +1,11 @@
-import { BrowserWindow } from 'electron';
-import appUpdater from './updater.utils';
+import appUpdaterController from './updater.controller';
 
 /**
  * 应用更新检查
  * @param win 窗口实例
  */
-function appUpdaterCheck(win: BrowserWindow) {
-  appUpdater.checkForUpdatesAndNotify(win);
+function appUpdaterCheck() {
+  appUpdaterController.checkForUpdatesAndNotify();
 }
 
 export default appUpdaterCheck;

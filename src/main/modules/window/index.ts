@@ -1,7 +1,7 @@
 import { WINDOW_NAME } from '@share/event';
 import { WindowController } from './window.controller';
 
-export function createWindow(): void {
+export function createAppWindow(): void {
   const windowController = WindowController.getInstance();
   windowController.createWindow({
     module: WINDOW_NAME.APP,
