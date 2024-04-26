@@ -1,5 +1,6 @@
 export enum IPC_CHANNEL {
   APP = 'ipc-channel:app',
+  WINDOW = 'ipc-channel:window',
   UPDATER = 'ipc-channel:updater'
 }
 
@@ -11,6 +12,7 @@ interface General {
 const general: General = {
   ipcRegister: {
     [IPC_CHANNEL.APP]: false,
+    [IPC_CHANNEL.WINDOW]: false,
     [IPC_CHANNEL.UPDATER]: false
   }
 };
