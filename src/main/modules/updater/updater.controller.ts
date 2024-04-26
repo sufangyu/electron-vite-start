@@ -1,19 +1,15 @@
-import { BrowserWindow } from 'electron';
 import { is } from '@electron-toolkit/utils';
 import { CancellationToken, UpdateCheckResult, autoUpdater } from 'electron-updater';
 import _ from 'lodash';
 import { UPDATER_IPC_CHANNEL, WINDOW_NAME, UPDATER_IPC_CHANNEL_EVENT } from '@share/event';
 import { IpcData } from '@share/types';
-import { events } from '../../utils';
+import { events } from '@share/utils';
 
-class AppUpdater {
-  // @ts-ignore
-  private window: BrowserWindow | null;
+class AppUpdaterController {
   private isAutoDownload: boolean;
   private isBackground: boolean;
 
   constructor() {
-    this.window = null;
     this.isAutoDownload = false;
     this.isBackground = false;
 
@@ -30,13 +26,11 @@ class AppUpdater {
    * @memberof AppUpdater
    */
   async checkForUpdatesAndNotify(
-    win: BrowserWindow,
     isBackground: boolean = false,
     isAutoDownload: boolean = false
   ): Promise<UpdateCheckResult | null> {
     is.dev && this.devHack();
 
-    this.window = win;
     this.isBackground = isBackground;
     this.isAutoDownload = isAutoDownload;
     autoUpdater.autoDownload = this.isAutoDownload;
@@ -159,4 +153,4 @@ class AppUpdater {
   }
 }
 
-export default new AppUpdater();
+export default new AppUpdaterController();

@@ -1,11 +1,8 @@
 import { contextBridge } from 'electron';
 import { electronAPI } from '@electron-toolkit/preload';
-// import { useEvents } from 'electron-events';
 import { events } from '@share/utils';
 import { EnhanceApi } from './index.d';
 import { appApi, windowApi, updaterApi, fileApi, videoApi } from './modules';
-
-// const events = useEvents();
 
 // 增强渲染进程功能 API
 const api: EnhanceApi = {

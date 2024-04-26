@@ -1,5 +1,5 @@
-import { BrowserWindow, app, shell } from 'electron';
 import { join } from 'path';
+import { BrowserWindow, app, shell } from 'electron';
 import { is, platform } from '@electron-toolkit/utils';
 import { useEvents, useWindowPool } from 'electron-events';
 import { CreateWindowOptions } from '@share/types';

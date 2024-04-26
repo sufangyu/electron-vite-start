@@ -1,14 +1,12 @@
 import { Menu } from 'electron';
-import menuHelper from './menu.helper';
+import menuController from './menu.controller';
 
 /**
  * 创建应用菜单
  */
-function createAppMenu() {
-  const templates = menuHelper.getTemplates();
+export default function createAppMenu() {
+  const templates = menuController.getTemplates();
 
   const appMenu = Menu.buildFromTemplate(templates);
   Menu.setApplicationMenu(appMenu);
 }
-
-export default createAppMenu;

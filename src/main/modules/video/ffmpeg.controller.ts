@@ -6,7 +6,8 @@ import ffprobePath from '@ffprobe-installer/ffprobe';
 import ffmpeg from 'fluent-ffmpeg';
 import { IpcData, VideoCompressOptions } from '@share/types';
 import { FILE_IPC_CHANNEL_EVENT, VEDIO_IPC_CHANNEL, VEDIO_IPC_CHANNEL_EVENT } from '@share/event';
-import { events, getBuildPath, windowPool } from '../../utils/index';
+import { events, windowPool } from '@share/utils';
+import { getBuildPath } from '../../utils/index';
 
 /** 进度信息 */
 interface Progress {
@@ -37,7 +38,7 @@ enum STATE {
 ffmpeg.setFfmpegPath(getBuildPath(ffmpegPath.path));
 ffmpeg.setFfprobePath(getBuildPath(ffprobePath.path));
 
-export default class Ffmpeg {
+export default class FfmpegController {
   ffmpeg: ffmpeg.FfmpegCommand;
   // 事件来源窗口
   private window: BrowserWindow | null;

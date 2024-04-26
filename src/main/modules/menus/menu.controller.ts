@@ -7,7 +7,7 @@ import {
   MAC_MENU_CONFIG
 } from './config';
 
-class MenuHelper {
+class MenuController {
   /**
    * 获取菜单模版
    * @returns 菜单模版
@@ -91,4 +91,4 @@ class MenuHelper {
   }
 }
 
-export default new MenuHelper();
+export default new MenuController();
