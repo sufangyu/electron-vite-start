@@ -1,4 +1,4 @@
-import { WINDOW_NAME } from '@share/event';
+import { WINDOW_NAME } from '@share/modules';
 import { WindowController } from './window.controller';
 
 export function createAppWindow(): void {

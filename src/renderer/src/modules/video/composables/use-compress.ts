@@ -1,14 +1,15 @@
 import { ref } from 'vue';
 import { ElMessage } from 'element-plus';
 import { storeToRefs } from 'pinia';
-import { Video, VIDEO_STATE } from '@share/types';
 import {
   FILE_IPC_CHANNEL_EVENT,
+  WINDOW_NAME,
   VEDIO_IPC_CHANNEL,
   VEDIO_IPC_CHANNEL_EVENT,
-  WINDOW_NAME
-} from '@share/event';
-import { useVideoConfigStore } from '@renderer/store';
+  VIDEO_STATE,
+  type Video
+} from '@share/modules';
+import { useVideoConfigStore } from '@store/index';
 import { useEvents } from '@core/hooks';
 
 const events = useEvents();

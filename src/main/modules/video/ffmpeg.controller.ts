@@ -4,9 +4,14 @@ import { BrowserWindow } from 'electron';
 import ffmpegPath from '@ffmpeg-installer/ffmpeg';
 import ffprobePath from '@ffprobe-installer/ffprobe';
 import ffmpeg from 'fluent-ffmpeg';
-import { IpcData, VideoCompressOptions } from '@share/types';
-import { FILE_IPC_CHANNEL_EVENT, VEDIO_IPC_CHANNEL, VEDIO_IPC_CHANNEL_EVENT } from '@share/event';
+import { IpcData } from '@share/types';
 import { events, windowPool } from '@share/utils';
+import {
+  FILE_IPC_CHANNEL_EVENT,
+  VEDIO_IPC_CHANNEL_EVENT,
+  VEDIO_IPC_CHANNEL,
+  type VideoCompressOptions
+} from '@share/modules';
 import { getBuildPath } from '../../utils/index';
 
 /** 进度信息 */

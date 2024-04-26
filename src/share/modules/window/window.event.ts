@@ -1,14 +1,6 @@
 import { EventKey } from 'electron-events';
-import { CreateWindowOptions, IpcData, WINDOW_ACTION } from '@share/types';
-
-// export enum APP_EVENT {
-//   /** 打开窗口 */
-//   OPEN_WINDOW = 'app:open-window',
-//   /** 操作窗口（最小化、最大化、关闭、刷新） */
-//   OPRATW_WINDOW = 'app:operate-window',
-//   /** 获取窗口信息 */
-//   GET_WINDOW_INFO = 'app:get-window-info'
-// }
+import { IpcData } from '@share/types';
+import { WINDOW_ACTION, type CreateWindowOptions } from './window.types';
 
 export const WINDOW_EVENT_RENDERER_INVOKE: Readonly<WindowEventRendererInvoke> = {
   OPEN: 'window:open',

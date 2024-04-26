@@ -1,4 +1,4 @@
-import { APP_THEME } from '@share/types';
+import { APP_THEME } from '@share/modules';
 
 export const themeOptions: { label: string; value: APP_THEME }[] = [
   { label: '浅色', value: APP_THEME.LIGHT },

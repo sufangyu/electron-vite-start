@@ -1,9 +1,9 @@
 /* eslint-disable no-case-declarations */
-import { APP_IPC_CHANNEL, APP_IPC_CHANNEL_EVENT, WINDOW_NAME } from '@share/event';
+import { WINDOW_NAME } from '@share/modules';
 import { appSettingStore } from '@share/store';
-import { APP_THEME } from '@share/types';
 import { events } from '@share/utils';
 import themeController from './theme.controller';
+import { APP_IPC_CHANNEL, APP_IPC_CHANNEL_EVENT, APP_THEME } from '@share/modules/app';
 
 console.log(`
   ------------------------------------

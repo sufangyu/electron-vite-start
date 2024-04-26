@@ -1,6 +1,6 @@
 import { nativeTheme } from 'electron';
-import { APP_SETTING_THEME_KEY, appSettingStore } from '@share/store';
-import { APP_THEME } from '@share/types';
+import { appSettingStore } from '@share/store';
+import { APP_SETTING_THEME_KEY, APP_THEME } from '@share/modules/app';
 
 class ThemeController {
   private theme: APP_THEME;

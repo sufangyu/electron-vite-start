@@ -1,7 +1,7 @@
 import { ElMessage, UploadRequestOptions } from 'element-plus';
 import { storeToRefs } from 'pinia';
 import { useVideoConfigStore } from '@renderer/store';
-import { Video, VIDEO_STATE } from '@share/types';
+import { VIDEO_STATE, type Video } from '@share/modules';
 
 export default () => {
   const { files } = storeToRefs(useVideoConfigStore());

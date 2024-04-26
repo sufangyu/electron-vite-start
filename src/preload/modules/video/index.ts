@@ -1,5 +1,8 @@
-import { VideoCompressOptions } from '@share/types';
-import { WINDOW_NAME, VIDEO_EVENT_RENDERER_INVOKE } from '@share/event';
+import {
+  WINDOW_NAME,
+  VIDEO_EVENT_RENDERER_INVOKE,
+  type VideoCompressOptions
+} from '@share/modules';
 import { events } from '@share/utils';
 
 export const videoApi: VideoApi = {

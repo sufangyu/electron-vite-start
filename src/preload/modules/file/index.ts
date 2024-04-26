@@ -1,4 +1,4 @@
-import { DIRECTORY_EVENT_RENDERER_INVOKE, WINDOW_NAME } from '@share/event';
+import { DIRECTORY_EVENT_RENDERER_INVOKE, WINDOW_NAME } from '@share/modules';
 import { events } from '@share/utils';
 
 export const fileApi: FileApi = {
