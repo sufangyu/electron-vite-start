@@ -1,7 +1,7 @@
 import { is } from '@electron-toolkit/utils';
 import { CancellationToken, UpdateCheckResult, autoUpdater } from 'electron-updater';
 import _ from 'lodash';
-import { UPDATER_IPC_CHANNEL, WINDOW_NAME, UPDATER_IPC_CHANNEL_EVENT } from '@share/event';
+import { UPDATER_IPC_CHANNEL, UPDATER_IPC_CHANNEL_EVENT, WINDOW_NAME } from '@share/modules';
 import { IpcData } from '@share/types';
 import { events } from '@share/utils';
 
@@ -73,7 +73,7 @@ class AppUpdaterController {
       if (isIgnoreErr) {
         return;
       }
-      // TODO: 网络错误: Error: net::ERR_CONNECTION_REFUSED
+      // 网络错误: Error: net::ERR_CONNECTION_REFUSED
       this.noticeToRenderer(UPDATER_IPC_CHANNEL_EVENT.ERROR, {
         message: '更新出现错误',
         detail: err

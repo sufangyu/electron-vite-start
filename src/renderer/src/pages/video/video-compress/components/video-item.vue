@@ -16,8 +16,8 @@
 
 <script lang="ts" setup>
 import { CloseOne } from '@icon-park/vue-next';
-import { Video } from '@share/types';
 import { useVideo } from '@renderer/modules/video/composables';
+import { type Video } from '@share/modules';
 
 interface Props {
   /** 视频文件 */

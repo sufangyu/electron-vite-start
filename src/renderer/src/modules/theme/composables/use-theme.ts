@@ -1,7 +1,6 @@
 import { ref } from 'vue';
-import { APP_THEME } from '@share/types';
-import { APP_IPC_CHANNEL, APP_IPC_CHANNEL_EVENT, WINDOW_NAME } from '@share/event';
 import { useEvents, useTheme } from '@core/hooks';
+import { APP_IPC_CHANNEL, APP_IPC_CHANNEL_EVENT, APP_THEME, WINDOW_NAME } from '@share/modules';
 
 const events = useEvents();
 const { darkThemeMedia, followSystemTheme, handleDocumentElement } = useTheme();

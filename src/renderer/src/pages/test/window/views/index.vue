@@ -133,7 +133,7 @@
 </template>
 
 <script lang="ts" setup>
-import { CreateWindowOptions } from '@share/types';
+import { type CreateWindowOptions } from '@share/modules';
 
 const handleOpenWindow = async (id: string, options?: CreateWindowOptions) => {
   window.api?.openWindow?.({

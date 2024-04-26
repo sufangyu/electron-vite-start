@@ -1,6 +1,6 @@
 import { EventKey } from 'electron-events';
-import { IpcData, VideoCompressOptions } from '@share/types';
-import { FILE_IPC_CHANNEL_EVENT } from './file.event';
+import { IpcData } from '@share/types';
+import { FILE_IPC_CHANNEL_EVENT, type VideoCompressOptions } from '@share/modules';
 
 /**
  * 视频事件（渲染进程发起）

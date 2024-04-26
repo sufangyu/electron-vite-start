@@ -1,7 +1,11 @@
 import { ref } from 'vue';
-import { WINDOW_ACTION } from '@share/types';
-import { WINDOW_IPC_CHANNEL, WINDOW_IPC_CHANNEL_EVENT, WINDOW_NAME } from '@share/event';
 import { useEvents } from '@core/hooks';
+import {
+  WINDOW_ACTION,
+  WINDOW_NAME,
+  WINDOW_IPC_CHANNEL,
+  WINDOW_IPC_CHANNEL_EVENT
+} from '@share/modules';
 
 let isListened = false;
 const events = useEvents();

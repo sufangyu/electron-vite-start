@@ -1,10 +1,10 @@
 import { ref } from 'vue';
 import { ElMessage } from 'element-plus';
-import { UPDATER_IPC_CHANNEL, UPDATER_IPC_CHANNEL_EVENT, WINDOW_NAME } from '@share/event';
 import { useEvents } from '@core/hooks';
+import { IpcData } from '@share/types';
+import { WINDOW_NAME, UPDATER_IPC_CHANNEL, UPDATER_IPC_CHANNEL_EVENT } from '@share/modules';
 import general, { IPC_CHANNEL } from '@renderer/general';
 import { UPDATER_STATE, UpdateInfo, Updater } from '../types';
-import { IpcData } from '@share/types';
 
 const events = useEvents();
 

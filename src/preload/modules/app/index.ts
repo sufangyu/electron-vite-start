@@ -1,5 +1,5 @@
+import { type AppSetting } from '@share/modules/app';
 import { appSettingStore } from '@share/store';
-import { AppSetting } from '@share/types';
 
 export const appApi: AppApi = {
   getAppSetting: () => {

@@ -2,10 +2,13 @@ import { join } from 'path';
 import { BrowserWindow, app, shell } from 'electron';
 import { is, platform } from '@electron-toolkit/utils';
 import { useEvents, useWindowPool } from 'electron-events';
-import { CreateWindowOptions } from '@share/types';
 import { isExternal } from '@share/utils';
-import { WINDOW_IPC_CHANNEL, WINDOW_IPC_CHANNEL_EVENT } from '@share/event';
 import icon from '../../../../resources/icon.png?asset';
+import {
+  WINDOW_IPC_CHANNEL,
+  WINDOW_IPC_CHANNEL_EVENT,
+  type CreateWindowOptions
+} from '@share/modules';
 
 const events = useEvents('browser');
 const windowPool = useWindowPool();

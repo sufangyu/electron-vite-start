@@ -1,5 +1,6 @@
 import { BrowserWindow } from 'electron';
-import { WINDOW_NAME, VIDEO_EVENT_RENDERER_INVOKE } from '@share/event';
+import { VIDEO_EVENT_RENDERER_INVOKE } from '@share/modules';
+import { WINDOW_NAME } from '@share/modules';
 import { events, windowPool } from '@share/utils';
 import FfmpegController from './ffmpeg.controller';
 

@@ -1,5 +1,9 @@
-import { WINDOW_EVENT_RENDERER_INVOKE, WINDOW_NAME } from '@share/event';
-import { WINDOW_ACTION, CreateWindowOptions } from '@share/types';
+import {
+  WINDOW_ACTION,
+  WINDOW_EVENT_RENDERER_INVOKE,
+  WINDOW_NAME,
+  type CreateWindowOptions
+} from '@share/modules';
 import { events } from '@share/utils';
 
 export const windowApi: WindowApi = {

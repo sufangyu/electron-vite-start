@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import { Video } from '@share/types';
+import { type Video } from '@share/modules';
 
 interface Config {
   /** 视频分辨率配置项 */

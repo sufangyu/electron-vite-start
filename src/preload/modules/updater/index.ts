@@ -1,5 +1,5 @@
 import { CancellationToken, UpdateCheckResult } from 'electron-updater';
-import { UPDATER_EVENT_RENDERER_INVOKE, WINDOW_NAME } from '@share/event';
+import { WINDOW_NAME, UPDATER_EVENT_RENDERER_INVOKE } from '@share/modules';
 import { events } from '@share/utils';
 
 export const updaterApi: UpdaterApi = {

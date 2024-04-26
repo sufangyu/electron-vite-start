@@ -1,5 +1,4 @@
-import { WINDOW_EVENT_RENDERER_INVOKE, WINDOW_NAME } from '@share/event';
-import { WINDOW_ACTION } from '@share/types';
+import { WINDOW_ACTION, WINDOW_EVENT_RENDERER_INVOKE, WINDOW_NAME } from '@share/modules';
 import { events, windowPool } from '@share/utils';
 import { WindowController } from './window.controller';
 

@@ -1,5 +1,5 @@
-import { DIRECTORY_EVENT_RENDERER_INVOKE, WINDOW_NAME } from '@share/event';
 import { events } from '@share/utils';
+import { DIRECTORY_EVENT_RENDERER_INVOKE, WINDOW_NAME } from '@share/modules';
 
 import directoryController from './directory.controller';
 
