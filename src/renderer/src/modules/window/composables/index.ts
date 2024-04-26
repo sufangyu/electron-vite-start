@@ -6,8 +6,8 @@ import {
   WINDOW_IPC_CHANNEL,
   WINDOW_IPC_CHANNEL_EVENT
 } from '@share/modules';
+import general, { IPC_CHANNEL } from '@renderer/general';
 
-let isListened = false;
 const events = useEvents();
 
 /**
@@ -35,25 +35,28 @@ const useWindow = () => {
   const simpleFullScreenWindow = () => _handleWindow(WINDOW_ACTION.SIMPLE_FULL_SCREEN);
 
   // 监听窗口消息
-  const onProgressNotice = () => {
-    if (!isListened) {
-      events.on(WINDOW_NAME.MAIN, WINDOW_IPC_CHANNEL, ({ event, data }) => {
-        const actionFunc = {
-          [WINDOW_IPC_CHANNEL_EVENT.WINDOW_INFO]: () => {
-            const newTitle = data?.detail?.title || '';
-            windowTitle.value = newTitle;
-          }
-        };
-
-        console.log('监听窗口事件', event, data.detail);
-        actionFunc[event]?.();
-      });
-      isListened = true;
+  const _onWindowIpc = () => {
+    if (general[IPC_CHANNEL.WINDOW]) {
+      return;
     }
+
+    general[IPC_CHANNEL.WINDOW] = true;
+    events.on(WINDOW_NAME.MAIN, WINDOW_IPC_CHANNEL, ({ event, data }) => {
+      const actionFunc = {
+        [WINDOW_IPC_CHANNEL_EVENT.WINDOW_INFO]: () => {
+          const newTitle = data?.detail?.title || '';
+          windowTitle.value = newTitle;
+        }
+      };
+
+      console.log('监听窗口事件', event, data.detail);
+      actionFunc[event]?.();
+    });
   };
 
+  // 初始化
   (() => {
-    onProgressNotice();
+    _onWindowIpc();
   })();
 
   return {
