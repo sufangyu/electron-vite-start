@@ -1,0 +1,24 @@
+@import './base.css';
+
+body {
+  @apply bg-slate-100
+    dark:bg-[#141414];
+}
+
+// 可拖拽元素 => drag
+.drag {
+  -webkit-app-region: drag
+}
+
+// 不可拖拽元素 => drag
+.nodrag,
+input,
+select,
+textarea,
+option {
+  -webkit-app-region: no-drag;
+}
+
+.el-message__content {
+  font-size: 13px !important;
+}
