@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Electron Vite Start</title>
+    <!-- https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline';
+        style-src 'self' 'unsafe-inline';
+        img-src 'self' data: https:
+      "
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <script>
+      // 处理明、暗主题初始化
+      (async() => {
+        // 主进程 APP 设置中主题
+        const appSettingStore = await window.api?.getAppSetting();
+        const mainProcessTheme = appSettingStore?.theme;
+
+        // 渲染进程中 APP 设置中的主题设置
+        const APP_STORE_KEY = '__video_compress__app-setting';
+        const appStore = JSON.parse(localStorage.getItem(APP_STORE_KEY) ?? '{}');
+        
+        let isDark = [mainProcessTheme, appStore.theme].includes('dark');
+        if ([mainProcessTheme, appStore.theme].includes('system')) {
+          isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        }
+        isDark && appStore.theme && document.documentElement.classList.add("dark")
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
