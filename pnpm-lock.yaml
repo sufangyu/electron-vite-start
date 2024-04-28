@@ -20,9 +20,6 @@ importers:
       '@ffprobe-installer/ffprobe':
         specifier: ^2.1.2
         version: 2.1.2
-      '@icon-park/vue-next':
-        specifier: ^1.4.2
-        version: 1.4.2(vue@3.4.21(typescript@5.4.3))
       ajv:
         specifier: '>=7.0.0'
         version: 8.12.0
@@ -35,18 +32,9 @@ importers:
       electron-updater:
         specifier: ^6.1.7
         version: 6.1.8
-      element-plus:
-        specifier: ^2.6.3
-        version: 2.6.3(vue@3.4.21(typescript@5.4.3))
       fluent-ffmpeg:
         specifier: ^2.1.2
         version: 2.1.2
-      pinia:
-        specifier: ^2.1.7
-        version: 2.1.7(typescript@5.4.3)(vue@3.4.21(typescript@5.4.3))
-      pinia-plugin-persistedstate:
-        specifier: ^3.2.1
-        version: 3.2.1(pinia@2.1.7(typescript@5.4.3)(vue@3.4.21(typescript@5.4.3)))
     devDependencies:
       '@electron-toolkit/eslint-config':
         specifier: ^1.0.2
@@ -57,9 +45,15 @@ importers:
       '@electron-toolkit/tsconfig':
         specifier: ^1.0.1
         version: 1.0.1(@types/node@18.19.29)
+      '@icon-park/vue-next':
+        specifier: ^1.4.2
+        version: 1.4.2(vue@3.4.21(typescript@5.4.3))
       '@rushstack/eslint-patch':
         specifier: ^1.7.1
         version: 1.10.1
+      '@tomjs/electron-devtools-installer':
+        specifier: ^2.2.1
+        version: 2.2.1(electron@28.2.9)
       '@types/fluent-ffmpeg':
         specifier: ^2.1.24
         version: 2.1.24
@@ -90,12 +84,21 @@ importers:
       electron-vite:
         specifier: ^2.0.0
         version: 2.1.0(vite@5.2.7(@types/node@18.19.29)(sass@1.72.0))
+      element-plus:
+        specifier: ^2.6.3
+        version: 2.6.3(vue@3.4.21(typescript@5.4.3))
       eslint:
         specifier: ^8.56.0
         version: 8.57.0
       eslint-plugin-vue:
         specifier: ^9.20.1
         version: 9.24.0(eslint@8.57.0)
+      pinia:
+        specifier: ^2.1.7
+        version: 2.1.7(typescript@5.4.3)(vue@3.4.21(typescript@5.4.3))
+      pinia-plugin-persistedstate:
+        specifier: ^3.2.1
+        version: 3.2.1(pinia@2.1.7(typescript@5.4.3)(vue@3.4.21(typescript@5.4.3)))
       postcss:
         specifier: ^8.4.38
         version: 8.4.38
@@ -1015,6 +1018,16 @@ packages:
 
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
+
+  '@tomjs/electron-devtools-installer@2.2.1':
+    resolution: {integrity: sha512-JEs1ByMObt13/IQfw5fhtY1CViGRwy8mObfogcFqH5lCCdzUQzp7Uf7T1LDM784o4B8x/OPoZl6lYPCvURwnxA==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      electron: '>=12.0.0'
+
+  '@tomjs/unzip-crx@1.1.0':
+    resolution: {integrity: sha512-uMC8lqwBRnpOj+Cs3M9KX4WnWMzPLN+EDib5L9GJy5pT1veraM1uaIde/GqixOOK0SBofgpzDTQ10IQLDi9Z1w==}
+    engines: {node: '>=14'}
 
   '@tootallnate/once@2.0.0':
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
@@ -2127,6 +2140,9 @@ packages:
   image-q@4.0.0:
     resolution: {integrity: sha512-PfJGVgIfKQJuq3s0tTDOKtztksibuUEbJQIYT3by6wctQo+Rdlh7ef4evJ5NCdxY4CfMbvFkocEwbl4BF8RlJw==}
 
+  immediate@3.0.6:
+    resolution: {integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==}
+
   immutable@4.3.5:
     resolution: {integrity: sha512-8eabxkth9gZatlwl5TBuJnCsoTADlL6ftEr7A4qgdaTsPyreilDSnUk57SO+jfKcNtxPa22U5KK6DSeAYhpBJw==}
 
@@ -2265,6 +2281,9 @@ packages:
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
 
+  jszip@3.10.1:
+    resolution: {integrity: sha512-xXDvecyTpGLrqFrvkrUSoxxfJI5AH7U8zxxtVclpsUtMCq4JQ290LY8AW5c7Ggnr/Y/oK+bQMbqK2qmtk3pN4g==}
+
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
@@ -2282,6 +2301,9 @@ packages:
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
+
+  lie@3.3.0:
+    resolution: {integrity: sha512-UaiMJzeWRlEujzAuw5LokY1L5ecNQYZKfmyZ9L7wDHb/p5etKaxXhohBcrw0EYby+G/NA52vRSN4N39dxHAIwQ==}
 
   lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
@@ -2889,6 +2911,9 @@ packages:
   serialize-error@7.0.1:
     resolution: {integrity: sha512-8I8TjW5KMOKsZQTvoxjuSIa7foAwPWGOts+6o7sgjz41/qMD9VQHEDxi6PBvK2l0MXUmqZyNpUK+T2tQaaElvw==}
     engines: {node: '>=10'}
+
+  setimmediate@1.0.5:
+    resolution: {integrity: sha512-MATJdZp8sLqDl/68LfQmbP8zKPLQNV6BIZoIgrscFDQ+RsvK/BxeDQOgyxKKoh0y/8h3BqVFnCqQ/gd+reiIXA==}
 
   sharp@0.32.6:
     resolution: {integrity: sha512-KyLTWwgcR9Oe4d9HwCwNM2l7+J0dUQwn/yf7S0EnTtb0eVS4RxO0eUSvxPtzT4F3SY+C4K6fqdv/DO27sJ/v/w==}
@@ -4121,6 +4146,15 @@ snapshots:
       defer-to-connect: 2.0.1
 
   '@tokenizer/token@0.3.0': {}
+
+  '@tomjs/electron-devtools-installer@2.2.1(electron@28.2.9)':
+    dependencies:
+      '@tomjs/unzip-crx': 1.1.0
+      electron: 28.2.9
+
+  '@tomjs/unzip-crx@1.1.0':
+    dependencies:
+      jszip: 3.10.1
 
   '@tootallnate/once@2.0.0': {}
 
@@ -5552,6 +5586,8 @@ snapshots:
     dependencies:
       '@types/node': 16.9.1
 
+  immediate@3.0.6: {}
+
   immutable@4.3.5: {}
 
   import-fresh@3.3.0:
@@ -5674,6 +5710,13 @@ snapshots:
     optionalDependencies:
       graceful-fs: 4.2.11
 
+  jszip@3.10.1:
+    dependencies:
+      lie: 3.3.0
+      pako: 1.0.11
+      readable-stream: 2.3.8
+      setimmediate: 1.0.5
+
   keyv@4.5.4:
     dependencies:
       json-buffer: 3.0.1
@@ -5690,6 +5733,10 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
+
+  lie@3.3.0:
+    dependencies:
+      immediate: 3.0.6
 
   lilconfig@2.1.0: {}
 
@@ -6229,6 +6276,8 @@ snapshots:
     dependencies:
       type-fest: 0.13.1
     optional: true
+
+  setimmediate@1.0.5: {}
 
   sharp@0.32.6:
     dependencies:
