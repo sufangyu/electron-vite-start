@@ -1,9 +1,10 @@
+import { BrowserWindow } from 'electron';
 import { WINDOW_NAME } from '@share/modules';
 import { WindowController } from './window.controller';
 
-export function createAppWindow(): void {
+export function createAppWindow(): BrowserWindow {
   const windowController = WindowController.getInstance();
-  windowController.createWindow({
+  return windowController.createWindow({
     module: WINDOW_NAME.APP,
     url: '/',
     width: 1000,

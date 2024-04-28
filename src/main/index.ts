@@ -1,11 +1,18 @@
 import { app, BrowserWindow } from 'electron';
-import { electronApp, optimizer } from '@electron-toolkit/utils';
+import { electronApp, optimizer, platform } from '@electron-toolkit/utils';
 import ElectronStore from 'electron-store';
 import createAppMenu from './modules/menus';
+import createTray from './modules/tray';
 import { createAppWindow } from './modules/window';
+import { extensionInstallController } from './plugins';
+import { SETTING } from './setting';
 import './ipc';
 
 ElectronStore.initRenderer();
+
+// 用于阻止关闭应用程序退出, 而是隐藏到托盘
+let willQuitApp = false;
+let appWindow: BrowserWindow;
 
 app.whenReady().then(() => {
   // 设置应用程序的用户模型标识符（App User Model ID）
@@ -17,15 +24,39 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window);
   });
 
-  createAppWindow();
+  // Mac 系统隐藏 Dock 栏图标
+  if (SETTING.isDockHide && platform.isMacOS) {
+    app.dock.hide();
+  }
+
+  // 创建主窗口、菜单、托盘
+  appWindow = createAppWindow();
   createAppMenu();
+  createTray(appWindow);
+
+  // 安装 Vue.js DevTools
+  extensionInstallController.presets('VUEJS_DEVTOOLS');
 
   app.on('activate', function () {
     // macOS系统下，当点击dock图标时，如果没有其他窗口打开，则重新创建窗口
     if (BrowserWindow.getAllWindows().length === 0) {
       createAppWindow();
+    } else {
+      appWindow.show();
     }
   });
+
+  // 阻止关闭主窗口时隐藏到托盘而不是退出应用
+  appWindow?.on('close', (ev) => {
+    if (!willQuitApp) {
+      ev.preventDefault();
+      app.hide();
+    }
+  });
+});
+
+app.on('before-quit', () => {
+  willQuitApp = true;
 });
 
 // 非macOS系统关闭所有窗口时会退出应用。而在 macOS 上，当应用程序的所有窗口都被关闭后，

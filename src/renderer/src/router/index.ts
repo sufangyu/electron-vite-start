@@ -6,7 +6,7 @@ import test, { TEST_ROUTER_NAME } from '@renderer/pages/test/router';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: { name: 'VideoCompress' },
+    redirect: { name: TEST_ROUTER_NAME.TEST_WINDLW },
     component: () => import('@renderer/layout'),
     children: []
   },
