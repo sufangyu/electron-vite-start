@@ -3,7 +3,7 @@ import { EventKey } from 'electron-events';
 import { type APP_THEME } from './app.types';
 
 /** 应用级别事件（渲染进程发起） */
-export enum APP_EVENT_RENDERER_INVOKE {}
+export const APP_EVENT_RENDERER_INVOKE = {};
 
 /**
  * APP模块通讯频道（渲染进程 <=> 主进程）

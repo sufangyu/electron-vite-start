@@ -4,8 +4,8 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { sleep } from '@core/utils';
 import { useUpdater } from '@modules/updater/composables';
+import { sleep } from '@core/utils';
 import { useAppSettingStore } from '@store/index';
 
 useAppSettingStore();

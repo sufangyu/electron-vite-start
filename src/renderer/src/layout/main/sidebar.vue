@@ -44,6 +44,7 @@
 <script setup lang="ts">
 import {
   AddWeb,
+  ExchangeThree,
   Compression,
   Mail,
   DocDetail,
@@ -60,7 +61,8 @@ import { useUpdater } from '@renderer/modules/updater/composables';
 const { updater } = useUpdater();
 
 const nav = [
-  { icon: AddWeb, label: '窗口', routeName: TEST_ROUTER_NAME.TEST_WINDLW },
+  { icon: AddWeb, label: '窗口管理', routeName: TEST_ROUTER_NAME.TEST_WINDLW },
+  { icon: ExchangeThree, label: '进程/窗口通讯', routeName: TEST_ROUTER_NAME.TEST_IPC },
   { icon: Compression, label: '视频压缩', routeName: 'VideoCompress' },
   { icon: Mail, label: '邮件', routeName: 'NotFound' },
   { icon: DocDetail, label: '文档', routeName: 'NotFound' },
@@ -73,7 +75,7 @@ const nav = [
 
 <style lang="scss" scoped>
 .sidebar {
-  @apply w-[144px] h-[100vh] flex flex-col text-sm select-none
+  @apply w-[144px] h-[100vh] flex flex-col text-[13px] select-none
     bg-[#E9E7EA] dark:bg-[#1e1c21];
 }
 
@@ -96,14 +98,14 @@ const nav = [
 }
 
 .nav-item {
-  @apply mx-[12px] h-8 leading-8 rounded-md my-[1px] overflow-hidden transition-all;
+  @apply mx-[8px] h-8 leading-8 rounded-md my-[1px] overflow-hidden transition-all;
 
   &:hover {
     @apply bg-[#dadcde] dark:bg-[#2e3032];
   }
 
   > a {
-    @apply px-2 flex items-center gap-2;
+    @apply px-2 flex items-center gap-1;
 
     &.router-link-active {
       @apply bg-[#c9d2e7] text-[#4f7be1]

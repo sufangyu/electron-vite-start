@@ -3,4 +3,6 @@ export * from './window';
 export * from './file';
 export * from './directory';
 export * from './updater';
+
 export * from './video';
+export * from './test-ipc';
