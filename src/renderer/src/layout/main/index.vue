@@ -10,7 +10,6 @@
 
 <script setup lang="ts">
 import Sidebar from './sidebar.vue';
-// import Navbar from '@renderer/components/navbar.vue';
 </script>
 
 <style lang="scss" scoped>
@@ -18,7 +17,7 @@ import Sidebar from './sidebar.vue';
   @apply flex;
 
   .app-main {
-    @apply flex-1;
+    @apply flex-1 flex flex-col h-screen;
   }
 }
 </style>

@@ -231,9 +231,12 @@ export class WindowController {
       module,
       title
     };
-    window.webContents.executeJavaScript(`
-      window.windowInfo = ${JSON.stringify(windowInfo)}
-    `);
+    const codeList = [`window.windowInfo = ${JSON.stringify(windowInfo)};`];
+    if (title) {
+      // 处理窗口标题
+      codeList.unshift(`document.title = '${this.lastTitle}';`);
+    }
+    window.webContents.executeJavaScript(codeList.join(''));
   }
 
   /**

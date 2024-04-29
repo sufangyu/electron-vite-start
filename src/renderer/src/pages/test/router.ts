@@ -1,5 +1,6 @@
 export enum TEST_ROUTER_NAME {
-  TEST_WINDLW = 'TestWindow'
+  TEST_WINDLW = 'TestWindow',
+  TEST_IPC = 'TestIpc'
 }
 
 export default [
@@ -8,12 +9,36 @@ export default [
     component: () => import('@renderer/layout'),
     children: [
       {
-        name: TEST_ROUTER_NAME.TEST_WINDLW,
         path: 'window',
+        name: TEST_ROUTER_NAME.TEST_WINDLW,
         component: () => import('./window/views/index.vue'),
-        meta: {
-          title: '创建窗口'
-        }
+        meta: { title: '窗口管理' }
+      },
+      {
+        path: 'ipc',
+        name: TEST_ROUTER_NAME.TEST_IPC,
+        component: () => import('./ipc/views/index.vue'),
+        meta: { title: '进程/窗口通讯' }
+      }
+    ]
+  },
+
+  {
+    path: '/test',
+    component: () => import('@renderer/layout/empty.vue'),
+    children: [
+      // 进程/窗口通讯结果页
+      {
+        path: 'ipc/foo',
+        name: 'TestIpcFoo',
+        component: () => import('./ipc/views/foo.vue'),
+        meta: { title: 'foo 窗口' }
+      },
+      {
+        path: 'ipc/bar',
+        name: 'TestIpcBar',
+        component: () => import('./ipc/views/bar.vue'),
+        meta: { title: 'bar 窗口' }
       }
     ]
   },

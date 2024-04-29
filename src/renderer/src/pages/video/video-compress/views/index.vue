@@ -1,16 +1,17 @@
 <template>
-  <PageTitle title="视频压缩" />
-  <section class="p-3 flex flex-col">
-    <SizeFps class="" />
-    <Bitrate />
-    <Action class="mt-5" />
-    <Button class="mt-3" />
-    <VideoLst class="mt-5" />
-  </section>
+  <AppMain title="视频压缩">
+    <section class="p-3 flex flex-col">
+      <SizeFps class="" />
+      <Bitrate />
+      <Action class="mt-5" />
+      <Button class="mt-3" />
+      <VideoLst class="mt-5" />
+    </section>
+  </AppMain>
 </template>
 
 <script lang="ts" setup>
-import PageTitle from '@components/page-title.vue';
+import AppMain from '@components/app-main/index.vue';
 import SizeFps from '../components/size-fps.vue';
 import Bitrate from '../components/bitrate.vue';
 import Action from '../components/aciton.vue';
