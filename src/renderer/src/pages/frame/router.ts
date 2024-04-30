@@ -2,7 +2,7 @@ export default [
   {
     path: '/setting',
     redirect: '/setting',
-    component: () => import('@renderer/layout'),
+    component: () => import('@layout/index'),
     children: [
       {
         name: 'Setting',

@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useVideoConfigStore } from '@renderer/store/index';
+import { useVideoConfigStore } from '@store/index';
 
 const { config } = useVideoConfigStore();
 </script>

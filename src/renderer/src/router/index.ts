@@ -1,13 +1,13 @@
 import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router';
-import frame from '@renderer/pages/frame/router';
-import video, { VIDEO_ROUTER_NAME } from '@renderer/pages/video/router';
-import test, { TEST_ROUTER_NAME } from '@renderer/pages/test/router';
+import frame from '@pages/frame/router';
+import video, { VIDEO_ROUTER_NAME } from '@pages/video/router';
+import test, { TEST_ROUTER_NAME } from '@pages/test/router';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     redirect: { name: TEST_ROUTER_NAME.TEST_WINDLW },
-    component: () => import('@renderer/layout'),
+    component: () => import('@layout/index'),
     children: []
   },
   ...video,

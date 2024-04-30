@@ -36,7 +36,9 @@ class LoggerController {
    * @return {*}
    * @memberof LoggerController
    */
-  private getFileNameByDate() {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  private getFileNameByDate(): string {
     const tody = new Date();
     const date = `${tody.getFullYear()}-${tody.getMonth() + 1}-${tody.getDate()}`;
     return `${date}.log`;
