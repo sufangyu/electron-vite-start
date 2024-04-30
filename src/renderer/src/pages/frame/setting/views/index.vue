@@ -46,6 +46,15 @@
         </el-button> -->
         </div>
       </Card>
+
+      <Card title="开发者工具">
+        <el-button size="small" @click="directoryOpen(DIRECTORY_TYPE.LOGS)">
+          打开缓存目录
+        </el-button>
+        <el-button size="small" @click="directoryOpen(DIRECTORY_TYPE.STORE)">
+          打开日志目录
+        </el-button>
+      </Card>
     </section>
   </AppMain>
 
@@ -69,6 +78,10 @@ import { UPDATER_STATE } from '@modules/updater/types';
 import { useUpdater } from '@modules/updater/composables';
 import { themeOptions } from '@modules/theme/constants';
 import { useAppSettingStore } from '@store/index';
+import { useDirectory } from '@modules/directory/composables';
+import { DIRECTORY_TYPE } from '@share/modules';
+
+const { directoryOpen } = useDirectory();
 
 // 应用更新 -----------------------------------
 const {

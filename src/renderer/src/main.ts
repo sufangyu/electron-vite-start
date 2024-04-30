@@ -2,6 +2,8 @@ import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { createPersistedState } from 'pinia-plugin-persistedstate';
 
+import '@core/plugins';
+
 // element ui
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';

@@ -59,7 +59,7 @@ export default () => {
 
   // 处理更新结果
   const _handleUpdaterResult = (event: UPDATER_IPC_CHANNEL_EVENT, data: IpcData) => {
-    console.log('更新过程结果 =>>', event, data);
+    console.debug('[RENDERER_UPDATE] 更新过程结果 =>>', event, data);
     switch (event) {
       case UPDATER_IPC_CHANNEL_EVENT.ERROR:
         ElMessage.error(data?.message);

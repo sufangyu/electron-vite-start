@@ -4,8 +4,8 @@ import ElectronStore from 'electron-store';
 import createAppMenu from './modules/menus';
 import createTray from './modules/tray';
 import { createAppWindow } from './modules/window';
-import { extensionInstallController } from './plugins';
 import { SETTING } from './setting';
+import './plugins';
 import './ipc';
 
 ElectronStore.initRenderer();
@@ -33,9 +33,6 @@ app.whenReady().then(() => {
   appWindow = createAppWindow();
   createAppMenu();
   createTray(appWindow);
-
-  // 安装 Vue.js DevTools
-  extensionInstallController.presets('VUEJS_DEVTOOLS');
 
   app.on('activate', function () {
     // macOS系统下，当点击dock图标时，如果没有其他窗口打开，则重新创建窗口

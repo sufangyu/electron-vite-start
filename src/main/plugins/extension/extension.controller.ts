@@ -18,12 +18,12 @@ class ExtensionInstallController {
    * @return {*}
    * @memberof ExtensionInstallController
    */
-  presets(extensionIds: keyof typeof extensionTypeMap, options?: InstallOptions): void {
+  installPresets(extensionIds: keyof typeof extensionTypeMap, options?: InstallOptions): void {
     if (!is.dev || !extensionTypeMap[extensionIds]) {
       return;
     }
     installExtension(extensionTypeMap[extensionIds], options)
-      .then((ext) => console.log(`[INSTALL_EXTENSION ] Added Extension: ${ext.name}`))
+      .then((ext) => console.log(`[INSTALL_EXTENSION] Added Extension: ${ext.name}`))
       .catch((err) => console.log(`[INSTALL_EXTENSION] An error occurred:  ${err}`));
   }
 }

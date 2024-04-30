@@ -132,12 +132,18 @@ const handleCreateWindow = (win: string) => {
 const events = useEvents();
 // 监听自身发来的事件
 events.on(TEST_IPC_CHANNEL__RENDERER_SEND_TO_SELF, () => {
-  console.log('[IPC]', `收到来自本窗口上 ${TEST_IPC_CHANNEL__RENDERER_SEND_TO_SELF} 频道消息`);
+  console.log(
+    '[RENDERER_IPC]',
+    `收到来自本窗口上 ${TEST_IPC_CHANNEL__RENDERER_SEND_TO_SELF} 频道消息`
+  );
 });
 
 // 监听自身发来的事件（全部推送的事件）
 events.on(TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL, () => {
-  console.log('[IPC]', `收到来自本窗口上 ${TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL} 频道消息`);
+  console.log(
+    '[RENDERER_IPC]',
+    `收到来自本窗口上 ${TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL} 频道消息`
+  );
 });
 
 // 调用事件获取数据 ---------------------------------------------------------
@@ -151,7 +157,7 @@ const handleInvokeMainEvent = async () => {
   );
 
   console.log(
-    '[IPC]',
+    '[RENDERER_IPC]',
     `收到来自主进程 ${TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_MAIN} 频道消息, 返回值: `,
     result
   );
@@ -159,8 +165,8 @@ const handleInvokeMainEvent = async () => {
 
 events.handle(TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_SELF, (data) => {
   console.log(
-    '[IPC]',
-    `收到来自自身进程上 ${TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_SELF} 频道消息}`,
+    '[RENDERER_IPC]',
+    `收到来自自身进程上 ${TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_SELF} 频道消息`,
     `参数为: ${JSON.stringify(data)}`
   );
 
@@ -176,7 +182,7 @@ const handleInvokeSelfEvent = async () => {
   });
 
   console.log(
-    '[IPC]',
+    '[RENDERER_IPC]',
     `收到来自自身进程 ${TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_SELF} 频道消息, 返回值: `,
     result
   );
@@ -190,7 +196,7 @@ const handleInvokeFooEvent = async () => {
   );
 
   console.log(
-    '[IPC]',
+    '[RENDERER_IPC]',
     `收到来自 ${WINDOW_LIST.FOO} 进程 ${TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ONE} 频道消息, 返回值: `,
     result
   );
@@ -225,7 +231,7 @@ const handleInvokeAllWindowEvent = async () => {
     WINDOW_NAME.ANY,
     TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ALL
   );
-  console.log('调用任意窗口/进程:', result);
+  console.log('[RENDERER_IPC] 调用任意窗口/进程:', result);
 };
 </script>
 
