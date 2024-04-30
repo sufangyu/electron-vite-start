@@ -21,7 +21,7 @@ const events = useEvents();
 // 监听自身发来的事件
 events.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ONE, () => {
   console.log(
-    '[IPC]',
+    '[RENDERER_IPC]',
     `收到来自 ${WINDOW_NAME.APP} 上 ${TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ONE} 频道消息`
   );
 });
@@ -29,7 +29,7 @@ events.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ONE, () => {
 // 监听其他进程发来的事件
 events.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_SEVERAL, () => {
   console.log(
-    '[IPC]',
+    '[RENDERER_IPC]',
     `收到来自 ${WINDOW_NAME.APP} 上 ${TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_SEVERAL} 频道消息`
   );
 });
@@ -37,7 +37,7 @@ events.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_SEVERAL, () =>
 // 监听其他进程发来的事件（全部推送的事件）
 events.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL, () => {
   console.log(
-    '[IPC]',
+    '[RENDERER_IPC]',
     `收到来自 ${WINDOW_NAME.APP} 上 ${TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL} 频道消息`
   );
 });
@@ -45,8 +45,8 @@ events.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL, () => {
 // 监听处理其他进程发来的事件，返回处理结果
 events.handle(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ONE, (data) => {
   console.log(
-    '[IPC]',
-    `收到来自 ${WINDOW_NAME.APP} 进程上 ${TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ONE} 频道消息}`,
+    '[RENDERER_IPC]',
+    `收到来自 ${WINDOW_NAME.APP} 进程上 ${TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ONE} 频道消息`,
     `参数为: ${JSON.stringify(data)}`
   );
 
@@ -58,8 +58,8 @@ events.handle(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ONE, (da
 
 events.handle(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_SEVERAL, () => {
   console.log(
-    '[IPC]',
-    `收到来自 ${WINDOW_NAME.APP} 进程上 ${TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_SEVERAL} 频道消息}`
+    '[RENDERER_IPC]',
+    `收到来自 ${WINDOW_NAME.APP} 进程上 ${TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_SEVERAL} 频道消息`
   );
 
   return new Promise((resolve) => {
@@ -78,8 +78,8 @@ events.handle(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_SEVERAL,
 
 events.handle(WINDOW_NAME.ANY, TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ALL, async () => {
   console.log(
-    '[IPC]',
-    `收到来自 ${WINDOW_NAME.ANY} 进程上 ${TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ALL} 频道消息}`
+    '[RENDERER_IPC]',
+    `收到来自 ${WINDOW_NAME.ANY} 进程上 ${TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ALL} 频道消息`
   );
 
   await sleep(1500);

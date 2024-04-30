@@ -29,6 +29,24 @@ $ pnpm build:mac
 $ pnpm build:linux
 ```
 
+## 目录结构
+```bash
+├── script              # 主进程源码
+│   ├── modules
+│   ├── utils
+│   ├── index.ts
+│   └─ xxx
+│
+├── src                 # 渲染进程源码
+│   ├── api
+│   ├── assets
+│   ├── ......
+│
+├── static              # 静态资源
+│   ├── icons           # 系统图标
+```
+
+
 
 ## 进程通讯
 
@@ -211,6 +229,26 @@ export enum APP_IPC_CHANNEL_EVENT {
 }
 ```
 
+### Git 提交规范
+- feat: 新功能
+- fix: 修复问题
+- style: 代码格式修改，不影响代码运行的变动
+- refactor: 重构，既不新增功能，也不是修复问题
+- perf: 优化相关，比如提升性能、体验
+- test: 测试用例，包括单元测试、集成测试等
+- chore: 其他修改，比如构建流程、依赖管理等
+- build: 构建流程、依赖管理或外部资源引入变动
+- revert: 回滚到上一个版本
+- ci: 持续集成服务相关（travis、circle）
+- deps: 依赖更新
+- release: 发布新版本
+- docs: 文档修改
+- wip: 开发中
+
+
+
+
+
 
 ## 开发调试
 - 集成 vue.js Devtool（@tomjs/electron-devtools-installer）
@@ -227,6 +265,7 @@ export enum APP_IPC_CHANNEL_EVENT {
 - [x] 开发模式集成 vuejs-devtool（@tomjs/electron-devtools-installer）
 - [x] 进程窗口通讯示例（electron-events）
 - [x] 托盘（菜单）
+- [x] 日志文件
 - [ ] 请求封装
 - [ ] 包体积优化
 - [ ] [桌面小程序](https://zhuanlan.zhihu.com/p/500043550) 

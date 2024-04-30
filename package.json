@@ -31,6 +31,7 @@
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@ffprobe-installer/ffprobe": "^2.1.2",
     "electron-events": "^0.3.2",
+    "electron-log": "^5.1.2",
     "electron-store": "^8.2.0",
     "electron-updater": "^6.1.7",
     "fluent-ffmpeg": "^2.1.2"

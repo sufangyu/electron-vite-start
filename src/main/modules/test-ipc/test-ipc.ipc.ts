@@ -14,7 +14,7 @@ import { sleep } from '@main/utils';
  */
 events.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_TO_MAIN, () => {
   console.log(
-    '[IPC]',
+    '[RENDERER_IPC]',
     `收到来自 ${WINDOW_NAME.APP} 上 ${TEST_IPC_CHANNEL__RENDERER_SEND_TO_MAIN} 频道消息`
   );
 });
@@ -24,7 +24,7 @@ events.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_TO_MAIN, () => {
  */
 events.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_TO_MAIN_WITH_ARGS, (options) => {
   console.log(
-    '[IPC]',
+    '[RENDERER_IPC]',
     `收到来自 ${WINDOW_NAME.APP} 上 ${TEST_IPC_CHANNEL__RENDERER_SEND_TO_MAIN} 频道消息, 参数为: ${JSON.stringify(options)}`
   );
 });
@@ -37,7 +37,7 @@ events.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL, () => {
   events.emitTo('window:bar', TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL);
 
   console.log(
-    '[IPC]',
+    '[RENDERER_IPC]',
     `收到来自 ${WINDOW_NAME.APP} 上 ${TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL} 频道消息`
   );
 });
@@ -47,7 +47,7 @@ events.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL, () => {
  */
 events.handle(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_MAIN, (data) => {
   console.log(
-    '[IPC]',
+    '[RENDERER_IPC]',
     `收到来自 ${WINDOW_NAME.APP} 上 ${TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_MAIN} 频道消息`,
     `参数为: ${JSON.stringify(data)}`
   );
@@ -63,7 +63,7 @@ events.handle(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_MAIN, (data)
  */
 events.handle(WINDOW_NAME.ANY, TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ALL, async () => {
   console.log(
-    '[IPC]',
+    '[RENDERER_IPC]',
     `收到来自 ${WINDOW_NAME.ANY} 进程上 ${TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ALL} 频道消息`
   );
 
