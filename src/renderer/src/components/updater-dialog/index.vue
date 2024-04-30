@@ -38,7 +38,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import { UPDATER_STATE } from '@renderer/modules/updater/types';
+import { UPDATER_STATE } from '@modules/updater';
 
 interface Props {
   visible: boolean;

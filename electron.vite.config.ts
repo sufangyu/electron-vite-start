@@ -29,6 +29,7 @@ export default defineConfig({
         '@renderer': resolve('src/renderer/src'),
         '@core': resolve('src/renderer/src/core'),
         '@layout': resolve('src/renderer/src/layout'),
+        '@pages': resolve('src/renderer/src/pages'),
         '@components': resolve('src/renderer/src/components'),
         '@modules': resolve('src/renderer/src/modules'),
         '@store': resolve('src/renderer/src/store'),

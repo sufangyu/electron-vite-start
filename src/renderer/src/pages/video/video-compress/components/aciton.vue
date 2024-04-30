@@ -36,7 +36,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { ElUpload, UploadUserFile } from 'element-plus';
 import { Plus, UpdateRotation, SettingConfig } from '@icon-park/vue-next';
-import { useCompress, useVideo } from '@renderer/modules/video/composables';
+import { useCompress, useVideo } from '@modules/video';
 import { VIDEO_ROUTER_NAME } from '@router/index';
 
 const $route = useRouter();

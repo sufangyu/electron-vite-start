@@ -18,10 +18,9 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import { useVideoConfigStore } from '@renderer/store';
+import { useVideoConfigStore } from '@store/index';
 import { CloseOne } from '@icon-park/vue-next';
-import { useSizeFps } from '@renderer/modules/video/composables';
-import { OptionType } from '@renderer/modules/video/types';
+import { useSizeFps, type OptionType } from '@modules/video';
 
 interface Props {
   /** 类型。size: fps: 帧数 */

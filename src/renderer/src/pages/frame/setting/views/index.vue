@@ -74,11 +74,10 @@ import { storeToRefs } from 'pinia';
 import UpdaterDialog from '@components/updater-dialog/index.vue';
 import AppMain from '@components/app-main/index.vue';
 import Card from '@components/card.vue';
-import { UPDATER_STATE } from '@modules/updater/types';
-import { useUpdater } from '@modules/updater/composables';
-import { themeOptions } from '@modules/theme/constants';
+import { UPDATER_STATE, useUpdater } from '@modules/updater';
+import { themeOptions } from '@modules/theme';
 import { useAppSettingStore } from '@store/index';
-import { useDirectory } from '@modules/directory/composables';
+import { useDirectory } from '@modules/directory';
 import { DIRECTORY_TYPE } from '@share/modules';
 
 const { directoryOpen } = useDirectory();

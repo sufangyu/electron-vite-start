@@ -6,7 +6,7 @@ export enum TEST_ROUTER_NAME {
 export default [
   {
     path: '/test',
-    component: () => import('@renderer/layout'),
+    component: () => import('@layout/index'),
     children: [
       {
         path: 'window',
@@ -25,7 +25,7 @@ export default [
 
   {
     path: '/test',
-    component: () => import('@renderer/layout/empty.vue'),
+    component: () => import('@layout/empty.vue'),
     children: [
       // 进程/窗口通讯结果页
       {
@@ -60,7 +60,7 @@ export default [
 
   {
     path: '/test/:id',
-    component: () => import('@renderer/layout/empty.vue'),
+    component: () => import('@layout/empty.vue'),
     children: [
       {
         name: 'TestResult',

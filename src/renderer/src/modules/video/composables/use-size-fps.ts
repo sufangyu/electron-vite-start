@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
-import { useVideoConfigStore } from '@renderer/store';
+import { useVideoConfigStore } from '@store/index';
 import { OptionType } from '../types';
 
 export default () => {

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { useTheme } from '@modules/theme/composables';
+import { useTheme } from '@modules/theme';
 
 const { theme, setTheme } = useTheme();
 

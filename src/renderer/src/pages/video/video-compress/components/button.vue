@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useCompress, useVideo } from '@renderer/modules/video/composables';
+import { useCompress, useVideo } from '@modules/video';
 
 const { removeAllFiles, resetAllFiles } = useVideo();
 const { isRunning, isPause, pause, continueRun, resetCompress } = useCompress();

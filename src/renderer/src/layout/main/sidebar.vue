@@ -55,8 +55,8 @@ import {
   SettingTwo,
   HamburgerButton
 } from '@icon-park/vue-next';
-import { TEST_ROUTER_NAME } from '@renderer/router';
-import { useUpdater } from '@renderer/modules/updater/composables';
+import { TEST_ROUTER_NAME } from '@router/index';
+import { useUpdater } from '@modules/updater';
 
 const { updater } = useUpdater();
 

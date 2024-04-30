@@ -35,7 +35,7 @@
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { ElMessage } from 'element-plus';
-import { useWindow } from '@modules/window/composables';
+import { useWindow } from '@modules/window';
 
 const route = useRoute();
 const { closeWindow } = useWindow();
