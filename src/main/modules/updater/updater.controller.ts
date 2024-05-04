@@ -1,6 +1,5 @@
 import { is } from '@electron-toolkit/utils';
 import { CancellationToken, UpdateCheckResult, autoUpdater } from 'electron-updater';
-import _ from 'lodash';
 import { UPDATER_IPC_CHANNEL, UPDATER_IPC_CHANNEL_EVENT, WINDOW_NAME } from '@share/modules';
 import { IpcData } from '@share/types';
 import { events } from '@share/utils';
@@ -19,7 +18,6 @@ class AppUpdaterController {
   /**
    * 检查更新
    *
-   * @param {BrowserWindow} win
    * @param {boolean} [isBackground=false] 是否背景下载。默认为 false
    * @param {boolean} [isAutoDownload=false] 是否自动下载。默认为 false
    * @return {*}  {(Promise<UpdateCheckResult | null>)}

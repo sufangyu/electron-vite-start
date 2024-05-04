@@ -18,7 +18,7 @@ import { sleep } from '@core/utils';
 const events = useEvents();
 
 // 监听自身发来的事件
-events.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ONE, () => {
+events?.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ONE, () => {
   console.log(
     '[RENDERER_IPC]',
     `收到来自 ${WINDOW_NAME.APP} 上 ${TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ONE} 频道消息`
@@ -26,7 +26,7 @@ events.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ONE, () => {
 });
 
 // 监听其他进程发来的事件
-events.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_SEVERAL, () => {
+events?.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_SEVERAL, () => {
   console.log(
     '[RENDERER_IPC]',
     `收到来自 ${WINDOW_NAME.APP} 上 ${TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_SEVERAL} 频道消息`
@@ -34,14 +34,14 @@ events.on(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_SEVERAL, () =>
 });
 
 // 监听其他进程发来的事件（全部推送的事件）
-events.on(WINDOW_NAME.MAIN, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL, () => {
+events?.on(WINDOW_NAME.MAIN, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL, () => {
   console.log(
     '[RENDERER_IPC]',
     `收到来自 ${WINDOW_NAME.MAIN} 上 ${TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL} 频道消息`
   );
 });
 
-events.handle(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_SEVERAL, async () => {
+events?.handle(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_SEVERAL, async () => {
   console.log(
     '[RENDERER_IPC]',
     `收到来自 ${WINDOW_NAME.APP} 进程上 ${TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_SEVERAL} 频道消息`
@@ -58,7 +58,7 @@ events.handle(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_SEVERAL,
   });
 });
 
-events.handle(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ALL, async () => {
+events?.handle(WINDOW_NAME.APP, TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ALL, async () => {
   console.log(
     '[RENDERER_IPC]',
     `收到来自 ${WINDOW_NAME.APP} 进程上 ${TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ALL} 频道消息`

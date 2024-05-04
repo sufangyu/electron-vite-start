@@ -1,4 +1,6 @@
 import logger from 'electron-log/renderer';
 
-// 覆盖 console
-Object.assign(window.console, logger.functions);
+if (!import.meta.env.DEV) {
+  // 覆盖 console
+  Object.assign(window.console, logger.functions);
+}

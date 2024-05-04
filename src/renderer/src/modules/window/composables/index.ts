@@ -41,7 +41,7 @@ const useWindow = () => {
     }
 
     general[IPC_CHANNEL.WINDOW] = true;
-    events.on(WINDOW_NAME.MAIN, WINDOW_IPC_CHANNEL, ({ event, data }) => {
+    events?.on(WINDOW_NAME.MAIN, WINDOW_IPC_CHANNEL, ({ event, data }) => {
       const actionFunc = {
         [WINDOW_IPC_CHANNEL_EVENT.WINDOW_INFO]: () => {
           const newTitle = data?.detail?.title || '';
