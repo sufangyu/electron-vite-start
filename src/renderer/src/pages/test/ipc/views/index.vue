@@ -9,14 +9,14 @@
       <Card title="发送事件">
         <el-button
           size="small"
-          @click="events.emitTo(WINDOW_NAME.MAIN, TEST_IPC_CHANNEL__RENDERER_SEND_TO_MAIN)"
+          @click="events?.emitTo(WINDOW_NAME.MAIN, TEST_IPC_CHANNEL__RENDERER_SEND_TO_MAIN)"
         >
           给主进程发信息
         </el-button>
         <el-button
           size="small"
           @click="
-            events.emitTo(WINDOW_NAME.MAIN, TEST_IPC_CHANNEL__RENDERER_SEND_TO_MAIN_WITH_ARGS, {
+            events?.emitTo(WINDOW_NAME.MAIN, TEST_IPC_CHANNEL__RENDERER_SEND_TO_MAIN_WITH_ARGS, {
               message: '给主进程发信息-传数据',
               playload: {
                 id: '1007',
@@ -32,13 +32,13 @@
         </el-button>
         <el-button
           size="small"
-          @click="events.emitTo(WINDOW_LIST.FOO, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ONE)"
+          @click="events?.emitTo(WINDOW_LIST.FOO, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ONE)"
         >
           给Foo窗口发信息
         </el-button>
         <el-button
           size="small"
-          @click="events.emitTo(WINDOW_LIST.BAR, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ONE)"
+          @click="events?.emitTo(WINDOW_LIST.BAR, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ONE)"
         >
           给Bar窗口发信息
         </el-button>
@@ -48,7 +48,7 @@
         <el-button
           size="small"
           @click="
-            events.emitTo(
+            events?.emitTo(
               [WINDOW_LIST.FOO, WINDOW_LIST.BAR],
               TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_SEVERAL
             )
@@ -58,7 +58,7 @@
         </el-button>
         <el-button
           size="small"
-          @click="events.emitTo(WINDOW_NAME.ANY, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL)"
+          @click="events?.emitTo(WINDOW_NAME.ANY, TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL)"
         >
           给主进程和其他窗口发信息
         </el-button>
@@ -131,7 +131,7 @@ const handleCreateWindow = (win: string) => {
 // 监听/触发事件 ----------------------------------------------------------------------------
 const events = useEvents();
 // 监听自身发来的事件
-events.on(TEST_IPC_CHANNEL__RENDERER_SEND_TO_SELF, () => {
+events?.on(TEST_IPC_CHANNEL__RENDERER_SEND_TO_SELF, () => {
   console.log(
     '[RENDERER_IPC]',
     `收到来自本窗口上 ${TEST_IPC_CHANNEL__RENDERER_SEND_TO_SELF} 频道消息`
@@ -139,7 +139,7 @@ events.on(TEST_IPC_CHANNEL__RENDERER_SEND_TO_SELF, () => {
 });
 
 // 监听自身发来的事件（全部推送的事件）
-events.on(TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL, () => {
+events?.on(TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL, () => {
   console.log(
     '[RENDERER_IPC]',
     `收到来自本窗口上 ${TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL} 频道消息`
@@ -150,7 +150,7 @@ events.on(TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ALL, () => {
 const reqData = { name: '张三疯', age: 18 };
 
 const handleInvokeMainEvent = async () => {
-  const result = await events.invokeTo(
+  const result = await events?.invokeTo(
     WINDOW_NAME.MAIN,
     TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_MAIN,
     { windlowName: WINDOW_NAME.APP, data: reqData }
@@ -163,7 +163,7 @@ const handleInvokeMainEvent = async () => {
   );
 };
 
-events.handle(TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_SELF, (data) => {
+events?.handle(TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_SELF, (data) => {
   console.log(
     '[RENDERER_IPC]',
     `收到来自自身进程上 ${TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_SELF} 频道消息`,
@@ -176,7 +176,8 @@ events.handle(TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_SELF, (data) => {
   });
 });
 const handleInvokeSelfEvent = async () => {
-  const result = await events.invoke(TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_SELF, {
+  const result = await (TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_SELF,
+  {
     windlowName: WINDOW_NAME.APP,
     data: reqData
   });
@@ -189,7 +190,7 @@ const handleInvokeSelfEvent = async () => {
 };
 
 const handleInvokeFooEvent = async () => {
-  const result = await events.invokeTo(
+  const result = await events?.invokeTo(
     WINDOW_LIST.FOO,
     TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ONE,
     { windlowName: WINDOW_NAME.APP, data: reqData }
