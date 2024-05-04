@@ -1,6 +1,9 @@
+import { RouteRecordRaw } from 'vue-router';
+
 export enum TEST_ROUTER_NAME {
   TEST_WINDLW = 'TestWindow',
-  TEST_IPC = 'TestIpc'
+  TEST_IPC = 'TestIpc',
+  TEST_HTTP = 'TestHttp'
 }
 
 export default [
@@ -18,6 +21,12 @@ export default [
         path: 'ipc',
         name: TEST_ROUTER_NAME.TEST_IPC,
         component: () => import('./ipc/views/index.vue'),
+        meta: { title: '进程/窗口通讯' }
+      },
+      {
+        path: 'http',
+        name: TEST_ROUTER_NAME.TEST_HTTP,
+        component: () => import('./http/views/index.vue'),
         meta: { title: '进程/窗口通讯' }
       }
     ]
@@ -72,4 +81,4 @@ export default [
       }
     ]
   }
-];
+] as RouteRecordRaw[];

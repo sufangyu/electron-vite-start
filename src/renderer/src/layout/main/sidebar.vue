@@ -45,6 +45,7 @@
 import {
   AddWeb,
   ExchangeThree,
+  Wifi,
   Compression,
   Mail,
   DocDetail,
@@ -63,6 +64,7 @@ const { updater } = useUpdater();
 const nav = [
   { icon: AddWeb, label: '窗口管理', routeName: TEST_ROUTER_NAME.TEST_WINDLW },
   { icon: ExchangeThree, label: '进程/窗口通讯', routeName: TEST_ROUTER_NAME.TEST_IPC },
+  { icon: Wifi, label: '网络请求', routeName: TEST_ROUTER_NAME.TEST_HTTP },
   { icon: Compression, label: '视频压缩', routeName: 'VideoCompress' },
   { icon: Mail, label: '邮件', routeName: 'NotFound' },
   { icon: DocDetail, label: '文档', routeName: 'NotFound' },
