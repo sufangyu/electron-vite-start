@@ -176,8 +176,7 @@ events?.handle(TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_SELF, (data) => {
   });
 });
 const handleInvokeSelfEvent = async () => {
-  const result = await (TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_SELF,
-  {
+  const result = await events?.invoke(TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_SELF, {
     windlowName: WINDOW_NAME.APP,
     data: reqData
   });
