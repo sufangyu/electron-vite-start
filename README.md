@@ -247,9 +247,6 @@ export enum APP_IPC_CHANNEL_EVENT {
 
 
 
-
-
-
 ## 开发调试
 - 集成 vue.js Devtool（@tomjs/electron-devtools-installer）
 - [本地加载 Vue.js Devtools](https://docs.ffffee.com/electron/electron-mastering-5-vue-devtools.html)
@@ -266,6 +263,7 @@ export enum APP_IPC_CHANNEL_EVENT {
 - [x] 进程窗口通讯示例（electron-events）
 - [x] 托盘（菜单）
 - [x] 日志文件
-- [ ] 请求封装
+- [x] 请求封装
+- [ ] 权限组件（全局组件、类型）
 - [ ] 包体积优化
 - [ ] [桌面小程序](https://zhuanlan.zhihu.com/p/500043550) 
