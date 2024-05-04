@@ -31,10 +31,12 @@ export default () => {
     });
   };
 
-  // 初始化主题(从主进程获取)
+  // 初始化主题(主进程 > 浏览器 > 默认值)
   const _initThemeFromMainPrcess = async () => {
     const appSettingStore = await window.api?.getAppSetting?.();
-    const mainProcessTheme = appSettingStore?.theme ?? DEFAULT_THEME;
+    const APP_STORE_KEY = import.meta.env.RENDERER_VITE_PRE_STORE_KEY + 'app-setting';
+    const appStore = JSON.parse(localStorage.getItem(APP_STORE_KEY) ?? '{}');
+    const mainProcessTheme = appSettingStore?.theme ?? appStore.theme ?? DEFAULT_THEME;
     theme.value = mainProcessTheme;
   };
 
