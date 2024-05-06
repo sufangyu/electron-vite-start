@@ -81,8 +81,6 @@
 </template>
 
 <script lang="ts" setup>
-import AppMain from '@components/app-main/index.vue';
-import Card from '@components/card.vue';
 import { useEvents } from '@core/hooks';
 import {
   WINDOW_NAME,

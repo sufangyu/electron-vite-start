@@ -89,8 +89,6 @@
 </template>
 
 <script lang="ts" setup>
-import AppMain from '@components/app-main/index.vue';
-import Card from '@components/card.vue';
 import { useRequestMethod, useRequestOthter, useRequestHooks } from '@modules/http/index';
 
 const {

@@ -2,7 +2,11 @@ import { RouteRecordRaw } from 'vue-router';
 
 export enum TEST_ROUTER_NAME {
   TEST_WINDLW = 'TestWindow',
+  TEST_WINDLW_TOOLS = 'TestWindowTools',
+  TEST_RESULT = 'TestResult',
   TEST_IPC = 'TestIpc',
+  TEST_IPC_FOO = 'TestIpcFoo',
+  TEST_IPC_BAR = 'TestIpcBar',
   TEST_HTTP = 'TestHttp',
   TEST_AUTH = 'TestAuth'
 }
@@ -46,13 +50,13 @@ export default [
       // 进程/窗口通讯结果页
       {
         path: 'ipc/foo',
-        name: 'TestIpcFoo',
+        name: TEST_ROUTER_NAME.TEST_IPC_FOO,
         component: () => import('./ipc/views/foo.vue'),
         meta: { title: 'foo 窗口' }
       },
       {
         path: 'ipc/bar',
-        name: 'TestIpcBar',
+        name: TEST_ROUTER_NAME.TEST_IPC_BAR,
         component: () => import('./ipc/views/bar.vue'),
         meta: { title: 'bar 窗口' }
       }
@@ -64,7 +68,7 @@ export default [
     component: () => import('@layout/window/index.vue'),
     children: [
       {
-        name: 'TestWindowTools',
+        name: TEST_ROUTER_NAME.TEST_WINDLW_TOOLS,
         path: '',
         component: () => import('./window/views/result.vue'),
         meta: {
@@ -79,7 +83,7 @@ export default [
     component: () => import('@layout/empty.vue'),
     children: [
       {
-        name: 'TestResult',
+        name: TEST_ROUTER_NAME.TEST_RESULT,
         path: '',
         component: () => import('./window/views/result.vue'),
         meta: {
