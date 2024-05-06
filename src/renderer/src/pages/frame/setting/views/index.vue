@@ -72,8 +72,6 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
 import UpdaterDialog from '@components/updater-dialog/index.vue';
-import AppMain from '@components/app-main/index.vue';
-import Card from '@components/card.vue';
 import { UPDATER_STATE, useUpdater } from '@modules/updater';
 import { themeOptions } from '@modules/theme';
 import { useAppSettingStore } from '@store/index';

@@ -32,9 +32,7 @@
 </template>
 
 <script lang="ts" setup>
-import AppMain from '@components/app-main/index.vue';
 import { useVideoConfigStore } from '@store/index';
-import Card from '@components/card.vue';
 import SizeFpsSet from '../components/size-fps-set.vue';
 
 const { config } = useVideoConfigStore();

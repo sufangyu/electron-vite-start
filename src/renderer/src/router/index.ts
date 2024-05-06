@@ -1,5 +1,5 @@
 import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router';
-import frame from '@pages/frame/router';
+import frame, { FRAME_ROUTER_NAME } from '@pages/frame/router';
 import video, { VIDEO_ROUTER_NAME } from '@pages/video/router';
 import test, { TEST_ROUTER_NAME } from '@pages/test/router';
 
@@ -21,4 +21,4 @@ const router = createRouter({
 });
 
 export default router;
-export { VIDEO_ROUTER_NAME, TEST_ROUTER_NAME };
+export { FRAME_ROUTER_NAME, VIDEO_ROUTER_NAME, TEST_ROUTER_NAME };

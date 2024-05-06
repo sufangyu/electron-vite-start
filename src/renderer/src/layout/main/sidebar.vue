@@ -21,7 +21,7 @@
 
     <div class="sidebar-bottom">
       <div class="nav-item nodrag">
-        <router-link :to="{ name: 'Setting' }">
+        <router-link :to="{ name: FRAME_ROUTER_NAME.SETTING }">
           <SettingTwo />
           <span class="nav-item__label">
             <span class="badge-wrapper">
@@ -57,7 +57,7 @@ import {
   SettingTwo,
   HamburgerButton
 } from '@icon-park/vue-next';
-import { TEST_ROUTER_NAME } from '@router/index';
+import { FRAME_ROUTER_NAME, TEST_ROUTER_NAME } from '@router/index';
 import { useUpdater } from '@modules/updater';
 
 const { updater } = useUpdater();

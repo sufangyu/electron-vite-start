@@ -1,3 +1,8 @@
+export enum FRAME_ROUTER_NAME {
+  SETTING = 'Setting',
+  NOT_FOUND = 'NotFound'
+}
+
 export default [
   {
     path: '/setting',
@@ -5,8 +10,8 @@ export default [
     component: () => import('@layout/index'),
     children: [
       {
-        name: 'Setting',
         path: '',
+        name: FRAME_ROUTER_NAME.SETTING,
         component: () => import('./setting/views/index.vue'),
         meta: {
           title: '设置'
@@ -15,8 +20,8 @@ export default [
     ]
   },
   {
-    name: 'NotFound',
     path: '/:anyPath(.*)*',
+    name: FRAME_ROUTER_NAME.NOT_FOUND,
     component: () => import('./exception/views/404.vue'),
     meta: {
       title: '页面不存在'

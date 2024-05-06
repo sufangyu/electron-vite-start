@@ -11,7 +11,6 @@
 </template>
 
 <script lang="ts" setup>
-import AppMain from '@components/app-main/index.vue';
 import SizeFps from '../components/size-fps.vue';
 import Bitrate from '../components/bitrate.vue';
 import Action from '../components/aciton.vue';
