@@ -22,7 +22,6 @@ export type RequestStatus = 'normal' | 'error' | 'success' | 'fail';
 export interface BaseRequestOptions<T = any, P = any> {
   request: {
     /** 请求函数 */
-    // 如何处理 T ??
     api: (...args: any[]) => Promise<HttpResponse<T>>;
     /** 请求参数 */
     params: P;
@@ -46,7 +45,14 @@ export interface BaseRequestOptions<T = any, P = any> {
  *
  * @interface BaseRequesReturn
  */
-export interface BaseRequesReturn<T = any> {
+export interface BaseRequesReturn<T = any, P = any> {
+  /**
+   * 请求参数
+   *
+   * @type {Ref<P>}
+   * @memberof BaseRequesReturn
+   */
+  params: Ref<P>;
   /**
    * 是否请求中
    *
@@ -69,7 +75,7 @@ export interface BaseRequesReturn<T = any> {
    */
   data: Ref<T | undefined>;
   /**
-   * 触发请求 函数
+   * 触发请求函数
    *
    * @memberof BaseRequesReturn
    */

@@ -13,6 +13,9 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
 // router
 import router from './router/index';
 
+// global components
+import components from '@components/glob-components';
+
 import App from './App.vue';
 import './assets/tailwind.css';
 import './assets/main.scss';
@@ -25,9 +28,11 @@ pinia.use(
     key: (id) => `${import.meta.env.RENDERER_VITE_PRE_STORE_KEY}${id}`
   })
 );
-app.use(pinia);
-app.use(router);
-app.use(ElementPlus, {
-  locale: zhCn
-});
-app.mount('#app');
+app
+  .use(pinia)
+  .use(router)
+  .use(ElementPlus, {
+    locale: zhCn
+  })
+  .use(components)
+  .mount('#app');

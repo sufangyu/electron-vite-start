@@ -136,7 +136,6 @@
 
 <script lang="ts" setup>
 import { type CreateWindowOptions } from '@share/modules';
-import AppMain from '@components/app-main/index.vue';
 
 const handleOpenWindow = async (id: string, options?: CreateWindowOptions) => {
   window.api?.openWindow?.({
