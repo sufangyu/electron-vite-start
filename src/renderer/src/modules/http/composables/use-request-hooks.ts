@@ -16,6 +16,7 @@ interface PostParams extends Types.PostRequestRes {
 export default () => {
   // 通用 Hooks（GET）
   const {
+    params: paramsGet,
     loading: loadingGet,
     resultStatus: resultStatusGet,
     data: dataGet,
@@ -37,6 +38,7 @@ export default () => {
 
   // 通用 Hooks（POST）
   const {
+    params: paramsPost,
     loading: loadingPost,
     resultStatus: resultStatusPost,
     data: dataPost,
@@ -147,12 +149,14 @@ export default () => {
 
   return {
     // BaseRequestHooks-GET
+    paramsGet,
     loadingGet,
     resultStatusGet,
     dataGet,
     handleBaseRequestGet,
 
     // BaseRequestHooks-POST
+    paramsPost,
     loadingPost,
     resultStatusPost,
     dataPost,

@@ -3,7 +3,8 @@ import { RouteRecordRaw } from 'vue-router';
 export enum TEST_ROUTER_NAME {
   TEST_WINDLW = 'TestWindow',
   TEST_IPC = 'TestIpc',
-  TEST_HTTP = 'TestHttp'
+  TEST_HTTP = 'TestHttp',
+  TEST_AUTH = 'TestAuth'
 }
 
 export default [
@@ -28,6 +29,12 @@ export default [
         name: TEST_ROUTER_NAME.TEST_HTTP,
         component: () => import('./http/views/index.vue'),
         meta: { title: '进程/窗口通讯' }
+      },
+      {
+        path: 'auth',
+        name: TEST_ROUTER_NAME.TEST_AUTH,
+        component: () => import('./auth/views/index.vue'),
+        meta: { title: '权限控制' }
       }
     ]
   },

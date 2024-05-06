@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import { defineConfig, externalizeDepsPlugin } from 'electron-vite';
 import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 import { version } from './package.json';
 
 export default defineConfig({
@@ -22,7 +23,7 @@ export default defineConfig({
     }
   },
   renderer: {
-    plugins: [vue()],
+    plugins: [vue(), vueJsx()],
     resolve: {
       alias: {
         '@share': resolve('src/share'),

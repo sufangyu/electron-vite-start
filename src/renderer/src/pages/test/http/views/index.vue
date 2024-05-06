@@ -34,6 +34,7 @@
           通用 Hooks（GET）
         </el-button>
         <div class="text-sm mt-2 leading-6">
+          <p>请求参数: {{ paramsGet }}</p>
           <p>请求中: {{ loadingGet }}</p>
           <p>状态结果: {{ resultStatusGet }}</p>
           <p>数据结果: {{ dataGet ?? [] }}</p>
@@ -44,6 +45,7 @@
           通用 Hooks（POST）
         </el-button>
         <div class="text-sm mt-2 leading-6">
+          <p>请求参数: {{ paramsPost }}</p>
           <p>请求中: {{ loadingPost }}</p>
           <p>状态结果: {{ resultStatusPost }}</p>
           <p>数据结果: 姓名-{{ dataPost?.name }}, 年龄-{{ dataPost?.age }}</p>
@@ -103,12 +105,14 @@ const { handleResponseResult, handleRequestStatus, handleDownloadFile } = useReq
 
 const {
   // BaseRequestHooks-GET
+  paramsGet,
   loadingGet,
   resultStatusGet,
   dataGet,
   handleBaseRequestGet,
 
   // BaseRequestHooks-POST
+  paramsPost,
   loadingPost,
   resultStatusPost,
   dataPost,

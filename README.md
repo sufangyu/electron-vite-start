@@ -190,6 +190,10 @@ const result: [] = await events.invokeTo(WINDOW_NAME.ANY, '频道名称/事件�
 
 
 
+## 内置 Hooks
+
+具体可以查看 [Hooks文档](./src/renderer/src/core/hooks/README.md)
+
 
 ## 规范
 

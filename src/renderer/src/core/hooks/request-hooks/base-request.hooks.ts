@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ref } from 'vue';
+import { Ref, ref } from 'vue';
 import { cloneDeep } from 'lodash-es';
 import { BaseRequesReturn, BaseRequestOptions, RequestStatus } from './types';
 import { trimValue } from './utils';
@@ -15,27 +15,29 @@ import { trimValue } from './utils';
  */
 export function useBaseRequest<T = any, P = any>(
   options: BaseRequestOptions<T, P>
-): BaseRequesReturn<T> {
+): BaseRequesReturn<T, P> {
   const cacheOptions = cloneDeep(options);
-  const { api, params, handleParams, handleValidate } = cacheOptions.request ?? {};
+  const { api, params: reqParams, handleParams, handleValidate } = cacheOptions.request ?? {};
   const { handleResponseData } = cacheOptions.response ?? {};
 
   const loading = ref(false);
   const resultStatus = ref<RequestStatus>('normal');
   const data = ref<T>();
+  const params = ref(cloneDeep(reqParams)) as Ref<P>;
+
   // 发出请求
   const handleRequest = async () => {
     // 校验参数
-    if (handleValidate && !handleValidate(params)) {
+    if (handleValidate && !handleValidate(params.value)) {
       return Promise.resolve(null);
     }
 
     // 处理请求参数
-    let curParams = cloneDeep(params);
+    let curParams = cloneDeep(params.value);
     if (handleParams) {
       curParams = handleParams(curParams);
     }
-    curParams = trimValue<P>(cloneDeep(params));
+    curParams = trimValue(curParams);
 
     try {
       loading.value = true;
@@ -58,6 +60,7 @@ export function useBaseRequest<T = any, P = any>(
   };
 
   return {
+    params,
     loading,
     resultStatus,
     data,
