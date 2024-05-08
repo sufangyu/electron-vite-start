@@ -1,3 +1,4 @@
+// 这里只是为了演示如何使用按钮权限, 实际情况是应该在 module 下维护的
 import { useAuth } from '@core/hooks';
 
 // 权限配置
