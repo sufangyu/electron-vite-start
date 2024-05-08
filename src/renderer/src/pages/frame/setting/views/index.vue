@@ -48,6 +48,7 @@
       </Card>
 
       <Card title="开发者工具">
+        {{}}
         <el-button size="small" @click="directoryOpen(DIRECTORY_TYPE.LOGS)">
           打开缓存目录
         </el-button>

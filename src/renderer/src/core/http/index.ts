@@ -1,27 +1,22 @@
-import axios, { AxiosInstance, CreateAxiosDefaults, Method, Canceler } from 'axios';
-import { HttpRequestConfig, HttpResponse } from './types';
-import {
-  handleRequestDefault,
-  handleRequestConfigUrl,
-  handleRequestDuplicate,
-  handleResponseDefault,
-  handleResponseSuccess,
-  handleResponseFail,
-  handleResponseError
-} from './interceptors/index';
+import axios, { AxiosInstance, CreateAxiosDefaults, Method } from 'axios';
+import type { HttpRequestConfig, HttpResponse } from './types';
+import { API_BASE_URL } from './constant';
+import interceptors from './interceptors';
 
 class HttpController {
   // 默认配置
   private defaultConfig: HttpRequestConfig = {
+    server: 'base',
     url: '/',
-    baseURL: import.meta.env.VITE_API_BASE,
+    baseURL: API_BASE_URL,
     method: 'GET',
     params: {},
     data: {},
     responseType: 'json',
     loading: true,
     loadingMessage: '加载中...',
-    isCancelDuplicateWithArgs: false
+    isCancelDuplicateWithArgs: false,
+    isIgnoreCancel: false
   };
 
   // 单例
@@ -46,15 +41,23 @@ class HttpController {
    * @memberof HttpController
    */
   handleInterceptors() {
+    const { request, response } = this.instance.interceptors;
     // 请求拦截
-    this.instance.interceptors.request.use(handleRequestDefault, (error) => Promise.reject(error));
-    this.instance.interceptors.request.use(handleRequestConfigUrl);
-    this.instance.interceptors.request.use(handleRequestDuplicate);
+    request.use((config) => interceptors.handleRequestDefault(config));
+    request.use((config) => interceptors.handleRequestConfigUrl(config));
+    request.use((config) => interceptors.handleRequestDuplicate(config));
 
     // 响应拦截
-    this.instance.interceptors.response.use(handleResponseDefault);
-    this.instance.interceptors.response.use(handleResponseFail, handleResponseError);
-    this.instance.interceptors.response.use(handleResponseSuccess);
+    response.use((res) => interceptors.handleResponseDefault(res));
+    response.use(
+      (res) => res,
+      (err) => interceptors.handleResponseRefreshToken(err, this.instance)
+    );
+    response.use(
+      (res) => interceptors.handleResponseFail(res),
+      (err) => interceptors.handleResponseError(err)
+    );
+    response.use((res) => interceptors.handleResponseSuccess(res));
   }
 
   /**
@@ -113,8 +116,12 @@ class HttpController {
    * @memberof HttpController
    */
   async request<T>(requestConfig: HttpRequestConfig): Promise<HttpResponse<T>> {
-    const response = await this.instance.request(requestConfig);
+    if (interceptors.isRefreshing && interceptors.isRefreshTokenMode) {
+      // 如果正在刷新 token, 则将请求放入队列中等待刷新完成后再发送
+      return interceptors.pushRequestsQueue(requestConfig);
+    }
 
+    const response = await this.instance.request(requestConfig);
     return {
       ...response.data,
       rawResponse: response
@@ -136,11 +143,6 @@ class HttpController {
       ...requestConfig,
       method
     };
-
-    // 取消请求
-    mergeConfig.cancelToken = new axios.CancelToken((c: Canceler) => {
-      mergeConfig.canceler = c;
-    });
 
     return mergeConfig;
   }

@@ -1,8 +1,9 @@
+import { debounce } from 'lodash-es';
 import { ElLoading, ElMessage } from 'element-plus';
-import { CloseLoadingCallback, HelperOptions, ShowLoadingCallback } from './types';
 import type { MessageTypedFn } from 'element-plus';
 import type { LoadingInstance } from 'element-plus/es/components/loading/src/loading.d';
-import { debounce } from 'lodash-es';
+import { CloseLoadingCallback, HelperOptions, ShowLoadingCallback } from './types';
+import { useAccountStore } from '@store/index';
 
 class Helper {
   private needLoadingRequestCount = 0;
@@ -60,6 +61,64 @@ class Helper {
   private endLoading() {
     this.closeLoadingCallback(this.loadingInstance!);
     this.loadingInstance = null;
+  }
+
+  /**
+   * 退出登录
+   *
+   * @memberof Helper
+   */
+  logout() {
+    this.resetAccount();
+    console.log('[IPC_REQUEST] TODO: 处理退出登录动作');
+  }
+
+  /**
+   * 获取 token
+   *
+   * @return {*}  {string}
+   * @memberof Helper
+   */
+  getAccessToken(): string {
+    const { accessToken } = useAccountStore();
+    return accessToken || '';
+  }
+
+  /**
+   * 获取 refreshToken
+   *
+   * @return {*}  {string}
+   * @memberof Helper
+   */
+  getRefreshAccessToken(): string {
+    const { refreshToken } = useAccountStore();
+    return refreshToken || '';
+  }
+
+  /**
+   * 重置帐号信息
+   *
+   * - 未登录 或 登录过期
+   *
+   * @memberof Helper
+   */
+  private resetAccount(): void {
+    const { setAccount } = useAccountStore();
+    setAccount(null);
+  }
+
+  /**
+   * 更新 token
+   *
+   * @memberof Helper
+   */
+  updateToken(accessToken = '', refreshToken = ''): void {
+    const { account, setAccount } = useAccountStore();
+    const newAccount = Object.assign({}, account, {
+      accessToken,
+      refreshToken
+    });
+    setAccount(newAccount);
   }
 }
 

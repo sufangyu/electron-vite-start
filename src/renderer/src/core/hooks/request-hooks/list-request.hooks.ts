@@ -87,10 +87,10 @@ export function useListRequest<T = any, P = any, L = any>(
 
   // 重置查询
   const handleReset = () => {
-    if (typeof handleCustomResetParams === 'function') {
+    if (typeof handleCustomResetParams === 'function' && reqParams) {
       params.value = handleCustomResetParams(params.value, cloneDeep(reqParams));
     } else {
-      params.value = cloneDeep(reqParams);
+      reqParams && (params.value = cloneDeep(reqParams));
     }
 
     return handleSearch(1, true);
