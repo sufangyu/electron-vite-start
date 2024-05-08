@@ -1,6 +1,6 @@
 <template>
   <section class="sidebar drag">
-    <div class="sidebar-top">
+    <div class="sidebar-top" @click="handleLogin">
       <div class="sidebar-top__logo nodrag">
         <el-image src="https://avatars.githubusercontent.com/u/1852629" />
       </div>
@@ -42,24 +42,20 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
 import {
   AddWeb,
   ExchangeThree,
   Wifi,
   Protect,
   Compression,
-  Mail,
-  DocDetail,
-  Schedule,
-  VideoConference,
-  MoreApp,
-  AddressBook,
   SettingTwo,
   HamburgerButton
 } from '@icon-park/vue-next';
 import { FRAME_ROUTER_NAME, TEST_ROUTER_NAME } from '@router/index';
 import { useUpdater } from '@modules/updater';
 
+const router = useRouter();
 const { updater } = useUpdater();
 
 const nav = [
@@ -67,14 +63,14 @@ const nav = [
   { icon: ExchangeThree, label: '进程/窗口通讯', routeName: TEST_ROUTER_NAME.TEST_IPC },
   { icon: Wifi, label: '网络请求', routeName: TEST_ROUTER_NAME.TEST_HTTP },
   { icon: Protect, label: '权限控制', routeName: TEST_ROUTER_NAME.TEST_AUTH },
-  { icon: Compression, label: '视频压缩', routeName: 'VideoCompress' },
-  { icon: Mail, label: '邮件', routeName: 'NotFound' },
-  { icon: DocDetail, label: '文档', routeName: 'NotFound' },
-  { icon: Schedule, label: '日程', routeName: 'NotFound' },
-  { icon: VideoConference, label: '会议', routeName: 'NotFound' },
-  { icon: MoreApp, label: '工作台', routeName: 'NotFound' },
-  { icon: AddressBook, label: '通讯录', routeName: 'NotFound' }
+  { icon: Compression, label: '视频压缩', routeName: 'VideoCompress' }
 ];
+
+const handleLogin = () => {
+  router.push({
+    name: FRAME_ROUTER_NAME.LOGIN
+  });
+};
 </script>
 
 <style lang="scss" scoped>

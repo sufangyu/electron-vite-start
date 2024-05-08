@@ -1,9 +1,10 @@
 // 参考: https://github.com/ecstAsy/Taro-Mock/blob/master/mock/index.js
 const fs = require('fs');
-const delay = require('mocker-api/lib/delay');
-const Query = require('./utils');
-const ListData = require('./list');
 const { join } = require('path');
+const delay = require('mocker-api/lib/delay');
+const { Query } = require('./utils');
+const ListData = require('./list');
+const userModule = require('./modules/user');
 
 const data = {
   _proxy: {
@@ -124,7 +125,10 @@ const data = {
     res.setHeader('Content-disposition', 'attachment; filename=' + encodeURIComponent(filename));
     res.setHeader('Content-Type', 'application/json');
     res.sendFile(filePath);
-  }
+  },
+
+  // 用户模块
+  ...userModule
 };
 
 // 使用delay方法可以延迟返回数据

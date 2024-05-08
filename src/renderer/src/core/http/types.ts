@@ -1,4 +1,4 @@
-import { AxiosRequestConfig, AxiosResponse, Canceler } from 'axios';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import type { MessageTypedFn } from 'element-plus';
 import type { LoadingInstance } from 'element-plus/es/components/loading/src/loading.d';
 
@@ -10,6 +10,13 @@ import type { LoadingInstance } from 'element-plus/es/components/loading/src/loa
  * @extends {AxiosRequestConfig}
  */
 export interface HttpRequestConfig extends AxiosRequestConfig {
+  /**
+   * 服务标识, 用于处理 baseURL
+   *
+   * @type {('base' | 'open')}
+   * @memberof HttpRequestConfig
+   */
+  server?: 'base' | 'open';
   /**
    * 是否显示 loading 提示
    *
@@ -44,12 +51,17 @@ export interface HttpRequestConfig extends AxiosRequestConfig {
   isCancelDuplicateWithArgs?: boolean;
 
   /**
-   * 取消请求对象
-   *
-   * @type {Canceler}
-   * @memberof HttpRequestConfig
+   * 忽略强制取消请求. 默认 false
    */
-  canceler?: Canceler;
+  isIgnoreCancel?: boolean;
+
+  // /**
+  //  * 取消请求对象
+  //  *
+  //  * @type {Canceler}
+  //  * @memberof HttpRequestConfig
+  //  */
+  // canceler?: Canceler;
 }
 
 /**

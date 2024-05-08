@@ -61,6 +61,7 @@ export const getResponseResult = (result: 'success' | 'fail') => {
 export const getRequestStatus = (status: number) => {
   return http.get({
     url: `/api/status/${status}`,
-    loading: false
+    loading: false,
+    isIgnoreCancel: [403].includes(status)
   });
 };

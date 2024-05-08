@@ -24,7 +24,7 @@ export interface BaseRequestOptions<T = any, P = any> {
     /** 请求函数 */
     api: (...args: any[]) => Promise<HttpResponse<T>>;
     /** 请求参数 */
-    params: P;
+    params?: P;
     /** 参数校验 */
     handleValidate?: (params: P) => boolean;
     /** 处理参数 */
@@ -112,7 +112,7 @@ export interface ListRequestOptions<T = any, P = any, L = any> {
      *
      * @type {P}
      */
-    params: P;
+    params?: P;
     /**
      * 页码 Key. 默认 `pageNum`
      *
