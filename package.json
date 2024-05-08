@@ -24,6 +24,7 @@
     "build:mac-arm": "npm run build && electron-builder --mac --arm64",
     "build:linux": "npm run build && electron-builder --linux",
     "electron:generate-icons": "uosjs-icon-builder --input=./resources/icon.png --output=.icons --flatten",
+    "init:module": "node scripts/module",
     "mock": "mocker ./mock"
   },
   "dependencies": {
