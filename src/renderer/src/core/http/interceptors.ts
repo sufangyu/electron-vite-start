@@ -137,7 +137,7 @@ class Interceptors {
       !headers.has(SKIP_CANCEL_HEADER_KEY)
     ) {
       // 调用取消请求: 已存在 + 非忽略强制取消请求 + 不跳过取消处理
-      this.cacheRequestPromise[cacheRequestKey]?.cancel('请求已取消');
+      this.cacheRequestPromise[cacheRequestKey]?.cancel('请求已取消', config);
     }
 
     // 创建新的取消请求标识
@@ -164,12 +164,12 @@ class Interceptors {
    */
   handleResponseDefault(response: AxiosResponse): AxiosResponse {
     // 删除请求中对象中已完成的请求
-    const requestConfig: HttpRequestConfig = response.config;
-    const cacheRequestKey = this.getCacheRequestKey(requestConfig);
+    const responseConfig: HttpRequestConfig = response.config;
+    const cacheRequestKey = this.getCacheRequestKey(responseConfig);
     delete this.cacheRequestPromise[cacheRequestKey];
 
     // 隐藏 loading
-    this.hideFullScreenLoading(requestConfig);
+    this.hideFullScreenLoading(responseConfig);
 
     return response;
   }
