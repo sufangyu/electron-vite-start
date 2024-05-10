@@ -5,8 +5,9 @@ const delay = require('mocker-api/lib/delay');
 const { Query } = require('./utils');
 const ListData = require('./list');
 const userModule = require('./modules/user');
+const uploadModule = require('./modules/upload');
 
-const data = {
+const proxy = {
   _proxy: {
     header: {
       'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT, DELETE'
@@ -128,8 +129,11 @@ const data = {
   },
 
   // 用户模块
-  ...userModule
+  ...userModule,
+
+  // 上传模块
+  ...uploadModule
 };
 
 // 使用delay方法可以延迟返回数据
-module.exports = delay(data, 500);
+module.exports = delay(proxy, 500);

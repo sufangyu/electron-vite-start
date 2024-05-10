@@ -8,7 +8,8 @@ export enum TEST_ROUTER_NAME {
   TEST_IPC_FOO = 'TestIpcFoo',
   TEST_IPC_BAR = 'TestIpcBar',
   TEST_HTTP = 'TestHttp',
-  TEST_AUTH = 'TestAuth'
+  TEST_AUTH = 'TestAuth',
+  TEST_UPLOAD = 'TestUpload'
 }
 
 export default [
@@ -39,6 +40,12 @@ export default [
         name: TEST_ROUTER_NAME.TEST_AUTH,
         component: () => import('./auth/views/index.vue'),
         meta: { title: '权限控制' }
+      },
+      {
+        path: 'upload',
+        name: TEST_ROUTER_NAME.TEST_UPLOAD,
+        component: () => import('./upload/views/index.vue'),
+        meta: { title: '文件上传' }
       }
     ]
   },
