@@ -48,6 +48,7 @@ import {
   ExchangeThree,
   Wifi,
   Protect,
+  UploadOne,
   Compression,
   SettingTwo,
   HamburgerButton
@@ -63,6 +64,7 @@ const nav = [
   { icon: ExchangeThree, label: '进程/窗口通讯', routeName: TEST_ROUTER_NAME.TEST_IPC },
   { icon: Wifi, label: '网络请求', routeName: TEST_ROUTER_NAME.TEST_HTTP },
   { icon: Protect, label: '权限控制', routeName: TEST_ROUTER_NAME.TEST_AUTH },
+  { icon: UploadOne, label: '文件上传', routeName: TEST_ROUTER_NAME.TEST_UPLOAD },
   { icon: Compression, label: '视频压缩', routeName: 'VideoCompress' }
 ];
 
