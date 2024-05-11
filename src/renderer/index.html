@@ -33,7 +33,7 @@
         if ([mainProcessTheme, appStore.theme].includes('system')) {
           isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         }
-        isDark && appStore.theme && document.documentElement.classList.add("dark")
+        isDark && document.documentElement.classList.add("dark")
       })();
     </script>
   </head>
