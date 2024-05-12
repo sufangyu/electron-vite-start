@@ -153,6 +153,9 @@ importers:
       vue-tsc:
         specifier: ^1.8.27
         version: 1.8.27(typescript@5.4.3)
+      yargs:
+        specifier: ^17.7.2
+        version: 17.7.2
 
 packages:
 

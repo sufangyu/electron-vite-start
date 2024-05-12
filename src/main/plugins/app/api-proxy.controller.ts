@@ -9,10 +9,12 @@ class ApiProxyController {
     currentSession.webRequest.onBeforeRequest(
       { urls: ['http://*/*', 'https://*/*'] },
       (details, callback) => {
-        // TODO: 正式版本直接 callback({})
-        const proxyConfig = globalData.requestProxyList.find((config: RequestProxyItem) =>
-          details.url.startsWith(config.originalUrl)
-        );
+        const proxyConfig =
+          globalData.isDev || globalData.isDebug
+            ? globalData.requestProxyList.find((config: RequestProxyItem) =>
+                details.url.startsWith(config.originalUrl)
+              )
+            : undefined;
         if (proxyConfig) {
           const { originalUrl, redirectUrl } = proxyConfig;
           const newRedirectURL = details.url.replace(originalUrl, redirectUrl);

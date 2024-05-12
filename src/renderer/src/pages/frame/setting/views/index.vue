@@ -47,7 +47,7 @@
         </div>
       </Card>
 
-      <Card title="开发者工具">
+      <Card v-if="GLOBAL_DATA.IS_DEV || GLOBAL_DATA.IS_DEBUG" title="开发者工具">
         <el-button size="small" @click="directoryOpen(DIRECTORY_TYPE.STORE)">
           打开缓存目录
         </el-button>
@@ -56,11 +56,11 @@
         </el-button>
       </Card>
 
-      <Card title="请求代理">
+      <Card v-if="GLOBAL_DATA.IS_DEV || GLOBAL_DATA.IS_DEBUG" title="请求代理">
         <RequestProxy />
       </Card>
 
-      <Card title="请求头设置">
+      <Card v-if="GLOBAL_DATA.IS_DEV || GLOBAL_DATA.IS_DEBUG" title="请求头设置">
         <p class="text-xs mb-2">图片盗链（删除 Referer 请求头）</p>
         <div class="flex gap-2">
           <el-image
@@ -93,6 +93,7 @@ import { themeOptions } from '@modules/setting';
 import { useAppSettingStore } from '@store/index';
 import { useDirectory } from '@modules/directory';
 import { DIRECTORY_TYPE } from '@share/modules';
+import { GLOBAL_DATA } from '@core/constans/global';
 import { RequestProxy } from '../components';
 
 const { directoryOpen } = useDirectory();

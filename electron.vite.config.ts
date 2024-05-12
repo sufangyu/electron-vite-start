@@ -1,9 +1,15 @@
 import { resolve } from 'path';
 import { defineConfig, externalizeDepsPlugin } from 'electron-vite';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import AutoImport from 'unplugin-auto-import/vite';
 import { version } from './package.json';
+
+// 命令执行 npm run dev -- -- debug
+const argv = yargs(hideBin(process.argv)).argv._ ?? [];
+const IS_DEBUG = argv.includes('debug');
 
 export default defineConfig({
   main: {
@@ -43,7 +49,8 @@ export default defineConfig({
       }
     },
     define: {
-      __APP_VERSION__: JSON.stringify(version)
+      __APP_VERSION__: JSON.stringify(version),
+      __IS_DEBUG__: JSON.stringify(IS_DEBUG)
     }
   }
 });
