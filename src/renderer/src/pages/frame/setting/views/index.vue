@@ -48,13 +48,28 @@
       </Card>
 
       <Card title="开发者工具">
-        {{}}
-        <el-button size="small" @click="directoryOpen(DIRECTORY_TYPE.LOGS)">
+        <el-button size="small" @click="directoryOpen(DIRECTORY_TYPE.STORE)">
           打开缓存目录
         </el-button>
-        <el-button size="small" @click="directoryOpen(DIRECTORY_TYPE.STORE)">
+        <el-button size="small" @click="directoryOpen(DIRECTORY_TYPE.LOGS)">
           打开日志目录
         </el-button>
+      </Card>
+
+      <Card title="请求代理">
+        <RequestProxy />
+      </Card>
+
+      <Card title="请求头设置">
+        <p class="text-xs mb-2">图片盗链（删除 Referer 请求头）</p>
+        <div class="flex gap-2">
+          <el-image
+            style="width: 64px; height: 64px"
+            fit="cover"
+            :preview-src-list="[imgUrl]"
+            :src="imgUrl"
+          />
+        </div>
       </Card>
     </section>
   </AppMain>
@@ -74,12 +89,16 @@
 import { storeToRefs } from 'pinia';
 import UpdaterDialog from '@components/updater-dialog/index.vue';
 import { UPDATER_STATE, useUpdater } from '@modules/updater';
-import { themeOptions } from '@modules/theme';
+import { themeOptions } from '@modules/setting';
 import { useAppSettingStore } from '@store/index';
 import { useDirectory } from '@modules/directory';
 import { DIRECTORY_TYPE } from '@share/modules';
+import { RequestProxy } from '../components';
 
 const { directoryOpen } = useDirectory();
+
+const imgUrl =
+  'https://upload-images.jianshu.io/upload_images/27400553-33da22b24af22744.jpg?imageMogr2/auto-orient/strip|imageView2/2/format/webp';
 
 // 应用更新 -----------------------------------
 const {

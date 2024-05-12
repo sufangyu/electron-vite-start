@@ -1,10 +1,9 @@
 import { app, BrowserWindow } from 'electron';
-import { electronApp, optimizer, platform } from '@electron-toolkit/utils';
+import { electronApp, optimizer } from '@electron-toolkit/utils';
 import ElectronStore from 'electron-store';
 import createAppMenu from './modules/menus';
 import createTray from './modules/tray';
 import { createAppWindow } from './modules/window';
-import { SETTING } from './setting';
 import './plugins';
 import './ipc';
 
@@ -12,7 +11,6 @@ ElectronStore.initRenderer();
 
 // 用于阻止关闭应用程序退出, 而是隐藏到托盘
 let willQuitApp = false;
-let appWindow: BrowserWindow;
 
 app.whenReady().then(() => {
   // 设置应用程序的用户模型标识符（App User Model ID）
@@ -24,13 +22,8 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window);
   });
 
-  // Mac 系统隐藏 Dock 栏图标
-  if (SETTING.isDockHide && platform.isMacOS) {
-    app.dock.hide();
-  }
-
   // 创建主窗口、菜单、托盘
-  appWindow = createAppWindow();
+  const appWindow = createAppWindow();
   createAppMenu();
   createTray(appWindow);
 
