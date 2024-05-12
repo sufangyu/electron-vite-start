@@ -1,6 +1,6 @@
 import { IpcData } from '@share/types';
 import { EventKey } from 'electron-events';
-import { type APP_THEME } from './app.types';
+import { RequestProxyItem, type APP_THEME } from './app.types';
 
 /** 应用级别事件（渲染进程发起） */
 export const APP_EVENT_RENDERER_INVOKE = {};
@@ -10,7 +10,7 @@ export const APP_EVENT_RENDERER_INVOKE = {};
  */
 export const APP_IPC_CHANNEL: EventKey<{
   event: APP_IPC_CHANNEL_EVENT;
-  data: IpcData<APP_THEME | number>;
+  data: IpcData<APP_THEME | RequestProxyItem[]>;
 }> = 'app-ipc-channel';
 
 /**
@@ -18,5 +18,7 @@ export const APP_IPC_CHANNEL: EventKey<{
  */
 export enum APP_IPC_CHANNEL_EVENT {
   /** 设置主题 */
-  SET_THEME = 'app-ipc-channel-event:set-theme'
+  SET_THEME = 'app-ipc-channel-event:set-theme',
+  /** 设置请求代理 */
+  SET_REQUEST_PROXY = 'app-ipc-channel-event:set-request-proxy'
 }
