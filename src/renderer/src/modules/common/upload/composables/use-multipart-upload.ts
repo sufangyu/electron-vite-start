@@ -1,4 +1,4 @@
-import { Ref, ref } from 'vue';
+import type { Ref } from 'vue';
 import type { UploadRequestOptions } from 'element-plus';
 import type { ChunkFile, MultipartUploadConfig, UploadFormData } from '../types';
 import { getFileChunks } from '../utils';

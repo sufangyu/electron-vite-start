@@ -17,7 +17,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
 import { useVideoConfigStore } from '@store/index';
 import { CloseOne } from '@icon-park/vue-next';
 import type { OptionType } from '@modules/video';

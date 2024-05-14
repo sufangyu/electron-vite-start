@@ -32,8 +32,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 import { ElUpload, UploadUserFile } from 'element-plus';
 import { Plus, UpdateRotation, SettingConfig } from '@icon-park/vue-next';
 import { VIDEO_ROUTER_NAME } from '@router/index';

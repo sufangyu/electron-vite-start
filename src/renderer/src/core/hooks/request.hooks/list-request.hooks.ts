@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { cloneDeep, get } from 'lodash-es';
-import { Ref, ref } from 'vue';
+import type { Ref } from 'vue';
 import { ListRequesReturn, ListRequestOptions, RequestStatus } from './types';
 import { trimValue, updatePageUrl } from './utils';
 

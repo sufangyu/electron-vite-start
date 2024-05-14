@@ -1,4 +1,4 @@
-import { Ref, ref } from 'vue';
+import type { Ref } from 'vue';
 
 /**
  * 获取权限的结果

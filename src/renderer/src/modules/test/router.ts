@@ -1,4 +1,4 @@
-import { RouteRecordRaw } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router';
 
 export enum TEST_ROUTER_NAME {
   TEST_WINDOW = 'TestWindow',

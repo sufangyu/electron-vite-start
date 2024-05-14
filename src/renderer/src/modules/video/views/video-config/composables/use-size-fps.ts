@@ -1,4 +1,3 @@
-import { ref } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { useVideoConfigStore } from '@store/index';
 import { OptionType } from '@modules/video/types';

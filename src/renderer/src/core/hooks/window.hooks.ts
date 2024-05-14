@@ -1,4 +1,3 @@
-import { ref } from 'vue';
 import { useEvents } from '@core/hooks';
 import {
   WINDOW_ACTION,
