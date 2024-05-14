@@ -1,3 +1,5 @@
+import type { RouteRecordRaw } from 'vue-router';
+
 export enum VIDEO_ROUTER_NAME {
   /** 视频压缩 */
   VIDEO_COMPRESS = 'VideoCompress',
@@ -25,4 +27,4 @@ export default [
       }
     ]
   }
-];
+] as RouteRecordRaw[];

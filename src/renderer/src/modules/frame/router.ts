@@ -1,3 +1,5 @@
+import type { RouteRecordRaw } from 'vue-router';
+
 export enum FRAME_ROUTER_NAME {
   SETTING = 'Setting',
   LOGIN = 'Login',
@@ -30,13 +32,5 @@ export default [
         meta: { title: '登录' }
       }
     ]
-  },
-  {
-    path: '/:anyPath(.*)*',
-    name: FRAME_ROUTER_NAME.NOT_FOUND,
-    component: () => import('./exception/views/404.vue'),
-    meta: {
-      title: '页面不存在'
-    }
   }
-];
+] as RouteRecordRaw[];
