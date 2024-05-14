@@ -1,4 +1,4 @@
-import { Ref, ref } from 'vue';
+import type { Ref } from 'vue';
 import type { UploadRequestOptions } from 'element-plus';
 import type { UploadFormData } from '../types';
 import { uploadSingleApi } from '../api';

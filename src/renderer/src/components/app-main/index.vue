@@ -15,7 +15,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouter } from 'vue-router';
 import { Close } from '@icon-park/vue-next';
 
 interface Props {

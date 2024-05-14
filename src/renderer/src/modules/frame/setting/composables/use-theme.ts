@@ -1,4 +1,3 @@
-import { ref } from 'vue';
 import { useEvents, useTheme } from '@core/hooks';
 import { APP_IPC_CHANNEL, APP_IPC_CHANNEL_EVENT, APP_THEME, WINDOW_NAME } from '@share/modules';
 

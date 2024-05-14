@@ -7,7 +7,6 @@
 
 <script lang="ts" setup>
 // TODO: 支持码率设置
-import { ref } from 'vue';
 
 const bitrate = ref(10);
 </script>

@@ -1,4 +1,3 @@
-import { ref } from 'vue';
 import { ElMessage } from 'element-plus';
 import { useEvents } from '@core/hooks';
 import { IpcData } from '@share/types';

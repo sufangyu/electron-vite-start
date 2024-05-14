@@ -1,4 +1,3 @@
-import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { Account } from '@modules/frame/account';
 
