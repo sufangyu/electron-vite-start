@@ -20,31 +20,162 @@ $ pnpm dev
 
 ```bash
 # For windows
-$ pnpm build:win
+$ pnpm build-debug:win  # debug 包
+$ pnpm build:win        # release 包
 
 # For macOS
-$ pnpm build:mac
+$ pnpm build-debug:mac  # debug 包
+$ pnpm build:mac        # release 包
 
 # For Linux
-$ pnpm build:linux
+$ pnpm build-debug:linux  # debug 包
+$ pnpm build:linux        # release 包
 ```
 
 ## 目录结构
 
 ```bash
-├── script              # 主进程源码
-│   ├── modules
-│   ├── utils
-│   ├── index.ts
-│   └─ xxx
+├─ resources                                # 资源文件
+│  ├─ icon.png                              # icon 图标, 可执行npm run electron:generate-icons命令在 .icons/ 下生成其他格式图片
+│  ├─ tray-empty.png                        # 托盘空图标, 用于实现闪烁
+│  └─ tray@2x.png                           # 托盘图标
 │
-├── src                 # 渲染进程源码
-│   ├── api
-│   ├── assets
-│   ├── ......
+├─ scripts                                  # 辅助脚本
+│  ├─ ......
+│  └─ module.js                             # 初始化模块脚本
 │
-├── static              # 静态资源
-│   ├── icons           # 系统图标
+├─ src                                      # 渲染进程源码
+│  ├─ main                                  # 主进程功能
+│  │  ├─ modules                            # 功能模块
+│  │  │  ├─ app/app.ipc.ts                  # APP模块 进程通讯
+│  │  │  ├─ app/proxy.controller.ts         # APP模块 代理控制器
+│  │  │  ├─ app/theme.controller.ts         # APP模块 主题控制器
+│  │  │  ├─ app/*.theme.controller.ts       # APP模块 其他控制器
+│  │  │  ├─ app/app.index.ts                # APP模块 统一入口文件
+│  │  │  │
+│  │  │  ├─ menus/config/                   # 应用菜单配置项
+│  │  │  ├─ menus/menu.controller.ts        # 应用菜单控制器
+│  │  │  ├─ menus/index.ts                  # 应用菜单入口（创建应用菜单）
+│  │  │  │
+│  │  │  ├─ tray/tray.controller.ts         # 托盘菜单控制器
+│  │  │  ├─ tray/index.ts                   # 托盘菜单入口（创建托盘菜单）
+│  │  │  │
+│  │  │  ├─ updater/updater.controller.ts   # 更新模块控制器
+│  │  │  ├─ updater/updater.ipc.ts          # 更新模块 进程通讯
+│  │  │  ├─ updater/index.ts                # 更新模块（创建应用菜单）
+│  │  │  │
+│  │  │  └─ ......
+│  │  │
+│  │  ├─ plugins                            # 功能增强扩展（辅助功能）
+│  │  │  ├─ app/api-proxy.controller.ts     # APP 拦截渲染进程 API, 处理请求 URL 转发、请求头
+│  │  │  ├─ app/app.controller.ts           # APP 生命周期监听
+│  │  │  ├─ extension/                      # 浏览器插件（目前支持 Vue.js devtools）
+│  │  │  ├─ logger/                         # 日志
+│  │  │  └─ index.ts                        # 入口文件（使用增强扩展辅助功能）
+│  │  │
+│  │  ├─ utils/                             # 工具类/函数
+│  │  │
+│  │  ├─ global.ts                          # 全局数据（跨模块使用、减少频繁读取本地缓存文件）
+│  │  ├─ ipc.ts                             # 注册监听进程通讯（TODO: 动态导入）
+│  │  └─ index.ts                           # 入口文件（创建应用）
+│  │
+│  │
+│  ├─ preload                               # 预加载脚本, 增强渲染进程功能
+│  │  ├─ modules                            # 功能模块
+│  │  │  ├─ ......
+│  │  │  └─ index.ts                        # 全部模块入口文件
+│  │  │
+│  │  ├─ index.d.ts                         # 声明文件（渲染进程 window 对象扩展）
+│  │  └─ index.ts                           # 注册增强渲染进程功能
+│  │
+│  │
+│  ├─ renderer                              # 渲染进程功能
+│  │  ├─ src
+│  │  │  ├─ assets                          # 资源
+│  │  │  ├─ components                      # 全局组件
+│  │  │  │  ├─ ......
+│  │  │  │  └─ glob-components.ts           # 注册全局组件
+│  │  │  │
+│  │  │  ├─ core                            # 核心代码（非业务相关）
+│  │  │  │  ├─ constans/global.ts           # 全局静态数据(IS_DEV、IS_PROD、IS_DEBUG)
+│  │  │  │  │
+│  │  │  │  ├─ hooks/                       # 全局 Hooks
+│  │  │  │  ├─ hooks/request.hooks          # 请求 Hooks
+│  │  │  │  ├─ hooks/
+│  │  │  │  ├─ hooks/index.ts               # 全局 Hooks 统一入口
+│  │  │  │  │
+│  │  │  │  ├─ http/                        # 网络请求（列表、通用）
+│  │  │  │  ├─ http/index.ts                # 网络请求 入口文件
+│  │  │  │  │
+│  │  │  │  ├─ plugins/                     # 插件（辅助功能增强）
+│  │  │  │  ├─ plugins/index.ts             # 插件 入口文件
+│  │  │  │  │
+│  │  │  │  ├─ utils/                       # 工具类/函数（按类型分, 如: number.util、string.util、validate.util等）
+│  │  │  │  └─ utils/index.ts               # 工具类/函数 入口文件
+│  │  │  │
+│  │  │  ├─ layout                          # 布局
+│  │  │  │  ├─ main/                        # 主布局（左右栏）
+│  │  │  │  ├─ window                       # 自定义窗口布局（toolbar）
+│  │  │  │  ├─ empty.vue                    # 空布局
+│  │  │  │  └─ utils/index.ts               # 工具类/函数 入口文件
+│  │  │  │
+│  │  │  ├─ modules                         # 功能模块
+│  │  │  │  ├─ common/                      # 公用模块（不参与具体业务）
+│  │  │  │  │
+│  │  │  │  ├─ frame/account/               # 账号模块
+│  │  │  │  ├─ frame/account/api/           # 模块 请求方法
+│  │  │  │  ├─ frame/account/composables/   # 模块 逻辑模块
+│  │  │  │  ├─ frame/account/constant/      # 模块 常量
+│  │  │  │  ├─ frame/account/permission/    # 模块 权限配置
+│  │  │  │  ├─ frame/account/types/         # 模块 类型定义
+│  │  │  │  ├─ frame/account/views/         # 模块 页面
+│  │  │  │  ├─ frame/account/index.ts       # 模块 入口文件, 对外暴露除非 views 外的能力
+│  │  │  │  │
+│  │  │  │  └─ ......
+│  │  │  │
+│  │  │  ├─ router/index.ts                 # 路由注册
+│  │  │  │
+│  │  │  ├─ store/                          # 全局数据
+│  │  │  │  ├─ modules/                     # 模块数据
+│  │  │  │  ├─ modules/account.store.ts     # 账号模块 数据
+│  │  │  │  └─ index.ts                     # 全局数据 入口文件
+│  │  │  │
+│  │  │  ├─ App.vue
+│  │  │  ├─ auto-imports.d.ts               # unplugin-auto-import 自动生成的声明文件
+│  │  │  ├─ components.d.ts                 # 全局组件声明文件
+│  │  │  ├─ general.ts                      # 与业务相关的全局数据（判断是否已注册通讯事件）
+│  │  │  └─ main.ts
+│  │  │
+│  │  └─ index.html
+│  │
+│  │
+│  └─ share                                 # 公用/共享模块
+│     ├─ modules                            # 功能模块
+│     │  ├─ app/app.constant.ts             # APP模块 常量
+│     │  ├─ app/app.events.ts               # APP模块 通讯事件
+│     │  ├─ app/app.types.ts                # APP模块 类型定义
+│     │  ├─ app/app.index.ts                # APP模块 统一入口文件
+│     │  ├─ ......
+│     │  └─ index.ts                        # 全部模块入口文件
+│     │
+│     ├─ store                              # 主进程缓存文件数据
+│     │  ├─ app/app-setting.store.ts        # app 模块
+│     │  ├─ app/index.ts                    # 统一入口文件
+│     │  └─ index.ts                        # 全部缓存统一入口文件
+│     │
+│     ├─ types                              # 类型
+│     │  ├─ base.types.ts                   # 基础类型定义
+│     │  └─ index.ts                        # 统一入口文件
+│     │
+│     └─ utils                              # 工具类/函数
+│        ├─ events.util.ts                  # 进程通讯事件
+│        ├─ validate.util.ts                # 校验类
+│        ├─ ......
+│        └─ index.ts                        # 统一入口文件
+│
+├─ .env                                     # env 配置文件
+├─ env.d.ts                                 # env 配置生命周期文件
+└─ package.json
 ```
 
 ## 进程通讯
@@ -303,6 +434,7 @@ export enum APP_IPC_CHANNEL_EVENT {
 - [x] 日志文件
 - [x] 请求封装、支持双 token
 - [x] 权限组件（全局组件、类型）
+- [x] 倒计时组件
 - [x] 大文件切片上传
 - [x] 包体积优化
 - [ ] [桌面小程序](https://zhuanlan.zhihu.com/p/500043550)
