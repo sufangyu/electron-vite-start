@@ -1,3 +1,3 @@
-export { default as useAppSettingStore } from './app-setting.store';
-export { default as useAccountStore } from './account.store';
-export { default as useVideoConfigStore } from './video-config.store';
+export { default as useAppSettingStore } from './modules/app-setting.store';
+export { default as useAccountStore } from './modules/account.store';
+export { default as useVideoConfigStore } from './modules/video-config.store';

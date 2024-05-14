@@ -55,13 +55,13 @@ import {
   HamburgerButton
 } from '@icon-park/vue-next';
 import { FRAME_ROUTER_NAME, TEST_ROUTER_NAME } from '@router/index';
-import { useUpdater } from '@modules/updater';
+import { useUpdater } from '@modules/frame/setting';
 
 const router = useRouter();
 const { updater } = useUpdater();
 
 const nav = [
-  { icon: AddWeb, label: '窗口管理', routeName: TEST_ROUTER_NAME.TEST_WINDLW },
+  { icon: AddWeb, label: '窗口管理', routeName: TEST_ROUTER_NAME.TEST_WINDOW },
   { icon: ExchangeThree, label: '进程/窗口通讯', routeName: TEST_ROUTER_NAME.TEST_IPC },
   { icon: Wifi, label: '网络请求', routeName: TEST_ROUTER_NAME.TEST_HTTP },
   { icon: Protect, label: '权限控制', routeName: TEST_ROUTER_NAME.TEST_AUTH },
