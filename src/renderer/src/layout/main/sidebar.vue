@@ -49,6 +49,7 @@ import {
   Wifi,
   Protect,
   UploadOne,
+  StopwatchStart,
   Compression,
   SettingTwo,
   HamburgerButton
@@ -65,6 +66,7 @@ const nav = [
   { icon: Wifi, label: '网络请求', routeName: TEST_ROUTER_NAME.TEST_HTTP },
   { icon: Protect, label: '权限控制', routeName: TEST_ROUTER_NAME.TEST_AUTH },
   { icon: UploadOne, label: '文件上传', routeName: TEST_ROUTER_NAME.TEST_UPLOAD },
+  { icon: StopwatchStart, label: '倒计时', routeName: TEST_ROUTER_NAME.TEST_COUNT_DOWN },
   { icon: Compression, label: '视频压缩', routeName: 'VideoCompress' }
 ];
 

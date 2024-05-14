@@ -9,7 +9,8 @@ export enum TEST_ROUTER_NAME {
   TEST_IPC_BAR = 'TestIpcBar',
   TEST_HTTP = 'TestHttp',
   TEST_AUTH = 'TestAuth',
-  TEST_UPLOAD = 'TestUpload'
+  TEST_UPLOAD = 'TestUpload',
+  TEST_COUNT_DOWN = 'TestCountDown'
 }
 
 export default [
@@ -46,6 +47,12 @@ export default [
         name: TEST_ROUTER_NAME.TEST_UPLOAD,
         component: () => import('./upload/views/index.vue'),
         meta: { title: '文件上传' }
+      },
+      {
+        path: 'count-down',
+        name: TEST_ROUTER_NAME.TEST_COUNT_DOWN,
+        component: () => import('@modules/test/count-down/views/index.vue'),
+        meta: { title: '倒计时' }
       }
     ]
   },
