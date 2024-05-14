@@ -1,18 +1,26 @@
 import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router';
-import frame, { FRAME_ROUTER_NAME } from '@modules/frame/router';
-import video, { VIDEO_ROUTER_NAME } from '@modules/video/router';
-import test, { TEST_ROUTER_NAME } from '@modules/test/router';
+import frameRouter, { FRAME_ROUTER_NAME } from '@modules/frame/router';
+import videoRouter, { VIDEO_ROUTER_NAME } from '@modules/video/router';
+import testRouter, { TEST_ROUTER_NAME } from '@modules/test/router';
 
-const routes: Array<RouteRecordRaw> = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     redirect: { name: TEST_ROUTER_NAME.TEST_WINDOW },
     component: () => import('@layout/index'),
     children: []
   },
-  ...video,
-  ...test,
-  ...frame
+  ...videoRouter,
+  ...testRouter,
+  ...frameRouter,
+  {
+    path: '/:anyPath(.*)*',
+    name: FRAME_ROUTER_NAME.NOT_FOUND,
+    component: () => import('@modules/frame/exception/views/404.vue'),
+    meta: {
+      title: '页面不存在'
+    }
+  }
 ];
 
 const router = createRouter({
