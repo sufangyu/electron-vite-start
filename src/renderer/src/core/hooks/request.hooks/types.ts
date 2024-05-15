@@ -140,11 +140,11 @@ export interface ListRequestOptions<T = any, P = any, L = any> {
 
     /**
      * 自定义重置参数方法
-     * @param params 复制处理后的参数
      * @param defaultParams 初始参数
+     * @param params 复制处理后的参数
      * @returns
      */
-    handleCustomResetParams?: (params: P, defaultParams: P) => P;
+    handleCustomResetParams?: (defaultParams: P, params: P) => P;
   };
   response?: {
     /**

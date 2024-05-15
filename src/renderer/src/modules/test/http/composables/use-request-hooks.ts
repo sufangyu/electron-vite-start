@@ -129,8 +129,8 @@ export default () => {
         delete args.dateArr;
         return args;
       },
-      handleCustomResetParams: (oldArgs, newArgs) => {
-        console.log('重置参数 =>', oldArgs, newArgs);
+      handleCustomResetParams: (newArgs, oldArgs) => {
+        console.log('重置参数 =>', newArgs, oldArgs);
         // args.dateArr = ['', ''];
         return {
           ...oldArgs,
