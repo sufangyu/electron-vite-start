@@ -6,9 +6,12 @@
   "author": "example.com",
   "homepage": "https://electron-vite.org",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0",
+    "pnpm": ">=9.0.0"
   },
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts,.vue --fix",
     "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
@@ -67,6 +70,7 @@
     "mocker-api": "^2.9.10",
     "mockjs": "^1.1.0",
     "multiparty": "^4.2.3",
+    "only-allow": "^1.2.1",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
     "postcss": "^8.4.38",
