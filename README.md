@@ -420,7 +420,14 @@ export enum APP_IPC_CHANNEL_EVENT {
 ## 开发调试
 
 - 集成 vue.js Devtool（@tomjs/electron-devtools-installer）
-- [本地加载 Vue.js Devtools](https://docs.ffffee.com/electron/electron-mastering-5-vue-devtools.html)
+  - [本地加载 Vue.js Devtools](https://docs.ffffee.com/electron/electron-mastering-5-vue-devtools.html)
+- 支持在页面点击（Shfit+鼠标右键）打开定位到对应组件/页面源码文件
+  - 只在开发模式下有效
+  - 原理：
+    1. 编译时把文件地址和行号信息添加到 `template` 中 HTML 元素（包含组件标签）的自定义属性`data-source-location`
+    2. 监听开发服务请求, 拦截 `/open-ide` 后使用 `shell` 命令打开对应源文件
+    3. 项目的渲染进程监听 `document` 的 `mousedown` 事件, 获取元素 `data-source-location` 后, 发起打开编辑器请求给到 Vite 的服务处理（第2步）
+    > 具体可以查看 `plugins/source-location/` 与 `src/renderer/src/core/plugins/source-location.plugin/`
 
 ## TODO
 

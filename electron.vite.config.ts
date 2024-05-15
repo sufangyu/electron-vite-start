@@ -5,6 +5,7 @@ import { hideBin } from 'yargs/helpers';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import AutoImport from 'unplugin-auto-import/vite';
+import { SourceLocationServer, SourceLocation } from './plugins/source-location';
 import { version } from './package.json';
 
 // 命令执行 npm run dev -- -- debug
@@ -31,6 +32,10 @@ export default defineConfig({
   },
   renderer: {
     plugins: [
+      SourceLocationServer({
+        editor: 'vscode' // "vscode" | "webstorm"
+      }),
+      SourceLocation(),
       vue(),
       vueJsx(),
       AutoImport({ imports: ['vue', 'vue-router'], dts: './src/auto-imports.d.ts' })
