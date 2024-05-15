@@ -1,17 +1,20 @@
 <template>
-  <section v-if="title" class="app-main__page-title drag">
-    <h2>{{ title }}</h2>
-    <span class="nodrag page-title__close" @click="$router.back()">
-      <el-tooltip content="关闭" placement="bottom">
-        <Close />
-      </el-tooltip>
-    </span>
-  </section>
-  <section class="app-main__wrapper">
-    <el-scrollbar>
-      <slot />
-    </el-scrollbar>
-  </section>
+  <div>
+    <section v-if="title" class="app-main__page-title drag">
+      <h2>{{ title }}</h2>
+      <span class="nodrag page-title__close" @click="$router.back()">
+        <el-tooltip content="关闭" placement="bottom">
+          <Close />
+        </el-tooltip>
+      </span>
+    </section>
+
+    <section class="app-main__wrapper">
+      <el-scrollbar>
+        <slot />
+      </el-scrollbar>
+    </section>
+  </div>
 </template>
 
 <script lang="ts" setup>
