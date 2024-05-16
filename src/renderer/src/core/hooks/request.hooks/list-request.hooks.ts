@@ -76,7 +76,7 @@ export function useListRequest<T = any, P = any, L = any>(
       }
 
       return Promise.resolve(res);
-    } catch (error) {
+    } catch (_error) {
       resultStatus.value = 'error';
     } finally {
       loading.value = false;

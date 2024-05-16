@@ -50,7 +50,7 @@ export function useBaseRequest<T = any, P = any>(
       }
 
       return Promise.resolve(res);
-    } catch (error) {
+    } catch (_error) {
       resultStatus.value = 'error';
     } finally {
       loading.value = false;

@@ -392,7 +392,7 @@ class Interceptors {
    * @return {*}
    * @memberof Interceptors
    */
-  pushRequestsQueue(requestConfig: HttpRequestConfig): Promise<any> {
+  pushRequestsQueue(requestConfig: HttpRequestConfig): Promise<unknown> {
     return new Promise((resolve, reject) => {
       this.requestsQueue.push({ config: requestConfig, resolve, reject });
     });
