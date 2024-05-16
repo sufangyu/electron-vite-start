@@ -1,5 +1,5 @@
 /* eslint-env node */
-require('@rushstack/eslint-patch/modern-module-resolution')
+require('@rushstack/eslint-patch/modern-module-resolution');
 
 module.exports = {
   extends: [
@@ -12,6 +12,18 @@ module.exports = {
   ],
   rules: {
     'vue/require-default-prop': 'off',
-    'vue/multi-word-component-names': 'off'
+    'vue/multi-word-component-names': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        args: 'all',
+        argsIgnorePattern: '^_',
+        caughtErrors: 'all',
+        caughtErrorsIgnorePattern: '^_',
+        destructuredArrayIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        ignoreRestSiblings: true
+      }
+    ]
   }
-}
+};

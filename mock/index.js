@@ -108,7 +108,7 @@ const proxy = {
   },
 
   // 模拟文件下载接口
-  'GET /download/file.pdf': (req, res) => {
+  'GET /download/file.pdf': (_req, res) => {
     const filePath = join(__dirname, 'file.pdf');
     const filename = '接口返回的文件名.pdf';
     const file = fs.readFileSync(filePath);
@@ -118,7 +118,7 @@ const proxy = {
     res.setHeader('Content-Type', 'application/pdf'); // 返回 Blob 格式的文件
     res.send(file);
   },
-  'GET /download/file-json': (req, res) => {
+  'GET /download/file-json': (_req, res) => {
     const filePath = join(__dirname, 'file.zip');
     const filename = '接口返回的文件名.pdf';
 
