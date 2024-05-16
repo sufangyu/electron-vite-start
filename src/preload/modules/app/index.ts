@@ -1,5 +1,7 @@
-import { type AppSetting } from '@share/modules/app';
+import { APP_EVENT_RENDERER_INVOKE, COMMAND_TYPE, WINDOW_NAME } from '@share/modules';
+import type { AppSetting } from '@share/modules';
 import { appSettingStore } from '@share/store';
+import { events } from '@share/utils';
 
 export const appApi: AppApi = {
   getAppSetting: () => {
@@ -7,6 +9,13 @@ export const appApi: AppApi = {
   },
   setAppSetting: (event, data) => {
     console.log(event, data);
+  },
+  openNetworkSettings: () => {
+    return events?.invokeTo(
+      WINDOW_NAME.MAIN,
+      APP_EVENT_RENDERER_INVOKE.RUN_COMMAND,
+      COMMAND_TYPE.OPEN_NETWORK_SETTINGS
+    );
   }
 };
 
@@ -24,4 +33,11 @@ export interface AppApi {
    * @returns
    */
   readonly setAppSetting?: (event: string, data) => void;
+
+  /**
+   * 打开网络设置
+   *
+   * @memberof AppApi
+   */
+  readonly openNetworkSettings?: () => Promise<string>;
 }
