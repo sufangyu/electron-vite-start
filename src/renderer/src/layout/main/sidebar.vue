@@ -7,6 +7,14 @@
       <div class="sidebar-top__name nodrag">张三疯</div>
     </div>
 
+    <div
+      v-if="networkStatus === NETWORK_STATUS.OFFLINE"
+      class="sidebar-network nodrag"
+      @click="openNetworkSettings"
+    >
+      网络不可用，请检查
+    </div>
+
     <div class="sidebar-nav">
       <el-scrollbar>
         <div v-for="(item, idx) in nav" :key="idx" class="nav-item nodrag">
@@ -53,10 +61,12 @@ import {
   SettingTwo,
   HamburgerButton
 } from '@icon-park/vue-next';
+import { NETWORK_STATUS } from '@share/modules/app';
 import { FRAME_ROUTER_NAME, TEST_ROUTER_NAME } from '@router/index';
-import { useUpdater } from '@modules/frame/setting';
+import { useUpdater, useNetwork } from '@modules/frame/setting';
 
 const router = useRouter();
+const { networkStatus, openNetworkSettings } = useNetwork();
 const { updater } = useUpdater();
 
 const nav = [
@@ -94,6 +104,13 @@ const handleLogin = () => {
     @apply w-[24px] h-[24px] rounded-md overflow-hidden
       bg-[#ccc];
   }
+}
+
+.sidebar-network {
+  @apply flex m-2 p-2 text-xs rounded-md cursor-pointer
+    border-[1px] relative z-[5000000] text-center
+    bg-[#f7efd1] border-red-200
+    dark:bg-[#342d1a] dark:text-[#red] dark:border-yellow-900;
 }
 
 .sidebar-bottom {

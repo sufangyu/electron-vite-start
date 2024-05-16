@@ -3,11 +3,42 @@ export interface AppSetting {
   theme?: APP_THEME;
 }
 
-// 主题枚举
+/**
+ * 主题枚举
+ *
+ * @export
+ * @enum {number}
+ */
 export enum APP_THEME {
   LIGHT = 'light',
   DARK = 'dark',
+  /** 跟随系统 */
   SYSTEM = 'system'
+}
+
+/**
+ * 网络状态
+ *
+ * - 在线: Online
+ * - 离线: Offline
+ *
+ * @export
+ * @enum {number}
+ */
+export enum NETWORK_STATUS {
+  ONLINE = 'online',
+  OFFLINE = 'offline'
+}
+
+/**
+ * 命令类型
+ *
+ * @export
+ * @enum {number}
+ */
+export enum COMMAND_TYPE {
+  OPEN_NETWORK_SETTINGS = 'open-network-settings',
+  CUSTOM = 'custom'
 }
 
 /**

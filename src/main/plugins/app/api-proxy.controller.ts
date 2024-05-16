@@ -27,7 +27,7 @@ class ApiProxyController {
 
     //
     currentSession.webRequest.onBeforeSendHeaders(
-      { urls: ['https://*/*'] },
+      { urls: ['http://*/*', 'https://*/*'] },
       (details, callback) => {
         // 直接删掉这个请求头，也可以修改成其他内容
         if (details.resourceType == 'image' && details.method == 'GET') {
