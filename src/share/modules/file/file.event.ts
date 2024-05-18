@@ -1,5 +1,6 @@
-import { IpcData } from '@share/types';
 import { EventKey } from 'electron-events';
+
+import { IpcData } from '@share/types';
 
 /** 文件事件（渲染进程发起） */
 export const FILE_EVENT_RENDERER_INVOKE: Readonly<FileEventRendererInvoke> = {};

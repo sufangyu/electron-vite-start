@@ -1,4 +1,3 @@
-import { useEvents } from '@core/hooks';
 import general, { IPC_CHANNEL } from '@renderer/general';
 import {
   APP_IPC_CHANNEL,
@@ -6,6 +5,8 @@ import {
   NETWORK_STATUS,
   WINDOW_NAME
 } from '@share/modules';
+
+import { useEvents } from '@core/hooks';
 
 const events = useEvents();
 const networkStatus = ref<NETWORK_STATUS>(NETWORK_STATUS.ONLINE);

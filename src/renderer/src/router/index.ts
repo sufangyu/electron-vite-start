@@ -1,7 +1,8 @@
 import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router';
+
 import frameRouter, { FRAME_ROUTER_NAME } from '@modules/frame/router';
-import videoRouter, { VIDEO_ROUTER_NAME } from '@modules/video/router';
 import testRouter, { TEST_ROUTER_NAME } from '@modules/test/router';
+import videoRouter, { VIDEO_ROUTER_NAME } from '@modules/video/router';
 
 const routes: RouteRecordRaw[] = [
   {

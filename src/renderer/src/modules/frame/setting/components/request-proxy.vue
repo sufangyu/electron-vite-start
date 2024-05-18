@@ -44,12 +44,14 @@
 </template>
 
 <script lang="ts" setup>
-import { RequestProxyItem } from '@share/modules';
-import { ElMessage, FormInstance } from 'element-plus';
 import { AddOne, ReduceOne, Switch } from '@icon-park/vue-next';
+import { ElMessage, FormInstance } from 'element-plus';
+import { cloneDeep } from 'lodash-es';
+
+import { RequestProxyItem } from '@share/modules';
+
 import { protocolReg } from '@core/utils';
 import { useAppSettingStore } from '@store/index';
-import { cloneDeep } from 'lodash-es';
 
 const { requestProxy, setRequestProxy } = useAppSettingStore();
 

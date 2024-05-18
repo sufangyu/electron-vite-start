@@ -17,7 +17,9 @@
 
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
+
 import { useVideoConfigStore } from '@store/index';
+
 import VideoItem from './video-item.vue';
 
 // 响应式数据（https://pinia.vuejs.org/zh/core-concepts/#%E4%BB%8E-Store-%E8%A7%A3%E6%9E%84）

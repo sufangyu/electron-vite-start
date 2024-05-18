@@ -1,6 +1,8 @@
-import { contextBridge } from 'electron';
 import { electronAPI } from '@electron-toolkit/preload';
+import { contextBridge } from 'electron';
+
 import { events } from '@share/utils';
+
 import { EnhanceApi } from './index.d';
 import { appApi, windowApi, updaterApi, fileApi, videoApi } from './modules';
 

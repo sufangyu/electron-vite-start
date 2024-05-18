@@ -1,6 +1,7 @@
+import { join } from 'path';
+
 import { app, shell } from 'electron';
 import logger from 'electron-log/main';
-import { join } from 'path';
 
 class LoggerController {
   private loggerPath: string;

@@ -1,7 +1,10 @@
 import type { Ref } from 'vue';
+
 import type { UploadRequestOptions } from 'element-plus';
-import type { UploadFormData } from '../types';
+
 import { uploadSingleApi } from '../api';
+
+import type { UploadFormData } from '../types';
 
 /**
  * 小文件上传

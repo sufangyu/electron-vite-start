@@ -1,5 +1,6 @@
-import type { CountDownOptions, CountDownReturn } from './types';
 import { cancelRaf, storeHelper, parseFormat, parseTime, raf } from './util';
+
+import type { CountDownOptions, CountDownReturn } from './types';
 
 // 缓存 KEY 前缀
 const STORE_KEY_PREFIX = import.meta.env.RENDERER_VITE_PRE_STORE_KEY;

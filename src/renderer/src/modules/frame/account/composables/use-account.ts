@@ -1,8 +1,10 @@
 import { ElMessage, FormInstance } from 'element-plus';
+
 import { useBaseRequest } from '@core/hooks';
 import { useAccountStore } from '@store/index';
-import * as Types from '../types';
+
 import { loginApi, logoutApi } from '../api';
+import * as Types from '../types';
 
 export default () => {
   const loginFormRef = ref<FormInstance>();

@@ -1,5 +1,7 @@
 import { EventKey } from 'electron-events';
+
 import { IpcData } from '@share/types';
+
 import { WINDOW_ACTION, type CreateWindowOptions } from './window.types';
 
 export const WINDOW_EVENT_RENDERER_INVOKE: Readonly<WindowEventRendererInvoke> = {

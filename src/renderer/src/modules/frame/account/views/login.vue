@@ -64,8 +64,9 @@
 
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
-import { useAccountStore } from '@store/index';
+
 import { useAccount, accountDetailApi, accountDetailApi2 } from '@modules/frame/account';
+import { useAccountStore } from '@store/index';
 
 const { account } = storeToRefs(useAccountStore());
 const { loginFormRef, loginForm, loading, handleLogin, handleLogout } = useAccount();

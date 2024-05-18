@@ -1,5 +1,6 @@
 import { ElectronAPI } from '@electron-toolkit/preload';
 import { RendererIpcEvents } from 'electron-events';
+
 import { AppApi, WindowApi, UpdaterApi, FileApi, VideoApi } from './modules';
 
 interface IElectron extends ElectronAPI {

@@ -1,5 +1,6 @@
 import { is } from '@electron-toolkit/utils';
 import { CancellationToken, UpdateCheckResult, autoUpdater } from 'electron-updater';
+
 import { UPDATER_IPC_CHANNEL, UPDATER_IPC_CHANNEL_EVENT, WINDOW_NAME } from '@share/modules';
 import { IpcData } from '@share/types';
 import { events } from '@share/utils';

@@ -1,5 +1,7 @@
 import { BrowserWindow } from 'electron';
+
 import { WINDOW_NAME } from '@share/modules';
+
 import { WindowController } from './window.controller';
 
 export function createAppWindow(): BrowserWindow {

@@ -1,5 +1,7 @@
-import { IpcData } from '@share/types';
 import { EventKey } from 'electron-events';
+
+import { IpcData } from '@share/types';
+
 import { COMMAND_TYPE, NETWORK_STATUS, RequestProxyItem, type APP_THEME } from './app.types';
 
 /** 应用级别事件（渲染进程发起） */

@@ -37,6 +37,7 @@ import {
   More,
   Refresh
 } from '@icon-park/vue-next';
+
 import { useWindow } from '@core/hooks';
 
 const { isMaxState, windowTitle, reloadWindow, closeWindow, minWindow, maxWindow } = useWindow();

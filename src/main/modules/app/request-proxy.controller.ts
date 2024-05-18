@@ -1,6 +1,6 @@
-import { appSettingStore } from '@share/store';
-import { APP_SETTING_REQUEST_PROXY_KEY, RequestProxyItem } from '@share/modules/app';
 import { globalData } from '@main/global';
+import { APP_SETTING_REQUEST_PROXY_KEY, RequestProxyItem } from '@share/modules/app';
+import { appSettingStore } from '@share/store';
 
 /**
  * 请求代理/传定向配置

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+
 import { type Video } from '@share/modules';
 
 interface Config {

@@ -1,5 +1,6 @@
 import { is } from '@electron-toolkit/utils';
 import { installExtension, type InstallOptions } from '@tomjs/electron-devtools-installer';
+
 import { extensionTypeMap } from './types';
 
 /**

@@ -7,8 +7,7 @@ import axios, {
   CancelTokenSource,
   InternalAxiosRequestConfig
 } from 'axios';
-import { HttpRequestConfig, HttpResponse, HttpResponseError } from './types';
-import helper, { isEmptyObject } from './helper';
+
 import {
   API_BASE_URL,
   LOADING_MESSAGE_MAP,
@@ -17,6 +16,8 @@ import {
   REFRESH_TOKEN_HEADER_KEY,
   SKIP_CANCEL_HEADER_KEY
 } from './constant';
+import helper, { isEmptyObject } from './helper';
+import { HttpRequestConfig, HttpResponse, HttpResponseError } from './types';
 
 // 请求单例
 const requestInstance = axios.create({

@@ -1,4 +1,5 @@
 import { BrowserWindow } from 'electron';
+
 import trayController from './tray.controller';
 
 /**

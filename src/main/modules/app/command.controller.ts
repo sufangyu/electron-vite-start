@@ -1,4 +1,5 @@
 import { exec } from 'child_process';
+
 import { COMMAND_TYPE } from '@share/modules';
 
 class CommandController {

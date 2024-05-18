@@ -1,4 +1,5 @@
 import { EventKey } from 'electron-events';
+
 import { DIRECTORY_TYPE } from './directory.types';
 
 /** 目录事件（渲染进程发起） */

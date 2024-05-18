@@ -1,4 +1,5 @@
 import { MenuItemConstructorOptions } from 'electron';
+
 import {
   EDIT_MENU_CONFIG,
   VIEW_MENU_CONFIG,

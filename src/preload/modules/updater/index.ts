@@ -1,4 +1,5 @@
 import { CancellationToken, UpdateCheckResult } from 'electron-updater';
+
 import { WINDOW_NAME, UPDATER_EVENT_RENDERER_INVOKE } from '@share/modules';
 import { events } from '@share/utils';
 

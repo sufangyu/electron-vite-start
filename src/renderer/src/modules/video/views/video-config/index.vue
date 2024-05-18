@@ -33,6 +33,7 @@
 
 <script lang="ts" setup>
 import { useVideoConfigStore } from '@store/index';
+
 import SizeFpsSet from './components/size-fps-set.vue';
 
 const { config } = useVideoConfigStore();

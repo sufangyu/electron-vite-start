@@ -1,9 +1,12 @@
 import type { Ref } from 'vue';
+
 import type { UploadRequestOptions } from 'element-plus';
-import type { ChunkFile, MultipartUploadConfig, UploadFormData } from '../types';
-import { getFileChunks } from '../utils';
-import { uploadChunkApi, uploadMergeApi } from '../api';
+
 import { useSingleUpload } from './use-single-upload';
+import { uploadChunkApi, uploadMergeApi } from '../api';
+import { getFileChunks } from '../utils';
+
+import type { ChunkFile, MultipartUploadConfig, UploadFormData } from '../types';
 
 /**
  * 分片上传

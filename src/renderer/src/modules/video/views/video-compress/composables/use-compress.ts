@@ -1,5 +1,7 @@
-import { ElMessage } from 'element-plus';
 import { storeToRefs } from 'pinia';
+
+import { ElMessage } from 'element-plus';
+
 import {
   FILE_IPC_CHANNEL_EVENT,
   WINDOW_NAME,
@@ -8,8 +10,9 @@ import {
   VIDEO_STATE,
   type Video
 } from '@share/modules';
-import { useVideoConfigStore } from '@store/index';
+
 import { useEvents } from '@core/hooks';
+import { useVideoConfigStore } from '@store/index';
 
 const events = useEvents();
 let isListened = false;

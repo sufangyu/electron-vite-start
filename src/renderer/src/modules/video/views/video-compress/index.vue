@@ -11,10 +11,10 @@
 </template>
 
 <script lang="ts" setup>
-import SizeFps from './components/size-fps.vue';
-import Bitrate from './components/bitrate.vue';
 import Action from './components/aciton.vue';
+import Bitrate from './components/bitrate.vue';
 import Button from './components/button.vue';
+import SizeFps from './components/size-fps.vue';
 import VideoLst from './components/video-list.vue';
 </script>
 
