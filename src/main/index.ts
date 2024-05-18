@@ -1,6 +1,7 @@
-import { app, BrowserWindow } from 'electron';
 import { electronApp, optimizer } from '@electron-toolkit/utils';
+import { app, BrowserWindow } from 'electron';
 import ElectronStore from 'electron-store';
+
 import createAppMenu from './modules/menus';
 import createTray from './modules/tray';
 import { createAppWindow } from './modules/window';

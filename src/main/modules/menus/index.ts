@@ -1,4 +1,5 @@
 import { Menu } from 'electron';
+
 import menuController from './menu.controller';
 
 /**

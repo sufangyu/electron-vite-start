@@ -33,6 +33,7 @@
 
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus';
+
 import { useWindow } from '@core/hooks';
 
 const route = useRoute();

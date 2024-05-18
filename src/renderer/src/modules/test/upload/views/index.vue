@@ -25,6 +25,7 @@
 
 <script lang="ts" setup>
 import { Upload } from '@icon-park/vue-next';
+
 import { useMultipartUpload } from '@modules/common/upload';
 
 const { loading, progress, fileDate, handleUploadFile } = useMultipartUpload();

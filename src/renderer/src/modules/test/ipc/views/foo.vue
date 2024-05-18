@@ -3,7 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useEvents } from '@core/hooks';
 import {
   WINDOW_NAME,
   TEST_IPC_CHANNEL__RENDERER_SEND_ONE_TO_ONE,
@@ -13,6 +12,8 @@ import {
   TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_SEVERAL,
   TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ALL
 } from '@share/modules';
+
+import { useEvents } from '@core/hooks';
 import { sleep } from '@core/utils';
 
 // 监听/触发事件 ----------------------------------------------------------------------------

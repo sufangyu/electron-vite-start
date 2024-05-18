@@ -1,5 +1,6 @@
-import { events } from '@share/utils';
 import { UPDATER_EVENT_RENDERER_INVOKE, WINDOW_NAME } from '@share/modules';
+import { events } from '@share/utils';
+
 import appUpdaterController from './updater.controller';
 
 // 更新检查

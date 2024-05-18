@@ -1,4 +1,4 @@
-import { events } from '@share/utils';
+import { sleep } from '@main/utils';
 import {
   TEST_IPC_CHANNEL__RENDERER_INVOKE_ONE_TO_ALL,
   TEST_IPC_CHANNEL__RENDERER_INVOKE_TO_MAIN,
@@ -7,7 +7,7 @@ import {
   TEST_IPC_CHANNEL__RENDERER_SEND_TO_MAIN_WITH_ARGS,
   WINDOW_NAME
 } from '@share/modules';
-import { sleep } from '@main/utils';
+import { events } from '@share/utils';
 
 /**
  * 监听 APP 窗口的渲染进程发送过来的消息

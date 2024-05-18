@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import http from '@core/http';
 import { HttpResponse } from '@renderer/core/http/types';
+
+import http from '@core/http';
 
 /**
  * 获取文件名

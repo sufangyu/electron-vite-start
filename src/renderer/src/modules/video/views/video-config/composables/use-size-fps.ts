@@ -1,6 +1,7 @@
 import { ElMessage, ElMessageBox } from 'element-plus';
-import { useVideoConfigStore } from '@store/index';
+
 import { OptionType } from '@modules/video/types';
+import { useVideoConfigStore } from '@store/index';
 
 export default () => {
   const { config } = useVideoConfigStore();

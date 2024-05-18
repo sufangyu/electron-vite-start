@@ -4,6 +4,7 @@ import {
   RequestProxyItem,
   WINDOW_NAME
 } from '@share/modules';
+
 import { useEvents } from '@core/hooks';
 
 const events = useEvents();

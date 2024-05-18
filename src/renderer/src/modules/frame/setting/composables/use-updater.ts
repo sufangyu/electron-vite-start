@@ -1,8 +1,11 @@
 import { ElMessage } from 'element-plus';
-import { useEvents } from '@core/hooks';
-import { IpcData } from '@share/types';
-import { WINDOW_NAME, UPDATER_IPC_CHANNEL, UPDATER_IPC_CHANNEL_EVENT } from '@share/modules';
+
 import general, { IPC_CHANNEL } from '@renderer/general';
+import { WINDOW_NAME, UPDATER_IPC_CHANNEL, UPDATER_IPC_CHANNEL_EVENT } from '@share/modules';
+import { IpcData } from '@share/types';
+
+import { useEvents } from '@core/hooks';
+
 import { UPDATER_STATE, UpdateInfo, Updater } from '../types';
 
 const events = useEvents();

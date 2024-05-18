@@ -9,9 +9,10 @@ import {
   nativeImage,
   nativeTheme
 } from 'electron';
-import appUpdaterCheck from '../updater';
-import icon from '../../../../resources/tray@2x.png?asset';
+
 import iconEmpty from '../../../../resources/tray-empty.png?asset';
+import icon from '../../../../resources/tray@2x.png?asset';
+import appUpdaterCheck from '../updater';
 
 class TrayController {
   // 窗口实例

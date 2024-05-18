@@ -32,9 +32,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ElUpload, UploadUserFile } from 'element-plus';
 import { Plus, UpdateRotation, SettingConfig } from '@icon-park/vue-next';
+import { ElUpload, UploadUserFile } from 'element-plus';
+
 import { VIDEO_ROUTER_NAME } from '@router/index';
+
 import { useCompress, useVideo } from '../composables/index';
 
 const $route = useRouter();

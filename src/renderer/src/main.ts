@@ -1,22 +1,20 @@
-import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { createPersistedState } from 'pinia-plugin-persistedstate';
+import { createApp } from 'vue';
 
-import '@core/plugins';
-
-// element ui
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import 'element-plus/theme-chalk/dark/css-vars.css';
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
 
-// router
-import router from './router/index';
-
+// plugins
+import '@core/plugins';
 // global components
 import components from '@components/glob-components';
 
+// app view、router、styles
 import App from './App.vue';
+import router from './router/index';
 import './assets/tailwind.css';
 import './assets/main.scss';
 

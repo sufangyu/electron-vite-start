@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+
 import { useTheme, useRequestProxy } from '@modules/frame/setting';
 
 export default defineStore(

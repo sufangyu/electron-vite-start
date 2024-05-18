@@ -1,5 +1,5 @@
-import os from 'os';
 import childProcess from 'child_process';
+import os from 'os';
 
 /**
  * 源代码跟踪

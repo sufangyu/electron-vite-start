@@ -1,11 +1,13 @@
 // 参考: https://github.com/ecstAsy/Taro-Mock/blob/master/mock/index.js
 const fs = require('fs');
 const { join } = require('path');
+
 const delay = require('mocker-api/lib/delay');
-const { Query } = require('./utils');
+
 const ListData = require('./list');
-const userModule = require('./modules/user');
 const uploadModule = require('./modules/upload');
+const userModule = require('./modules/user');
+const { Query } = require('./utils');
 
 const proxy = {
   _proxy: {

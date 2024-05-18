@@ -1,7 +1,9 @@
 import axios, { AxiosInstance, CreateAxiosDefaults, Method } from 'axios';
-import type { HttpRequestConfig, HttpResponse } from './types';
+
 import { API_BASE_URL } from './constant';
 import interceptors from './interceptors';
+
+import type { HttpRequestConfig, HttpResponse } from './types';
 
 class HttpController {
   // 默认配置

@@ -1,4 +1,5 @@
 import dns2 from 'dns2';
+
 import {
   APP_IPC_CHANNEL,
   APP_IPC_CHANNEL_EVENT,

@@ -1,17 +1,18 @@
 /* eslint-disable no-case-declarations */
-import { WINDOW_NAME } from '@share/modules';
-import { appSettingStore } from '@share/store';
-import { events } from '@share/utils';
 import {
   APP_EVENT_RENDERER_INVOKE,
   APP_IPC_CHANNEL,
   APP_IPC_CHANNEL_EVENT,
   APP_THEME,
+  WINDOW_NAME,
   RequestProxyItem
-} from '@share/modules/app';
-import themeController from './theme.controller';
+} from '@share/modules';
+import { appSettingStore } from '@share/store';
+import { events } from '@share/utils';
+
 import commandController from './command.controller';
 import requestProxyController from './request-proxy.controller';
+import themeController from './theme.controller';
 
 console.log(`[STORE] appSetting: ${appSettingStore.path}`);
 

@@ -5,6 +5,7 @@ import {
   UpdateDownloadedEvent,
   UpdateInfo
 } from 'electron-updater';
+
 import { IpcData } from '@share/types';
 
 /** 视频事件（渲染进程发起） */

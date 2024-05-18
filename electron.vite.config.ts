@@ -1,12 +1,14 @@
 import { resolve } from 'path';
-import { defineConfig, externalizeDepsPlugin } from 'electron-vite';
-import yargs from 'yargs';
-import { hideBin } from 'yargs/helpers';
+
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
+import { defineConfig, externalizeDepsPlugin } from 'electron-vite';
 import AutoImport from 'unplugin-auto-import/vite';
-import { SourceLocationServer, SourceLocation } from './plugins/source-location';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
+
 import { version } from './package.json';
+import { SourceLocationServer, SourceLocation } from './plugins/source-location';
 
 // 命令执行 npm run dev -- -- debug
 const argv = yargs(hideBin(process.argv)).argv._ ?? [];

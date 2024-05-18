@@ -1,4 +1,5 @@
 import ElectronStore from 'electron-store';
+
 import {
   APP_SETTING_STORE_NAME,
   APP_SETTING_THEME_KEY,

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Ref } from 'vue';
+
 import { HttpResponse } from '@renderer/core/http/types';
 
 /**

@@ -1,4 +1,5 @@
 import { Plugin } from 'vite';
+
 import { openEditor } from './utils';
 
 /**

@@ -4,13 +4,14 @@
  *  npm run init:module [moduleName]
  */
 const fs = require('fs');
-const { createFileAndWriteContent } = require('./utils');
+
 const {
   defaultContentConfig,
   entryContent,
   permissionContentConfig,
   vueContentConfig
 } = require('./content.config');
+const { createFileAndWriteContent } = require('./utils');
 
 const moduleName = process.argv[2];
 

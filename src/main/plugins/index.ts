@@ -1,9 +1,10 @@
 import { app } from 'electron';
-import appController from './app/app.controller';
+
 import apiProxyController from './app/api-proxy.controller';
+import appController from './app/app.controller';
 import networkController from './app/network.controller';
-import loggerController from './logger/logger.controller';
 import extensionController from './extension/extension.controller';
+import loggerController from './logger/logger.controller';
 
 loggerController.init();
 

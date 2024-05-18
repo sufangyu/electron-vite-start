@@ -87,13 +87,16 @@
 
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
+
+import { DIRECTORY_TYPE } from '@share/modules';
+
 import UpdaterDialog from '@components/updater-dialog/index.vue';
+import { GLOBAL_DATA } from '@core/constans/global';
+import { useDirectory } from '@core/hooks';
 import { UPDATER_STATE, useUpdater } from '@modules/frame/setting';
 import { themeOptions } from '@modules/frame/setting';
 import { useAppSettingStore } from '@store/index';
-import { useDirectory } from '@core/hooks';
-import { DIRECTORY_TYPE } from '@share/modules';
-import { GLOBAL_DATA } from '@core/constans/global';
+
 import { RequestProxy } from '../components';
 
 const { directoryOpen } = useDirectory();

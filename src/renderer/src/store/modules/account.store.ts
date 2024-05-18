@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+
 import { Account } from '@modules/frame/account';
 
 export default defineStore(

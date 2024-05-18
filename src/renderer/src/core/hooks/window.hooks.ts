@@ -1,11 +1,12 @@
-import { useEvents } from '@core/hooks';
+import general, { IPC_CHANNEL } from '@renderer/general';
 import {
   WINDOW_ACTION,
   WINDOW_NAME,
   WINDOW_IPC_CHANNEL,
   WINDOW_IPC_CHANNEL_EVENT
 } from '@share/modules';
-import general, { IPC_CHANNEL } from '@renderer/general';
+
+import { useEvents } from '@core/hooks';
 
 const events = useEvents();
 

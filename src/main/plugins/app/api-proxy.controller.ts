@@ -1,6 +1,7 @@
 import { session } from 'electron';
-import { RequestProxyItem } from '@share/modules';
+
 import { globalData } from '@main/global';
+import { RequestProxyItem } from '@share/modules';
 
 class ApiProxyController {
   proxy() {

@@ -61,9 +61,11 @@ import {
   SettingTwo,
   HamburgerButton
 } from '@icon-park/vue-next';
+
 import { NETWORK_STATUS } from '@share/modules/app';
-import { FRAME_ROUTER_NAME, TEST_ROUTER_NAME } from '@router/index';
+
 import { useUpdater, useNetwork } from '@modules/frame/setting';
+import { FRAME_ROUTER_NAME, TEST_ROUTER_NAME } from '@router/index';
 
 const router = useRouter();
 const { networkStatus, openNetworkSettings } = useNetwork();
