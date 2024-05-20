@@ -22,8 +22,10 @@ export const SKIP_CANCEL_HEADER_KEY = 'Skip-Cancel';
  * 不同方法对应 loading 提示文案
  */
 export const LOADING_MESSAGE_MAP: Record<string, string> = {
+  GET: '加载中...',
   POST: '提交中...',
   PUT: '提交中...',
+  PATCH: '更新中...',
   DELETE: '删除中...'
 };
 
