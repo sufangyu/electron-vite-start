@@ -16,7 +16,7 @@ class HttpController {
     data: {},
     responseType: 'json',
     loading: true,
-    loadingMessage: '加载中...',
+    loadingMessage: '',
     isCancelDuplicateWithArgs: false,
     isIgnoreCancel: false
   };

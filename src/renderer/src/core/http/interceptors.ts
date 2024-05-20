@@ -73,8 +73,8 @@ class Interceptors {
     // loading 遮罩层提示文案
     const METHOD = config.method!.toLocaleUpperCase();
     if (config.loading) {
-      LOADING_MESSAGE_MAP[METHOD] && (config.loadingMessage = LOADING_MESSAGE_MAP[METHOD]);
-      const message = config.loadingMessage;
+      const message = config.loadingMessage || LOADING_MESSAGE_MAP[METHOD] || '加载中...';
+      console.log('config.loading', message, METHOD);
       helper.showFullScreenLoading(message);
     }
 
