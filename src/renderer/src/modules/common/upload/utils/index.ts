@@ -105,16 +105,16 @@ export const getFileChunks = async (
 ): Promise<{ chunks: ChunkFile[]; hash: string; count: number }> => {
   // 固定数量 & 固定大小并存处理每个切片大小以及切片数量
   let curChunkSize = chunkSize;
-  let count = Math.ceil(file.size / curChunkSize);
+  let curCount = Math.ceil(file.size / curChunkSize);
   let index = 0;
-  if (count > maxChunkCount) {
+  if (curCount > maxChunkCount) {
     curChunkSize = file.size / maxChunkCount;
-    count = maxChunkCount;
+    curCount = maxChunkCount;
   }
 
   const chunks: ChunkFile[] = [];
-  const { hash, suffix } = await calculateHash(file, chunks, chunkSize);
-  while (index < count) {
+  const { hash, suffix } = await calculateHash(file, chunks, curChunkSize);
+  while (index < curCount) {
     chunks.push({
       file: file.slice(index * curChunkSize, (index + 1) * curChunkSize),
       filename: `${hash}_${index + 1}.${suffix}`
@@ -125,6 +125,6 @@ export const getFileChunks = async (
   return {
     chunks,
     hash: hash!,
-    count
+    count: curCount
   };
 };
