@@ -31,11 +31,11 @@ export function useMultipartUpload(config?: MultipartUploadConfig): {
   fileDate: Ref<{ path: string; filename: string } | null | undefined>;
   handleUploadFile: (options: UploadRequestOptions) => Promise<void>;
 } {
-  const { maxSize = 5, maxChunkCount = 6 } = config ?? {};
+  const { maxSize = 5, maxChunkCount = 100 } = config ?? {};
   // 分片上传边界大小
   const MAX_SIZE_LIMIT = 1024 * 1024 * maxSize;
   // 单个分片大小
-  const CHUNK_SIZE = 1024 * 1024 * MAX_SIZE_LIMIT;
+  const CHUNK_SIZE = MAX_SIZE_LIMIT;
   // 切片最大数
   const MAX_CHUNK_COUNT = maxChunkCount;
 
