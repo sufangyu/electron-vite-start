@@ -52,7 +52,6 @@ export function useMultipartUpload(config?: MultipartUploadConfig): {
     loading.value = true;
 
     if (file.size < MAX_SIZE_LIMIT) {
-      console.log(`TODO: 文件小于${maxSize}MB, 直接上传`);
       await singleUpload(options);
     } else {
       await multipartUpload(file);
@@ -81,7 +80,7 @@ export function useMultipartUpload(config?: MultipartUploadConfig): {
     // 已上传的切片
     const already: string[] = [];
     // 获取文件切片 chunks: ChunkFile[]
-    const { chunks, count, HASH } = await getFileChunks(file, CHUNK_SIZE, MAX_CHUNK_COUNT);
+    const { chunks, count, hash } = await getFileChunks(file, CHUNK_SIZE, MAX_CHUNK_COUNT);
 
     /**
      * 重置状态
@@ -116,7 +115,7 @@ export function useMultipartUpload(config?: MultipartUploadConfig): {
       // 当所有切片上传成功后, 进度 100、进行合并文件操作请求
       progress.value = 100;
       try {
-        const { data } = await uploadMergeApi({ hash: HASH, count });
+        const { data } = await uploadMergeApi({ hash, count });
         fileDate.value = data;
       } catch (err) {
         clear();
