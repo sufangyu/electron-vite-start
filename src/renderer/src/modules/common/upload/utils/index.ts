@@ -111,20 +111,39 @@ export const getFileChunks = async (
     curChunkSize = file.size / maxChunkCount;
     curCount = maxChunkCount;
   }
+  const [, suffixByType] = file.type.split('type');
 
+  // 切片
   const chunks: ChunkFile[] = [];
-  const { hash, suffix } = await calculateHash(file, chunks, curChunkSize);
   while (index < curCount) {
     chunks.push({
       file: file.slice(index * curChunkSize, (index + 1) * curChunkSize),
-      filename: `${hash}_${index + 1}.${suffix}`
+      filename: `${index + 1}.${suffixByType}`
     });
     index++;
   }
+
+  // 计算文件 hash
+  const { hash, suffix } = await calculateHash(file, chunks, curChunkSize);
+
+  // 更新每个 chunk 的文件名
+  // 带hash、序号信息, 方便后续合并文件时排序
+  chunks.forEach((chunk, index) => (chunk.filename = `${hash}_${index + 1}.${suffix}`));
 
   return {
     chunks,
     hash: hash!,
     count: curCount
   };
+};
+
+/**
+ * 获取文件名
+ * @param url 文件地址
+ */
+export const getFileNameFromUrl = (url: string) => {
+  const urlObject = new URL(url);
+  const pathname = urlObject.pathname;
+  const fileName = pathname.split('/').pop();
+  return fileName || '';
 };
