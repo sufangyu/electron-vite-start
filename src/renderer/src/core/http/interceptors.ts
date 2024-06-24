@@ -74,7 +74,6 @@ class Interceptors {
     const METHOD = config.method!.toLocaleUpperCase();
     if (config.loading) {
       const message = config.loadingMessage || LOADING_MESSAGE_MAP[METHOD] || '加载中...';
-      console.log('config.loading', message, METHOD);
       helper.showFullScreenLoading(message);
     }
 

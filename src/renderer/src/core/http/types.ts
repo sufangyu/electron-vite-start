@@ -167,6 +167,13 @@ export interface HelperOptions {
    * @memberof HelperOptions
    */
   showErrorMessage: MessageTypedFn;
+
+  /**
+   * 关闭全部错误信息
+   *
+   * @memberof HelperOptions
+   */
+  closeAllErrorMessage: () => void;
   /**
    * 显示 Loading 处理函数
    *
