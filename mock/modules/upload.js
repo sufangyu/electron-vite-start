@@ -84,8 +84,8 @@ const uploadModule = {
           success: true,
           message: '文件上传成功',
           data: {
-            originalFilename: filename,
-            url: newPath.replace(path.join(__dirname, '../'), HOSTNAME)
+            filename: filename,
+            path: newPath.replace(path.join(__dirname, '../'), HOSTNAME)
           }
         });
       });
