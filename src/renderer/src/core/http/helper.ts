@@ -1,6 +1,6 @@
 import { ElLoading, ElMessage } from 'element-plus';
 import type { MessageTypedFn } from 'element-plus';
-import { debounce } from 'lodash-es';
+import { type DebouncedFunc, debounce } from 'lodash-es';
 
 import { useAccountStore } from '@store/index';
 
@@ -13,18 +13,26 @@ class Helper {
   private loadingInstance: LoadingInstance | null | undefined;
 
   private showErrorMessage: MessageTypedFn;
+  private closeAllErrorMessage: () => void;
   private showLoadingCallback: ShowLoadingCallback;
   private closeLoadingCallback: CloseLoadingCallback;
+  /** 延迟关闭loading函数 */
+  private debouncedFunc: DebouncedFunc<() => void>;
 
   constructor(options: HelperOptions) {
     this.showErrorMessage = options.showErrorMessage;
+    this.closeAllErrorMessage = options.closeAllErrorMessage;
     this.showLoadingCallback = options.showLoadingCallback;
     this.closeLoadingCallback = options.closeLoadingCallback;
+
+    this.debouncedFunc = debounce(() => this.endLoading(), 25);
   }
 
   /** 显示全局 loading */
   showFullScreenLoading(message = '') {
     if (this.needLoadingRequestCount === 0) {
+      // 取消关闭 loading 的延迟执行
+      this.debouncedFunc?.cancel();
       this.startLoading(message);
     }
     this.needLoadingRequestCount += 1;
@@ -44,15 +52,13 @@ class Helper {
 
   /** 显示全局 loading */
   showMessage(message: string) {
-    ElMessage.closeAll();
+    typeof this.closeAllErrorMessage === 'function' && this.closeAllErrorMessage();
     this.showErrorMessage(message);
   }
 
   /** 防抖关闭 loading */
   private debounceEndLoading() {
-    debounce(() => {
-      this.endLoading();
-    }, 100)();
+    this.debouncedFunc();
   }
 
   /** 显示 loading */
@@ -127,6 +133,7 @@ class Helper {
 
 const helper = new Helper({
   showErrorMessage: ElMessage.error,
+  closeAllErrorMessage: () => ElMessage.closeAll(),
   showLoadingCallback(message: string) {
     return ElLoading.service({
       text: message,
