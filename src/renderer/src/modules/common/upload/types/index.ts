@@ -1,17 +1,29 @@
-export interface MultipartUploadConfig {
+import { UploadRawFile } from 'element-plus';
+
+export interface UploadFileItem extends UploadRawFile {
+  url?: string;
+}
+
+export interface UploadOptions {
   /**
-   * 分片上传边界大小. 默认 5M
+   * 是否开启分片上传. 默认 true
+   *
+   * @type {boolean}
+   * @memberof UploadOptions
+   */
+  multipart?: boolean;
+  /**
+   * 分片上传边界文件大小, 单位是 M. 默认 5M
    *
    * @type {number}
-   * @memberof MultipartUploadConfig
+   * @memberof UploadOptions
    */
-  maxSize?: number;
-
+  chunkSizeLimit?: number;
   /**
    * 切片最大数. 默认 100
    *
    * @type {number}
-   * @memberof MultipartUploadConfig
+   * @memberof UploadOptions
    */
   maxChunkCount?: number;
 }
@@ -44,4 +56,17 @@ export interface MultipartUploadChunkReq extends UploadFormData {}
 
 export interface MultipartUploadChunkRes {
   url: string;
+}
+
+/**
+ * 文件状态
+ *
+ * @export
+ * @enum {number}
+ */
+export enum FileStatus {
+  待上传 = 'ready',
+  上传中 = 'uploading',
+  上传成功 = 'success',
+  上传失败 = 'fail'
 }
