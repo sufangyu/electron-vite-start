@@ -39,16 +39,7 @@
 <script lang="ts" setup>
 import { UPDATER_STATE } from '@modules/frame/setting';
 
-interface Props {
-  visible: boolean;
-  title: string;
-  content: string;
-  state: UPDATER_STATE;
-  hasNewVersion: boolean;
-  progress: number;
-  /** 是否强制更新 */
-  isForce?: boolean;
-}
+import { Props } from './types';
 
 const props = withDefaults(defineProps<Props>(), {
   visible: false,

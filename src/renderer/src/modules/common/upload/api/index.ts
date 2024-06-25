@@ -12,7 +12,6 @@ export const uploadSingleApi = (formData: Types.SingleUploadReq) => {
     url: '/api/upload-single',
     data: formData,
     loadingMessage: '上传中...',
-    isIgnoreCancel: true,
     headers: {
       'Content-Type': 'multipart/form-data'
     }

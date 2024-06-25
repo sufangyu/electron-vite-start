@@ -10,7 +10,7 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
 // plugins
 import '@core/plugins';
 // global components
-import components from '@components/glob-components';
+import components from '@components/global-components';
 
 // app view、router、styles
 import App from './App.vue';

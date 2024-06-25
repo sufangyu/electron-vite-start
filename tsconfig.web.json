@@ -3,7 +3,7 @@
   "include": [
     "env.d.ts",
     "src/renderer/src/env.d.ts",
-    "src/renderer/src/components.d.ts",
+    "src/renderer/src/global-components.d.ts",
     "src/renderer/src/auto-imports.d.ts",
     "src/renderer/src/**/*",
     "src/renderer/src/**/*.vue",
@@ -13,6 +13,7 @@
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
+    "types": ["element-plus/global"],
     "paths": {
       "@share/*": [
         "src/share/*"

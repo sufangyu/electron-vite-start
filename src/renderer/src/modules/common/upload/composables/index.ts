@@ -1,2 +1,1 @@
-export * from './use-single-upload';
-export * from './use-multipart-upload';
+export * from './use-upload-handler';

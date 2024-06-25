@@ -6,9 +6,7 @@
 </template>
 
 <script lang="ts" setup>
-interface Props {
-  title: string;
-}
+import { Props } from './types';
 
 withDefaults(defineProps<Props>(), {
   title: ''
