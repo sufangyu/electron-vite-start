@@ -3,7 +3,8 @@ import { App, AsyncComponentLoader, defineAsyncComponent } from 'vue';
 const allComponents = [
   { name: 'AppMain', component: () => import('./app-main/index') },
   { name: 'Card', component: () => import('./card/index') },
-  { name: 'UploadExtend', component: () => import('./upload/index') }
+  { name: 'UploadExtend', component: () => import('./upload/index') },
+  { name: 'UploadSimple', component: () => import('./upload-simple/index') }
 ];
 
 export default function registerComponents(app: App<Element>) {

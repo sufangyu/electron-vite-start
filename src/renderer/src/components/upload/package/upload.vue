@@ -9,7 +9,7 @@
       action="#"
       list-type="picture-card"
       :http-request="handleAddFileToUploadQueue"
-      :on-success="handleSuccess"
+      :on-success="handleUploadSuccess"
       :on-remove="handleRemove"
       :on-exceed="handleExceed"
       :before-upload="handleBeforeUpload"
@@ -22,6 +22,7 @@
         </div>
       </template>
 
+      <!-- 文件/图片列表 -->
       <template #file="{ file }: { file: UploadFile }">
         <div class="upload-image__item">
           <el-image style="width: 100%; height: 100%" :src="file.url" fit="cover" />
@@ -47,6 +48,11 @@
           </div>
         </div>
       </template>
+
+      <!-- 遍历父组件传入的 slot, 透传给子组件 -->
+      <template v-for="(_, name) in $slots" #[name]="slotProps" :key="name">
+        <slot :name="name" v-bind="slotProps"></slot>
+      </template>
     </el-upload>
 
     <!-- 图片预览弹窗 -->
@@ -62,18 +68,11 @@
 
 <script lang="ts" setup>
 import { Plus, ZoomIn, Delete } from '@icon-park/vue-next';
-import {
-  ElMessage,
-  ElUpload,
-  type UploadProps,
-  type UploadFile,
-  type UploadFiles,
-  type UploadRawFile
-} from 'element-plus';
+import { ElUpload, type UploadProps, type UploadFile, type UploadFiles } from 'element-plus';
 import Sortable from 'sortablejs';
 
 import { getEnumKeyByEnumValue } from '@core/utils';
-import { FileStatus, useUploadHandler } from '@modules/common/upload';
+import { FileStatus, useUploadHandler, useUploadLifeCycle } from '@modules/common/upload';
 
 import { Props } from './types';
 
@@ -115,24 +114,15 @@ const _updateFileList = (uploadFiles: UploadFiles) => {
   emits('update:modelValue', newFileList ?? []);
 };
 
-/**
- * 文件上传成功回调函数
- * @param _res
- * @param _uploadFile
- * @param uploadFiles
- */
-const handleSuccess = (_res, _uploadFile: UploadFile, uploadFiles: UploadFiles) => {
-  _updateFileList(uploadFiles);
-};
-
-/**
- * 删除回调函数（组件钩子函数）
- * @param _uploadFile
- * @param uploadFiles
- */
-const handleRemove = (_uploadFile: UploadFile, uploadFiles: UploadFiles) => {
-  _updateFileList(uploadFiles);
-};
+// 上传生命周期
+const { handleExceed, handleBeforeUpload, handleUploadSuccess, handleRemove } = useUploadLifeCycle({
+  limit: attrs.limit,
+  maxSize: props.maxSize,
+  multipart: props.multipart,
+  updateFilesCallback(_uploadFile, uploadFiles) {
+    _updateFileList(uploadFiles);
+  }
+});
 
 /**
  * 删除文件（自定义）
@@ -141,33 +131,6 @@ const handleRemove = (_uploadFile: UploadFile, uploadFiles: UploadFiles) => {
 const handleRemoveFile = (file: UploadFile) => {
   const newFileList = fileList.value.filter((it) => it.uid !== file.uid);
   handleRemove(file, newFileList);
-};
-
-/**
- * 当超出限制时执行的钩子函数
- * @param files
- * @param uploadFiles
- */
-const handleExceed = (files: File[]) => {
-  const message = `最多上传 ${attrs.limit} 个文件，本次选择了 ${files.length} 个文件`;
-  ElMessage.warning({ message, grouping: true });
-};
-
-/**
- * 上传前钩子函数
- * - 校验文件格式
- * - 校验文件大小
- * @param rawFile
- */
-const handleBeforeUpload = (rawFile: UploadRawFile) => {
-  const { size } = rawFile;
-
-  if (!props.multipart && size > props.maxSize * 1024 * 1024) {
-    ElMessage.error({ message: `上传文件不能超过 ${props.maxSize} M`, grouping: true });
-    return false;
-  }
-
-  return true;
 };
 
 // 图片预览 ----------------------------------------------------------------
