@@ -59,6 +59,7 @@ import {
   StopwatchStart,
   Compression,
   SettingTwo,
+  PayCodeOne,
   HamburgerButton
 } from '@icon-park/vue-next';
 
@@ -78,6 +79,7 @@ const nav = [
   { icon: Protect, label: '权限控制', routeName: TEST_ROUTER_NAME.TEST_AUTH },
   { icon: UploadOne, label: '文件上传', routeName: TEST_ROUTER_NAME.TEST_UPLOAD },
   { icon: StopwatchStart, label: '倒计时', routeName: TEST_ROUTER_NAME.TEST_COUNT_DOWN },
+  { icon: PayCodeOne, label: '二维码', routeName: TEST_ROUTER_NAME.TEST_QR_CODE },
   { icon: Compression, label: '视频压缩', routeName: 'VideoCompress' }
 ];
 
