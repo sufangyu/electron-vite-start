@@ -44,7 +44,8 @@
     "electron-store": "^8.2.0",
     "electron-updater": "^6.1.7",
     "fluent-ffmpeg": "^2.1.2",
-    "sortablejs": "^1.15.2"
+    "sortablejs": "^1.15.2",
+    "styled-qr-code": "^1.0.0"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config": "^1.0.2",

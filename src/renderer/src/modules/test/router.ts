@@ -10,7 +10,8 @@ export enum TEST_ROUTER_NAME {
   TEST_HTTP = 'TestHttp',
   TEST_AUTH = 'TestAuth',
   TEST_UPLOAD = 'TestUpload',
-  TEST_COUNT_DOWN = 'TestCountDown'
+  TEST_COUNT_DOWN = 'TestCountDown',
+  TEST_QR_CODE = 'TestQRCode'
 }
 
 export default [
@@ -53,6 +54,12 @@ export default [
         name: TEST_ROUTER_NAME.TEST_COUNT_DOWN,
         component: () => import('./count-down/views/index.vue'),
         meta: { title: '倒计时' }
+      },
+      {
+        path: 'qr-code',
+        name: TEST_ROUTER_NAME.TEST_QR_CODE,
+        component: () => import('./qrcode/views/index.vue'),
+        meta: { title: '二维码' }
       }
     ]
   },
