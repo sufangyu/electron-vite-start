@@ -11,7 +11,8 @@ export enum TEST_ROUTER_NAME {
   TEST_AUTH = 'TestAuth',
   TEST_UPLOAD = 'TestUpload',
   TEST_COUNT_DOWN = 'TestCountDown',
-  TEST_QR_CODE = 'TestQRCode'
+  TEST_QR_CODE = 'TestQRCode',
+  TEST_QR_CODE_SCAN = 'TestQRCodeScan'
 }
 
 export default [
@@ -59,7 +60,13 @@ export default [
         path: 'qr-code',
         name: TEST_ROUTER_NAME.TEST_QR_CODE,
         component: () => import('./qrcode/views/index.vue'),
-        meta: { title: '二维码' }
+        meta: { title: '二维码生成' }
+      },
+      {
+        path: 'qr-code-scan',
+        name: TEST_ROUTER_NAME.TEST_QR_CODE_SCAN,
+        component: () => import('./qrcode-scan/views/index.vue'),
+        meta: { title: '二维码识别' }
       }
     ]
   },
