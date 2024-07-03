@@ -3,9 +3,8 @@
     <section class="p-3">
       <Card title="二维码识别">
         <el-upload
-          action="#"
-          :http-request="() => {}"
           accept="image/*"
+          :before-upload="() => false"
           :show-file-list="false"
           @change="handleChange"
         >
