@@ -12,7 +12,8 @@ export enum TEST_ROUTER_NAME {
   TEST_UPLOAD = 'TestUpload',
   TEST_COUNT_DOWN = 'TestCountDown',
   TEST_QR_CODE = 'TestQRCode',
-  TEST_QR_CODE_SCAN = 'TestQRCodeScan'
+  TEST_QR_CODE_SCAN = 'TestQRCodeScan',
+  TEST_IM_CHAT = 'TestImChat'
 }
 
 export default [
@@ -67,6 +68,12 @@ export default [
         name: TEST_ROUTER_NAME.TEST_QR_CODE_SCAN,
         component: () => import('./qrcode-scan/views/index.vue'),
         meta: { title: '二维码识别' }
+      },
+      {
+        path: 'im-chat',
+        name: TEST_ROUTER_NAME.TEST_IM_CHAT,
+        component: () => import('./im-chat/views/index.vue'),
+        meta: { title: '聊天框' }
       }
     ]
   },

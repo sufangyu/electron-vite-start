@@ -61,6 +61,7 @@ import {
   SettingTwo,
   PayCodeOne,
   ScanCode,
+  Message,
   HamburgerButton
 } from '@icon-park/vue-next';
 
@@ -82,6 +83,7 @@ const nav = [
   { icon: StopwatchStart, label: '倒计时', routeName: TEST_ROUTER_NAME.TEST_COUNT_DOWN },
   { icon: PayCodeOne, label: '二维码生成', routeName: TEST_ROUTER_NAME.TEST_QR_CODE },
   { icon: ScanCode, label: '二维码识别', routeName: TEST_ROUTER_NAME.TEST_QR_CODE_SCAN },
+  { icon: Message, label: '聊天框', routeName: TEST_ROUTER_NAME.TEST_IM_CHAT },
   { icon: Compression, label: '视频压缩', routeName: 'VideoCompress' }
 ];
 
