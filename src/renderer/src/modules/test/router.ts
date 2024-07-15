@@ -13,7 +13,8 @@ export enum TEST_ROUTER_NAME {
   TEST_COUNT_DOWN = 'TestCountDown',
   TEST_QR_CODE = 'TestQRCode',
   TEST_QR_CODE_SCAN = 'TestQRCodeScan',
-  TEST_IM_CHAT = 'TestImChat'
+  TEST_IM_CHAT = 'TestImChat',
+  TEST_CANVAS = 'TestCanvas'
 }
 
 export default [
@@ -74,6 +75,12 @@ export default [
         name: TEST_ROUTER_NAME.TEST_IM_CHAT,
         component: () => import('./im-chat/views/index.vue'),
         meta: { title: '聊天框' }
+      },
+      {
+        path: 'canvas',
+        name: TEST_ROUTER_NAME.TEST_CANVAS,
+        component: () => import('./canvas/views/index.vue'),
+        meta: { title: 'Canvas 应用' }
       }
     ]
   },

@@ -62,6 +62,7 @@ import {
   PayCodeOne,
   ScanCode,
   Message,
+  CubeThree,
   HamburgerButton
 } from '@icon-park/vue-next';
 
@@ -84,6 +85,7 @@ const nav = [
   { icon: PayCodeOne, label: '二维码生成', routeName: TEST_ROUTER_NAME.TEST_QR_CODE },
   { icon: ScanCode, label: '二维码识别', routeName: TEST_ROUTER_NAME.TEST_QR_CODE_SCAN },
   { icon: Message, label: '聊天框', routeName: TEST_ROUTER_NAME.TEST_IM_CHAT },
+  { icon: CubeThree, label: 'Canvas 应用', routeName: TEST_ROUTER_NAME.TEST_CANVAS },
   { icon: Compression, label: '视频压缩', routeName: 'VideoCompress' }
 ];
 
