@@ -3,6 +3,7 @@ import { App, AsyncComponentLoader, defineAsyncComponent } from 'vue';
 const allComponents = [
   { name: 'AppMain', component: () => import('./app-main/index') },
   { name: 'Card', component: () => import('./card/index') },
+  { name: 'QRCode', component: () => import('./qr-code/index') },
   { name: 'UploadExtend', component: () => import('./upload/index') },
   { name: 'UploadSimple', component: () => import('./upload-simple/index') }
 ];
