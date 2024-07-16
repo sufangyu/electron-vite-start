@@ -1,26 +1,17 @@
 <template>
-  <AppMain title="二维码生成器">
-    <section class="qr-generator">
-      <div class="qr-config">
-        <el-scrollbar style="height: 100%">
-          <el-form :model="qrCodeForm" label-width="96px" size="small">
-            <h4 class="text-sm my-4">基础配置</h4>
-            <el-form-item label="文本内容">
-              <el-input v-model="qrCodeForm.data" placeholder="请输入二维码内容" />
+  <AppMain title="二维码">
+    <div class="p-3">
+      <Card title="基础配置">
+        <el-row :gutter="10">
+          <el-col :span="6" class="text-center">
+            <QRCode :data="qrCodeData" />
+            <el-form-item label="内容:" size="small" class="mt-2">
+              <el-input v-model="qrCodeText" placeholder="-" />
             </el-form-item>
-            <el-row>
-              <el-col :span="12">
-                <el-form-item label="宽度">
-                  <el-input v-model="qrCodeForm.width" placeholder="请输入宽度" />
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="高度">
-                  <el-input v-model="qrCodeForm.height" placeholder="请输入高度" />
-                </el-form-item>
-              </el-col>
-            </el-row>
-            <el-form-item label="码边距">
+          </el-col>
+          <el-col :span="6" class="text-center">
+            <QRCode data="https://qr-code-styling.com/" :margin="qrMargin" />
+            <el-form-item label="码边距:" size="small" class="mt-2">
               <template #label="{ label }">
                 <span class="flex items-center">
                   <span class="mr-1">{{ label }}</span>
@@ -29,67 +20,207 @@
                   </el-tooltip>
                 </span>
               </template>
-              <el-input v-model="qrCodeForm.margin" placeholder="请输入边距" />
-            </el-form-item>
-            <el-form-item label="码点数量">
+
               <el-input-number
-                v-model="qrCodeForm.qrOptions!.typeNumber"
+                v-model="qrMargin"
+                size="small"
                 :min="0"
-                :max="40"
-                :step="1"
+                :max="100"
+                placeholder="请输入数字"
                 controls-position="right"
+                :controls="false"
               />
             </el-form-item>
-            <!-- <el-form-item label="mode">
-                <el-input v-model="qrCodeForm.qrOptions!.mode" />
-              </el-form-item> -->
-            <el-form-item>
-              <template #label>
+          </el-col>
+          <el-col :span="6" class="text-center">
+            <QRCode data="https://qr-code-styling.com/" :width="qrSize" :height="qrSize" />
+            <el-form-item label="尺寸:" size="small" class="mt-2">
+              <el-button-group>
+                <el-button @click="decline">-</el-button>
+                <el-button @click="increase">+</el-button>
+              </el-button-group>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6" class="text-center">
+            <QRCode
+              data="https://qr-code-styling.com/"
+              :qr-options="{ errorCorrectionLevel: errorCorrectionLevel }"
+            />
+            <el-form-item label="容错率" size="small" class="mt-2">
+              <template #label="{ label }">
                 <span class="flex items-center">
-                  <span class="mr-1">容错率</span>
+                  <span class="mr-1">{{ label }}</span>
                   <el-tooltip
                     content="容错率设置越高，可在遮挡越多的情况下被扫描出来。"
                     placement="top"
                   >
                     <Help />
                   </el-tooltip>
+                  <span class="ml-1">:</span>
                 </span>
               </template>
-              <el-select v-model="qrCodeForm.qrOptions!.errorCorrectionLevel">
-                <el-option value="L" label="7%">7%</el-option>
-                <el-option value="M" label="15%">15%</el-option>
-                <el-option value="Q" label="25%">25%</el-option>
-                <el-option value="H" label="30%">30%</el-option>
+
+              <el-select v-model="errorCorrectionLevel">
+                <el-option value="L" label="7%" />
+                <el-option value="M" label="15%" />
+                <el-option value="Q" label="25%" />
+                <el-option value="H" label="30%" />
               </el-select>
             </el-form-item>
+          </el-col>
+        </el-row>
+      </Card>
 
-            <el-divider />
-            <h4 class="text-sm my-4">LOGO图配置</h4>
-            <el-form-item label="LOGO图">
-              <!-- TODO: 支持上传图片 -->
-              <el-input v-model="qrCodeForm.image" placeholder="请输入二维码内容" />
-            </el-form-item>
-            <el-form-item label="尺寸缩放">
+      <Card title="LOGO 图配置">
+        <el-row :gutter="10">
+          <el-col :span="6" class="text-center">
+            <QRCode
+              data="https://qr-code-styling.com/"
+              image="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+            />
+            <p class="text-xs mt-2">默认配置</p>
+          </el-col>
+          <el-col :span="6" class="text-center">
+            <QRCode
+              data="https://qr-code-styling.com/"
+              image="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+              :image-options="{
+                imageSize: imageSize,
+                margin: 4
+              }"
+            />
+            <el-form-item label="缩放比例:" size="small" class="mt-2">
+              <template #label="{ label }">
+                <span class="flex items-center">
+                  <span class="mr-1">{{ label }}</span>
+                  <el-tooltip content="0~1的缩放比例" placement="top">
+                    <Help />
+                  </el-tooltip>
+                </span>
+              </template>
+
               <el-input-number
-                v-model="qrCodeForm.imageOptions!.imageSize"
+                v-model="imageSize"
+                size="small"
                 :min="0"
                 :max="1"
                 :step="0.1"
+                placeholder="请输入数字"
                 controls-position="right"
+                :controls="false"
               />
             </el-form-item>
-            <el-form-item label="边距">
-              <el-input v-model="qrCodeForm.imageOptions!.margin" placeholder="请输入边距" />
+          </el-col>
+          <el-col :span="6" class="text-center">
+            <QRCode
+              data="https://qr-code-styling.com/"
+              image="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+              :image-options="{
+                margin: imageMargin
+              }"
+            />
+            <el-form-item label="边距:" size="small" class="mt-2">
+              <el-input-number
+                v-model="imageMargin"
+                size="small"
+                :min="0"
+                :max="16"
+                :step="1"
+                placeholder="请输入数字"
+                controls-position="right"
+                :controls="false"
+              />
             </el-form-item>
-
-            <el-form-item label="隐藏背景内容">
-              <el-switch v-model="qrCodeForm.imageOptions!.hideBackgroundDots" />
+          </el-col>
+          <el-col :span="6" class="text-center">
+            <QRCode
+              data="https://qr-code-styling.com/"
+              image="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+              :image-options="{
+                hideBackgroundDots
+              }"
+            />
+            <el-form-item label="显示背景:" size="small" class="mt-2">
+              <el-switch v-model="hideBackgroundDots" />
             </el-form-item>
+          </el-col>
+        </el-row>
+      </Card>
 
-            <el-divider />
-            <h4 class="text-sm my-4">码点配置</h4>
-            <el-form-item label="码点形状">
-              <el-select v-model="qrCodeForm.dotsOptions!.type">
+      <Card title="背景色">
+        <el-row :gutter="10">
+          <el-col :span="12" class="text-center">
+            <QRCode
+              data="https://qr-code-styling.com/"
+              :background-options="{
+                color: backgroundOptionsColor
+              }"
+            />
+            <el-form-item label="单颜色:" size="small">
+              <el-color-picker v-model="backgroundOptionsColor" />
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="12" class="text-center">
+            <QRCode
+              data="https://qr-code-styling.com/"
+              :background-options="{
+                color: backgroundOptionsColor,
+                gradient: {
+                  type: backgroundOptionsGradientType,
+                  rotation: backgroundOptionsGradientRotation,
+                  colorStops: [
+                    { offset: 0, color: backgroundOptionsGradientColor[0] },
+                    { offset: 1, color: backgroundOptionsGradientColor[1] }
+                  ]
+                }
+              }"
+            />
+
+            <el-form size="small" inline>
+              <el-form-item label="渐变色:" style="margin-right: 16px">
+                <el-color-picker v-model="backgroundOptionsGradientColor[0]" />
+                <el-color-picker v-model="backgroundOptionsGradientColor[1]" />
+              </el-form-item>
+              <el-form-item label="类型" style="margin-right: 16px">
+                <el-radio-group v-model="backgroundOptionsGradientType" size="small">
+                  <el-radio-button
+                    v-for="item in gradientOptions"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  />
+                </el-radio-group>
+              </el-form-item>
+              <el-form-item
+                v-if="backgroundOptionsGradientType === 'linear'"
+                label="角度"
+                style="margin-right: 0"
+              >
+                <el-input-number
+                  v-model="backgroundOptionsGradientRotation"
+                  :min="0"
+                  :max="360"
+                  :controls="false"
+                  style="max-width: 80px"
+                />
+              </el-form-item>
+            </el-form>
+          </el-col>
+        </el-row>
+      </Card>
+
+      <Card title="码点配置">
+        <el-row :gutter="10">
+          <el-col :span="6" class="text-center">
+            <QRCode
+              data="https://qr-code-styling.com/"
+              :dots-options="{
+                type: dotsOptionsType
+              }"
+            />
+            <el-form-item label="形状:" size="small">
+              <el-select v-model="dotsOptionsType">
                 <el-option
                   v-for="item in dotTypeOptions"
                   :key="item.label"
@@ -98,33 +229,42 @@
                 />
               </el-select>
             </el-form-item>
-            <el-form-item label="颜色类型">
-              <el-radio-group
-                v-model="dotsOptionsColorType"
-                size="small"
-                @change="(val) => handleColorTypeChange(val, 'dotsOptions')"
-              >
-                <el-radio-button
-                  v-for="item in colorTypeOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                />
-              </el-radio-group>
+          </el-col>
+          <el-col :span="6" class="text-center">
+            <QRCode
+              data="https://qr-code-styling.com/"
+              :dots-options="{
+                color: dotsOptionsColor
+              }"
+            />
+            <el-form-item label="单颜色:" size="small">
+              <el-color-picker v-model="dotsOptionsColor" />
             </el-form-item>
+          </el-col>
 
-            <!-- 单色 -->
-            <template v-if="dotsOptionsColorType === ColorType.单色">
-              <el-form-item label="选择颜色">
-                <input v-model="qrCodeForm.dotsOptions!.color" type="color" />
+          <el-col :span="12" class="text-center">
+            <QRCode
+              data="https://qr-code-styling.com/"
+              :dots-options="{
+                color: dotsOptionsColor,
+                gradient: {
+                  type: dotsOptionsGradientType,
+                  rotation: dotsOptionsGradientRotation,
+                  colorStops: [
+                    { offset: 0, color: dotsOptionsGradientColor[0] },
+                    { offset: 1, color: dotsOptionsGradientColor[1] }
+                  ]
+                }
+              }"
+            />
+
+            <el-form size="small" inline>
+              <el-form-item label="渐变色:" style="margin-right: 16px">
+                <el-color-picker v-model="dotsOptionsGradientColor[0]" />
+                <el-color-picker v-model="dotsOptionsGradientColor[1]" />
               </el-form-item>
-            </template>
-            <!-- 渐变 -->
-            <template
-              v-if="dotsOptionsColorType === ColorType.渐变 && qrCodeForm.dotsOptions!.gradient"
-            >
-              <el-form-item label="渐变类型">
-                <el-radio-group v-model="qrCodeForm.dotsOptions!.gradient!.type" size="small">
+              <el-form-item label="类型" style="margin-right: 16px">
+                <el-radio-group v-model="dotsOptionsGradientType" size="small">
                   <el-radio-button
                     v-for="item in gradientOptions"
                     :key="item.value"
@@ -133,29 +273,36 @@
                   />
                 </el-radio-group>
               </el-form-item>
-              <el-form-item label="设置渐变">
-                <input
-                  v-model="qrCodeForm.dotsOptions!.gradient!.colorStops[0].color"
-                  type="color"
-                />
-                <input
-                  v-model="qrCodeForm.dotsOptions!.gradient!.colorStops[1].color"
-                  class="ml-2"
-                  type="color"
-                />
-              </el-form-item>
-              <el-form-item label="旋转角度">
-                <el-input
-                  v-model="qrCodeForm.dotsOptions!.gradient!.rotation"
-                  placeholder="请输入"
+              <el-form-item
+                v-if="dotsOptionsGradientType === 'linear'"
+                label="角度"
+                style="margin-right: 0"
+              >
+                <el-input-number
+                  v-model="dotsOptionsGradientRotation"
+                  :min="0"
+                  :max="360"
+                  :controls="false"
+                  style="max-width: 80px"
                 />
               </el-form-item>
-            </template>
+            </el-form>
+          </el-col>
+        </el-row>
+      </Card>
 
-            <el-divider />
-            <h4 class="text-sm my-4">码眼边框配置</h4>
-            <el-form-item label="形状">
-              <el-select v-model="qrCodeForm.cornersSquareOptions!.type">
+      <Card title="码眼边框配置">
+        <el-row :gutter="10">
+          <el-col :span="6" class="text-center">
+            <QRCode
+              data="https://qr-code-styling.com/"
+              :corners-square-options="{
+                type: cornersSquareOptionsType
+              }"
+            />
+
+            <el-form-item label="形状:" size="small">
+              <el-select v-model="cornersSquareOptionsType">
                 <el-option
                   v-for="item in cornerSquareTypeOptions"
                   :key="item.label"
@@ -164,38 +311,42 @@
                 />
               </el-select>
             </el-form-item>
-            <el-form-item label="颜色类型">
-              <el-radio-group
-                v-model="cornersSquareOptionsColorType"
-                size="small"
-                @change="(val) => handleColorTypeChange(val, 'cornersSquareOptions')"
-              >
-                <el-radio-button
-                  v-for="item in colorTypeOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                />
-              </el-radio-group>
+          </el-col>
+          <el-col :span="6" class="text-center">
+            <QRCode
+              data="https://qr-code-styling.com/"
+              :corners-square-options="{
+                color: cornersSquareOptionsColor
+              }"
+            />
+            <el-form-item label="单颜色:" size="small">
+              <el-color-picker v-model="cornersSquareOptionsColor" />
             </el-form-item>
-            <!-- 单色 -->
-            <template v-if="cornersSquareOptionsColorType === ColorType.单色">
-              <el-form-item label="选择颜色">
-                <input v-model="qrCodeForm.cornersSquareOptions!.color" type="color" />
+          </el-col>
+
+          <el-col :span="12" class="text-center">
+            <QRCode
+              data="https://qr-code-styling.com/"
+              :corners-square-options="{
+                color: cornersSquareOptionsColor,
+                gradient: {
+                  type: cornersSquareOptionsGradientType,
+                  rotation: cornersSquareOptionsGradientRotation,
+                  colorStops: [
+                    { offset: 0, color: cornersSquareOptionsGradientColor[0] },
+                    { offset: 1, color: cornersSquareOptionsGradientColor[1] }
+                  ]
+                }
+              }"
+            />
+
+            <el-form size="small" inline>
+              <el-form-item label="渐变色:" style="margin-right: 16px">
+                <el-color-picker v-model="cornersSquareOptionsGradientColor[0]" />
+                <el-color-picker v-model="cornersSquareOptionsGradientColor[1]" />
               </el-form-item>
-            </template>
-            <!-- 渐变 -->
-            <template
-              v-if="
-                cornersSquareOptionsColorType === ColorType.渐变 &&
-                qrCodeForm.cornersSquareOptions!.gradient
-              "
-            >
-              <el-form-item label="渐变类型">
-                <el-radio-group
-                  v-model="qrCodeForm.cornersSquareOptions!.gradient!.type"
-                  size="small"
-                >
+              <el-form-item label="类型" style="margin-right: 16px">
+                <el-radio-group v-model="cornersSquareOptionsGradientType" size="small">
                   <el-radio-button
                     v-for="item in gradientOptions"
                     :key="item.value"
@@ -204,29 +355,36 @@
                   />
                 </el-radio-group>
               </el-form-item>
-              <el-form-item label="设置渐变">
-                <input
-                  v-model="qrCodeForm.cornersSquareOptions!.gradient!.colorStops[0].color"
-                  type="color"
-                />
-                <input
-                  v-model="qrCodeForm.cornersSquareOptions!.gradient!.colorStops[1].color"
-                  class="ml-2"
-                  type="color"
-                />
-              </el-form-item>
-              <el-form-item label="旋转角度">
-                <el-input
-                  v-model="qrCodeForm.cornersSquareOptions!.gradient!.rotation"
-                  placeholder="请输入"
+              <el-form-item
+                v-if="cornersSquareOptionsGradientType === 'linear'"
+                label="角度"
+                style="margin-right: 0"
+              >
+                <el-input-number
+                  v-model="cornersSquareOptionsGradientRotation"
+                  :min="0"
+                  :max="360"
+                  :controls="false"
+                  style="max-width: 80px"
                 />
               </el-form-item>
-            </template>
+            </el-form>
+          </el-col>
+        </el-row>
+      </Card>
 
-            <el-divider />
-            <h4 class="text-sm my-4">码眼点配置</h4>
-            <el-form-item label="形状">
-              <el-select v-model="qrCodeForm.cornersDotOptions!.type">
+      <Card title="码眼点配置">
+        <el-row :gutter="10">
+          <el-col :span="6" class="text-center">
+            <QRCode
+              data="https://qr-code-styling.com/"
+              :corners-dot-options="{
+                type: cornersDotOptionsType
+              }"
+            />
+
+            <el-form-item label="形状:" size="small">
+              <el-select v-model="cornersDotOptionsType">
                 <el-option
                   v-for="item in cornerDotTypeOptions"
                   :key="item.label"
@@ -235,35 +393,42 @@
                 />
               </el-select>
             </el-form-item>
-            <el-form-item label="颜色类型">
-              <el-radio-group
-                v-model="cornersDotOptionsColorType"
-                size="small"
-                @change="(val) => handleColorTypeChange(val, 'cornersDotOptions')"
-              >
-                <el-radio-button
-                  v-for="item in colorTypeOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                />
-              </el-radio-group>
+          </el-col>
+          <el-col :span="6" class="text-center">
+            <QRCode
+              data="https://qr-code-styling.com/"
+              :corners-dot-options="{
+                color: cornersDotOptionsColor
+              }"
+            />
+            <el-form-item label="单颜色:" size="small">
+              <el-color-picker v-model="cornersDotOptionsColor" />
             </el-form-item>
-            <!-- 单色 -->
-            <template v-if="cornersDotOptionsColorType === ColorType.单色">
-              <el-form-item label="选择颜色">
-                <input v-model="qrCodeForm.cornersDotOptions!.color" type="color" />
+          </el-col>
+
+          <el-col :span="12" class="text-center">
+            <QRCode
+              data="https://qr-code-styling.com/"
+              :corners-dot-options="{
+                color: cornersDotOptionsColor,
+                gradient: {
+                  type: cornersDotOptionsGradientType,
+                  rotation: cornersSquareOptionsGradientRotation,
+                  colorStops: [
+                    { offset: 0, color: cornersDotOptionsGradientColor[0] },
+                    { offset: 1, color: cornersDotOptionsGradientColor[1] }
+                  ]
+                }
+              }"
+            />
+
+            <el-form size="small" inline>
+              <el-form-item label="渐变色:" style="margin-right: 16px">
+                <el-color-picker v-model="cornersDotOptionsGradientColor[0]" />
+                <el-color-picker v-model="cornersDotOptionsGradientColor[1]" />
               </el-form-item>
-            </template>
-            <!-- 渐变 -->
-            <template
-              v-if="
-                cornersDotOptionsColorType === ColorType.渐变 &&
-                qrCodeForm.cornersDotOptions!.gradient
-              "
-            >
-              <el-form-item label="渐变类型">
-                <el-radio-group v-model="qrCodeForm.cornersDotOptions!.gradient!.type" size="small">
+              <el-form-item label="类型" style="margin-right: 16px">
+                <el-radio-group v-model="cornersDotOptionsGradientType" size="small">
                   <el-radio-button
                     v-for="item in gradientOptions"
                     :key="item.value"
@@ -272,158 +437,135 @@
                   />
                 </el-radio-group>
               </el-form-item>
-              <el-form-item label="设置渐变">
-                <input
-                  v-model="qrCodeForm.cornersDotOptions!.gradient!.colorStops[0].color"
-                  type="color"
-                />
-                <input
-                  v-model="qrCodeForm.cornersDotOptions!.gradient!.colorStops[1].color"
-                  class="ml-2"
-                  type="color"
-                />
-              </el-form-item>
-              <el-form-item label="旋转角度">
-                <el-input
-                  v-model="qrCodeForm.cornersDotOptions!.gradient!.rotation"
-                  placeholder="请输入"
-                />
-              </el-form-item>
-            </template>
-
-            <el-divider />
-            <h4 class="text-sm my-4">背景色配置</h4>
-            <el-form-item label="颜色类型">
-              <el-radio-group
-                v-model="backgroundColorType"
-                size="small"
-                @change="(val) => handleColorTypeChange(val, 'backgroundOptions')"
+              <el-form-item
+                v-if="cornersDotOptionsGradientType === 'linear'"
+                label="角度"
+                style="margin-right: 0"
               >
-                <el-radio-button
-                  v-for="item in colorTypeOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                />
-              </el-radio-group>
-            </el-form-item>
-            <!-- 单色 -->
-            <template v-if="backgroundColorType === ColorType.单色">
-              <el-form-item label="选择颜色">
-                <input v-model="qrCodeForm.backgroundOptions!.color" type="color" />
-              </el-form-item>
-            </template>
-            <!-- 渐变 -->
-            <template
-              v-if="
-                backgroundColorType === ColorType.渐变 && qrCodeForm.backgroundOptions!.gradient
-              "
-            >
-              <el-form-item label="渐变类型">
-                <el-radio-group v-model="qrCodeForm.backgroundOptions!.gradient!.type" size="small">
-                  <el-radio-button
-                    v-for="item in gradientOptions"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  />
-                </el-radio-group>
-              </el-form-item>
-              <el-form-item label="设置渐变">
-                <input
-                  v-model="qrCodeForm.backgroundOptions!.gradient!.colorStops[0].color"
-                  type="color"
-                />
-                <input
-                  v-model="qrCodeForm.backgroundOptions!.gradient!.colorStops[1].color"
-                  class="ml-2"
-                  type="color"
+                <el-input-number
+                  v-model="cornersDotOptionsGradientRotation"
+                  :min="0"
+                  :max="360"
+                  :controls="false"
+                  style="max-width: 80px"
                 />
               </el-form-item>
-              <el-form-item label="旋转角度">
-                <el-input
-                  v-model="qrCodeForm.backgroundOptions!.gradient!.rotation"
-                  placeholder="请输入"
-                />
-              </el-form-item>
-            </template>
-          </el-form>
-        </el-scrollbar>
-      </div>
+            </el-form>
+          </el-col>
+        </el-row>
+      </Card>
 
-      <!-- 预览 & 下载 -->
-      <div class="qr-preview">
-        <div>
-          <div id="qr-image" ref="previewRef" class="qr-image"></div>
-          <div class="qr-actions">
-            <div class="flex gap-1">
-              <el-select v-model="extension">
+      <Card title="下载图片">
+        <el-row :gutter="10">
+          <el-col :span="12" class="text-center">
+            <QRCode ref="qrCodeRef" data="https://qr-code-styling.com/" />
+            <el-form-item label="内容:" size="small" class="mt-2 flex">
+              <el-select v-model="extension" class="flex-1 mr-1">
                 <el-option v-for="ext in ['PNG', 'SVG', 'JPEG', 'WEBP']" :key="ext" :value="ext">
                   {{ ext }}
                 </el-option>
               </el-select>
               <el-button type="primary" @click="downloadQRCode">下载图片</el-button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </Card>
+    </div>
   </AppMain>
 </template>
 
 <script lang="ts" setup>
 import { Help } from '@icon-park/vue-next';
+import {
+  type ErrorCorrectionLevel,
+  type DotType,
+  type GradientType,
+  type CornerSquareType,
+  type CornerDotType
+} from 'styled-qr-code';
 
-import { useQRCodeCustom, ColorType } from '../composables';
+import QRCode from '@components/qr-code';
 
-const previewRef = ref<HTMLElement | null>(null);
-const {
-  colorTypeOptions,
-  handleColorTypeChange,
-  gradientOptions,
-  dotTypeOptions,
-  dotsOptionsColorType,
-  cornerSquareTypeOptions,
-  cornersSquareOptionsColorType,
-  cornerDotTypeOptions,
-  cornersDotOptionsColorType,
-  backgroundColorType,
-  qrCodeForm,
-  createQRCode,
-  // 下载
-  extension,
-  downloadQRCode
-} = useQRCodeCustom({
-  previewElementId: 'qr-image'
-});
+const gradientOptions: { label: string; value: GradientType }[] = [
+  { label: '线性', value: 'linear' },
+  { label: '径向', value: 'radial' }
+];
 
-onMounted(() => {
-  // fix: 延迟执行, 解决 vite 热更新 DOM 获取 null 问题
-  setTimeout(() => createQRCode(), 100);
-});
+// 基础配置 ------------------------------------------------------------
+const qrCodeText = ref('');
+const qrCodeData = computed(() => qrCodeText.value || '-');
+
+const qrMargin = ref(4);
+
+const qrSize = ref(400);
+const MIN_SIZE = 200;
+const MAX_SIZE = 600;
+const increase = () => {
+  const newSize = Math.min(MAX_SIZE, qrSize.value + 10);
+  qrSize.value = newSize;
+};
+const decline = () => {
+  const newSize = Math.max(MIN_SIZE, qrSize.value - 10);
+  qrSize.value = newSize;
+};
+
+const errorCorrectionLevel = ref<ErrorCorrectionLevel>('M');
+
+// LOGO ------------------------------------------------------------
+const imageSize = ref(0.8);
+const imageMargin = ref(4);
+const hideBackgroundDots = ref(true);
+
+// 背景色 ------------------------------------------------------------
+const backgroundOptionsColor = ref<string>('#ffffff');
+const backgroundOptionsGradientColor = ref<[string, string]>(['#ffffff', '#007fff']);
+const backgroundOptionsGradientType = ref<GradientType>('linear');
+const backgroundOptionsGradientRotation = ref(0);
+
+// 码点配置 ------------------------------------------------------------
+const dotTypeOptions: { label: string; value: DotType }[] = [
+  { label: '方形', value: 'square' },
+  { label: '圆点', value: 'dots' },
+  { label: '圆角', value: 'rounded' },
+  { label: '单圆角矩形', value: 'classy' },
+  { label: '大单圆角矩形', value: 'classy-rounded' },
+  { label: '液态', value: 'extra-rounded' }
+];
+const dotsOptionsType = ref<DotType>('square');
+const dotsOptionsColor = ref<string>('#000');
+const dotsOptionsGradientColor = ref<[string, string]>(['#000', '#007fff']);
+const dotsOptionsGradientType = ref<GradientType>('linear');
+const dotsOptionsGradientRotation = ref(0);
+
+// 码眼边框配置 ------------------------------------------------------------
+const cornerSquareTypeOptions: { label: string; value: CornerSquareType }[] = [
+  { label: '方形', value: 'square' },
+  { label: '圆形', value: 'dot' },
+  { label: '圆角', value: 'extra-rounded' }
+];
+const cornersSquareOptionsType = ref<CornerSquareType>('square');
+const cornersSquareOptionsColor = ref<string>('#000');
+const cornersSquareOptionsGradientColor = ref<[string, string]>(['#000', '#007fff']);
+const cornersSquareOptionsGradientType = ref<GradientType>('linear');
+const cornersSquareOptionsGradientRotation = ref(0);
+
+// 码眼点配置 ------------------------------------------------------------
+const cornerDotTypeOptions: { label: string; value: CornerDotType }[] = [
+  { label: '方形', value: 'square' },
+  { label: '圆形', value: 'dot' }
+];
+const cornersDotOptionsType = ref<CornerDotType>('square');
+const cornersDotOptionsColor = ref<string>('#000');
+const cornersDotOptionsGradientColor = ref<[string, string]>(['#000', '#007fff']);
+const cornersDotOptionsGradientType = ref<GradientType>('linear');
+const cornersDotOptionsGradientRotation = ref(0);
+
+// 下载二维码
+const qrCodeRef = ref<InstanceType<typeof QRCode> | null>(null);
+const extension = ref<'PNG' | 'SVG' | 'JPEG' | 'WEBP'>('PNG');
+const downloadQRCode = async () => {
+  await qrCodeRef.value?.downloadQRCode(extension.value);
+};
 </script>
 
-<style lang="scss" scoped>
-.qr-generator {
-  @apply flex p-4;
-  height: calc(100vh - 48px);
-}
-
-.qr-config {
-  @apply flex-1 overflow-auto h-[100%];
-}
-
-.qr-preview {
-  @apply w-80 ml-4 p-4 text-center flex justify-center items-center
-    bg-gray-200
-    dark:bg-neutral-900;
-
-  .qr-image {
-    @apply w-52 h-52 bg-slate-300 m-auto;
-  }
-
-  .qr-actions {
-    @apply mt-4;
-  }
-}
-</style>
+<style lang="scss" scoped></style>
