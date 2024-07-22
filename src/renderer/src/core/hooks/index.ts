@@ -6,3 +6,4 @@ export * from './count-down.hooks';
 export * from './auth.hooks';
 export * from './directory.hooks';
 export * from './window.hooks';
+export * from './element-ui.hooks';

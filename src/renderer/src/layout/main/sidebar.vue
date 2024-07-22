@@ -63,6 +63,8 @@ import {
   ScanCode,
   Message,
   CubeThree,
+  ListView,
+  ViewGridCard,
   HamburgerButton
 } from '@icon-park/vue-next';
 
@@ -86,6 +88,8 @@ const nav = [
   { icon: ScanCode, label: '二维码识别', routeName: TEST_ROUTER_NAME.TEST_QR_CODE_SCAN },
   { icon: Message, label: '聊天框', routeName: TEST_ROUTER_NAME.TEST_IM_CHAT },
   { icon: CubeThree, label: 'Canvas 应用', routeName: TEST_ROUTER_NAME.TEST_CANVAS },
+  { icon: ListView, label: '列表-表格', routeName: TEST_ROUTER_NAME.TEST_LIST_TABLE },
+  { icon: ViewGridCard, label: '列表-卡片', routeName: TEST_ROUTER_NAME.TEST_LIST_CARD },
   { icon: Compression, label: '视频压缩', routeName: 'VideoCompress' }
 ];
 
@@ -98,7 +102,7 @@ const handleLogin = () => {
 
 <style lang="scss" scoped>
 .sidebar {
-  @apply w-[144px] h-[100vh] flex flex-col text-[13px] select-none
+  @apply w-[144px] h-[100vh] flex flex-col text-[13px] select-none flex-shrink-0
     bg-[#E9E7EA] dark:bg-[#1e1c21];
 }
 

@@ -17,7 +17,7 @@ import Sidebar from './sidebar.vue';
   @apply flex;
 
   .app-main {
-    @apply flex-1 flex flex-col h-screen;
+    @apply flex-1 flex flex-col h-screen overflow-hidden;
   }
 }
 </style>
