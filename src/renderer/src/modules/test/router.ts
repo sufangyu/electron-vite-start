@@ -14,7 +14,9 @@ export enum TEST_ROUTER_NAME {
   TEST_QR_CODE = 'TestQRCode',
   TEST_QR_CODE_SCAN = 'TestQRCodeScan',
   TEST_IM_CHAT = 'TestImChat',
-  TEST_CANVAS = 'TestCanvas'
+  TEST_CANVAS = 'TestCanvas',
+  TEST_LIST_TABLE = 'TestListTable',
+  TEST_LIST_CARD = 'TestListCard'
 }
 
 export default [
@@ -81,10 +83,23 @@ export default [
         name: TEST_ROUTER_NAME.TEST_CANVAS,
         component: () => import('./canvas/views/index.vue'),
         meta: { title: 'Canvas 应用' }
+      },
+      {
+        path: 'list/table',
+        name: TEST_ROUTER_NAME.TEST_LIST_TABLE,
+        component: () => import('./list/views/table.vue'),
+        meta: { title: '列表-表格' }
+      },
+      {
+        path: 'list/card',
+        name: TEST_ROUTER_NAME.TEST_LIST_CARD,
+        component: () => import('./list/views/card.vue'),
+        meta: { title: '列表-卡片' }
       }
     ]
   },
 
+  // 窗口通讯页面
   {
     path: '/test',
     component: () => import('@layout/empty.vue'),

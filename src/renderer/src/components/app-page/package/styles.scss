@@ -1,0 +1,46 @@
+.app-page {
+  @apply h-[100vh] flex box-border;
+}
+
+.app-page-aside {
+  @apply flex flex-col flex-shrink-0;
+
+  &__body {
+    @apply flex-auto h-full overflow-hidden;
+  }
+
+  &__header {
+    @apply flex-shrink-0;
+  }
+
+  &__footer {
+    @apply flex-shrink-0;
+  }
+}
+
+.app-page-main {
+  @apply h-full flex-1 flex flex-col overflow-hidden;
+
+  &__body {
+    @apply flex-auto h-full flex flex-col overflow-hidden
+      bg-white dark:bg-[#1D1E1F];
+
+    .body-extend {
+      @apply flex-shrink-0 p-2;
+    }
+
+    .body-content {
+      @apply w-full h-full overflow-hidden;
+    }
+  }
+
+  &__header {
+    @apply p-2 mb-2 flex-shrink-0
+      bg-white dark:bg-[#1D1E1F];
+  }
+
+  &__footer {
+    @apply mt-2 flex-shrink-0
+      bg-white dark:bg-[#1D1E1F];
+  }
+}
