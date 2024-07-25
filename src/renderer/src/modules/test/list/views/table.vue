@@ -90,26 +90,9 @@
     <template #body-extend>
       <div class="flex justify-between">
         <div class="flex items-center gap-2 text-xs">
-          <el-button type="primary" size="small" :icon="Plus">新增</el-button>
           <span>当前第{{ query.pageNum }}页</span>
           <span>每页{{ query.pageSize }}条数据</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <el-tooltip content="列表密度" placement="top">
-            <el-dropdown trigger="click">
-              <el-button link :icon="RowHeight"></el-button>
-              <template #dropdown>
-                <el-dropdown-menu>
-                  <el-dropdown-item>默认</el-dropdown-item>
-                  <el-dropdown-item>中等</el-dropdown-item>
-                  <el-dropdown-item>紧凑</el-dropdown-item>
-                </el-dropdown-menu>
-              </template>
-            </el-dropdown>
-          </el-tooltip>
-          <el-tooltip content="列设置" placement="top">
-            <el-button link :icon="SettingTwo"></el-button>
-          </el-tooltip>
+          <span class="ml-10">隐藏列: {{ columnsHidden }}</span>
         </div>
       </div>
     </template>
@@ -122,51 +105,101 @@
     <div class="h-[250px] bg-red-700/65">5</div>
     <div class="bg-blue-700/65">6</div> -->
 
-    <el-table :data="tableData" style="width: 100%" height="100%">
-      <el-table-column prop="name" label="姓名" width="100">
-        <template #default="{ row, $index }"> {{ row.name }}-{{ $index + 1 }} </template>
-      </el-table-column>
-      <el-table-column prop="date" label="日期" width="180"> </el-table-column>
-      <el-table-column prop="age" label="年龄"></el-table-column>
-      <el-table-column prop="province" label="省份" width="120"> </el-table-column>
-      <el-table-column prop="city" label="市区" width="120"> </el-table-column>
-      <el-table-column prop="address" label="地址" width="350"> </el-table-column>
-      <el-table-column prop="zip" label="ZIP" width="120"> </el-table-column>
-      <el-table-column
-        label="操作"
-        fixed="right"
-        :resizable="false"
-        :width="adjustWidth({ className: 'operation-actions' })"
-      >
-        <template #header="{ column }">
-          <LabelTooltip
-            :label="column.label"
-            :tooltip="{ placement: 'right' }"
-            :tool-tip-icon="Helpcenter"
-          >
-            <template #content>这是自定义的解释文本</template>
-          </LabelTooltip>
-        </template>
+    <TableExtend
+      v-model:columnsHidden="columnsHidden"
+      :data="tableData"
+      border
+      height="100%"
+      :toolbar-visible="true"
+      :table-extend-attr="{
+        class: 'table-extend-custom'
+      }"
+    >
+      <template #toolbar-left>
+        <el-button type="primary" size="small" :icon="Plus">新增</el-button>
+        <el-button type="danger" size="small">停用</el-button>
+      </template>
 
-        <template #default="{ $index }">
-          <div class="operation-actions" style="white-space: nowrap; display: inline-block">
-            <el-button v-if="[1, 2, 4].includes($index)" size="small" type="primary">
-              退回
-            </el-button>
-            <el-button v-if="[2].includes($index)" size="small" type="primary">审核</el-button>
-            <el-button size="small" type="danger">删除</el-button>
-            <el-button size="small" type="default">启用</el-button>
-          </div>
-        </template>
-      </el-table-column>
-    </el-table>
+      <template #default>
+        <el-table-column fixed type="selection" width="50" align="center" />
+        <el-table-column
+          v-if="!columnsHidden.includes('index')"
+          prop="index"
+          label="序号"
+          fixed
+          type="index"
+          width="60"
+          align="center"
+        />
+        <el-table-column
+          v-if="!columnsHidden.includes('name')"
+          prop="name"
+          label="姓名"
+          width="100"
+        />
+        <el-table-column
+          v-if="!columnsHidden.includes('date')"
+          prop="date"
+          label="日期"
+          width="180"
+        />
+        <el-table-column
+          v-if="!columnsHidden.includes('province')"
+          label="省份"
+          prop="province"
+          width="120"
+        />
+        <el-table-column
+          v-if="!columnsHidden.includes('city')"
+          prop="city"
+          label="城市"
+          min-width="120"
+        />
+        <el-table-column
+          v-if="!columnsHidden.includes('address')"
+          prop="address"
+          label="地址"
+          min-width="350"
+        />
+        <el-table-column v-if="!columnsHidden.includes('zip')" prop="zip" label="ZIP" width="120" />
+        <el-table-column
+          v-if="!columnsHidden.includes('operation')"
+          prop="operation"
+          label="操作"
+          fixed="right"
+          :resizable="false"
+          :width="adjustWidth({ className: 'operation-actions' })"
+        >
+          <template #header="{ column }">
+            <LabelTooltip
+              :label="column.label"
+              :tooltip="{ placement: 'right' }"
+              :tool-tip-icon="Helpcenter"
+            >
+              <template #content>这是自定义的解释文本</template>
+            </LabelTooltip>
+          </template>
+
+          <template #default="{ $index }">
+            <div class="operation-actions" style="white-space: nowrap; display: inline-block">
+              <el-button v-if="[1, 2, 4].includes($index)" size="small" type="primary">
+                退回
+              </el-button>
+              <el-button v-if="[2].includes($index)" size="small" type="primary">审核</el-button>
+              <el-button size="small" type="danger">删除</el-button>
+              <el-button size="small" type="default">启用</el-button>
+            </div>
+          </template>
+        </el-table-column>
+      </template>
+    </TableExtend>
 
     <template #footer>
       <Pagination
         v-model:current-page="query.pageNum"
         v-model:page-size="query.pageSize"
         :total="250"
-        class="p-2 flex justify-center"
+        class="flex justify-center"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
       />
@@ -174,12 +207,15 @@
   </AppPage>
 </template>
 
-<script lang="ts" setup>
-import { Plus, RowHeight, SettingTwo, Helpcenter } from '@icon-park/vue-next';
+<script lang="tsx" setup>
+import { Plus, Helpcenter } from '@icon-park/vue-next';
+
+// import TableExtend from '@components/table/index';
 
 import { useTable } from '@core/hooks';
 
 const { adjustWidth } = useTable();
+const columnsHidden = ref<string[]>([]);
 
 const query = ref({
   username: '',
@@ -198,6 +234,7 @@ const tableData = Array(50).fill({
   zip: 200333,
   age: 10
 });
+
 const handleSizeChange = (val: number) => {
   console.log(`${val} items per page`);
 };

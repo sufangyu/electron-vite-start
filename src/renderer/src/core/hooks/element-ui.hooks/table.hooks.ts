@@ -37,7 +37,7 @@ export function useTable() {
    */
   const adjustWidth = ({
     className = '',
-    offsetWidth = 24,
+    offsetWidth = 26,
     defaultWidth = 80
   }: AdjustWidthOptions): number => {
     if (!className) {
