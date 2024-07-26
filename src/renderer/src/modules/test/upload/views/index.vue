@@ -11,6 +11,7 @@
           multipart
           drag-sort
           drag
+          size="default"
         >
           <template #tip>
             <div class="el-upload__tip">仅支持图片上传。</div>

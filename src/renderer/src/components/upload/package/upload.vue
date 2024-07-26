@@ -2,7 +2,8 @@
   <section ref="uploadRef" class="upload-image">
     <el-upload
       :class="{
-        'hide-uploader': attrs.limit !== undefined ? fileList.length >= attrs.limit : false
+        'hide-uploader': attrs.limit !== undefined ? fileList.length >= attrs.limit : false,
+        [`upload-size__${size}`]: true
       }"
       v-bind="attrs"
       :file-list="fileList"
@@ -18,7 +19,7 @@
       <template #default>
         <div class="text-center">
           <el-icon :size="32"><Plus :stroke-width="2" /></el-icon>
-          <p class="block text-xs">{{ attrs.drag ? '拖拽或点击上传' : '点击上传' }}</p>
+          <p class="block text-xs">{{ isDrag ? '拖拽或点击上传' : '点击上传' }}</p>
         </div>
       </template>
 
@@ -81,12 +82,20 @@ const props = withDefaults(defineProps<Props>(), {
   maxSize: 5,
   multipart: true,
   chunkSizeLimit: 5,
-  modelValue: () => []
+  modelValue: () => [],
+  size: 'default'
 });
 
 const attrs = useAttrs() as UploadProps;
 
 const emits = defineEmits(['update:modelValue']);
+
+// 是否支持推拽上传
+const isDrag = computed(() => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
+  return attrs.drag === '' || !!attrs.drag;
+});
 
 const { fileList, handleAddFileToUploadQueue, setFileList } = useUploadHandler({
   multipart: props.multipart,
@@ -226,6 +235,33 @@ onMounted(() => {
 
       .aciton-item {
         @apply cursor-pointer mx-1.5 text-white text-lg;
+      }
+    }
+  }
+
+  // 尺寸
+  .upload-size__small {
+    :deep(.el-upload--picture-card),
+    :deep(.el-upload-list--picture-card .el-upload-list__item) {
+      @apply w-[100px] h-[100px];
+    }
+
+    :deep(.el-upload--picture-card.is-drag) {
+      .el-upload-dragger {
+        @apply p-0 pt-5;
+      }
+    }
+  }
+
+  .upload-size__mini {
+    :deep(.el-upload--picture-card),
+    :deep(.el-upload-list--picture-card .el-upload-list__item) {
+      @apply w-[90px] h-[90px];
+    }
+
+    :deep(.el-upload--picture-card.is-drag) {
+      .el-upload-dragger {
+        @apply p-0 pt-3;
       }
     }
   }
