@@ -8,7 +8,7 @@
         <slot name="toolbar-right"></slot>
         <div class="flex items-center gap-2">
           <el-tooltip content="行密度" placement="top">
-            <el-dropdown trigger="click">
+            <el-dropdown trigger="click" popper-class="line-size-popper">
               <el-button link :icon="RowHeight"></el-button>
               <template #dropdown>
                 <el-dropdown-menu size="small">
@@ -19,7 +19,8 @@
                       { label: '紧凑', value: 'small' }
                     ]"
                     :key="item.value"
-                    @click="handleLineSizeChange('default')"
+                    :class="{ selected: lineSize == item.value }"
+                    @click="handleLineSizeChange(item.value as LineSize)"
                   >
                     {{ item.label }}
                   </el-dropdown-item>
@@ -28,12 +29,7 @@
             </el-dropdown>
           </el-tooltip>
           <el-tooltip content="列设置" placement="top">
-            <el-button
-              ref="columnSettingRef"
-              v-click-outside="onClickOutside"
-              link
-              :icon="SettingTwo"
-            />
+            <el-button ref="columnSettingRef" link :icon="SettingTwo" />
           </el-tooltip>
         </div>
       </div>
@@ -58,6 +54,7 @@
         <el-checkbox
           v-model="checkAll"
           :indeterminate="isIndeterminate"
+          class="filter-check-all"
           @change="handleCheckAllChange"
         >
           列展示
@@ -100,8 +97,6 @@ const curCacheKey = `table-extend-${props.cacheKey ?? window.btoa($route.path)}`
 const tableRef = ref<InstanceType<typeof ElTable> | null>(null);
 const columnSettingRef = ref<InstanceType<typeof ElButton> | null>(null);
 const popoverRef = ref<InstanceType<typeof ElPopover> | null>(null);
-
-const onClickOutside = () => unref(popoverRef.value!)?.hide();
 
 // 表格列显示隐藏、行密度控制 ---------------------------------------------------------------
 const lineSize = ref<LineSize>('default');
@@ -221,7 +216,8 @@ onMounted(() => {
     @apply h-full overflow-hidden;
   }
 
-  ::v-deep .el-table.table-line-size--default {
+  // 表格的行密度样式 ----------------------------------------------------------------------------
+  :deep(.el-table.table-line-size--default) {
     .cell {
       padding: 0 12px;
     }
@@ -231,7 +227,7 @@ onMounted(() => {
     }
   }
 
-  ::v-deep .el-table.table-line-size--medium {
+  :deep(.el-table.table-line-size--medium) {
     .cell {
       padding: 0 10px;
     }
@@ -240,13 +236,29 @@ onMounted(() => {
     }
   }
 
-  ::v-deep .el-table.table-line-size--small {
+  :deep(.el-table.table-line-size--small) {
     .cell {
       padding: 0 8px;
     }
     .el-table__cell {
       padding: 4px 0;
     }
+  }
+}
+
+// 全选勾选下文本样式
+.filter-check-all {
+  :deep(.el-checkbox__input.is-checked + .el-checkbox__label) {
+    color: inherit;
+  }
+}
+</style>
+
+<style lang="scss">
+// 表格的行密度勾选高亮 .line-size-popper
+.el-popper.line-size-popper {
+  .el-dropdown-menu__item.selected {
+    color: var(--el-color-primary);
   }
 }
 </style>
