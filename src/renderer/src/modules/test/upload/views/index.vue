@@ -8,9 +8,10 @@
           accept="image/*"
           multiple
           :limit="5"
-          multipart
+          :multipart="true"
           drag-sort
           drag
+          paste
           size="default"
         >
           <template #tip>
@@ -75,6 +76,8 @@ import { UploadFile } from 'element-plus';
 
 const images = ref<string[]>([
   'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
+  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
   'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
 ]);
 

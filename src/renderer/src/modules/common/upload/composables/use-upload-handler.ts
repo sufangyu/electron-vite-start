@@ -1,16 +1,18 @@
 /* eslint-disable no-async-promise-executor */
-
 import {
   ElMessage,
   type UploadRequestHandler,
   type UploadFile,
   type UploadRequestOptions,
-  type UploadProgressEvent
+  type UploadProgressEvent,
+  type UploadInstance,
+  type UploadRawFile
 } from 'element-plus';
 import { UploadAjaxError } from 'element-plus/es/components/upload/src/ajax';
 
-import { HttpResponse } from '@core/http/types';
+import { type HttpResponse } from '@core/http/types';
 
+import { useUploadLifeCycle } from './use-upload-lifecycle';
 import { uploadChunkApi, uploadMergeApi, uploadSingleApi } from '../api';
 import { getFileChunks, getFileNameFromUrl } from '../utils';
 
@@ -46,6 +48,15 @@ export function useUploadHandler(options?: UploadOptions) {
   const fileList = ref<UploadFile[]>([]);
   // 上传文件列表
   const uploadFileList = ref<UploadFile[]>([]);
+
+  // 原上传组件实例
+  const uploadRawRef = ref<UploadInstance | null>(null);
+  const attrs = useAttrs();
+  const { handleExceed } = useUploadLifeCycle({
+    limit: attrs.limit as number
+    // maxSize: maxSize,
+    // multipart: attrs.multipart as boolean
+  });
 
   /**
    * 添加文件到待上传队列中
@@ -95,19 +106,6 @@ export function useUploadHandler(options?: UploadOptions) {
       // 更新成功状态 (会同步更新进度)
       willUpdateFile && (willUpdateFile.status = 'success');
       curRequestOptions?.onSuccess(data);
-
-      // // 必须通过 onSuccess 更新状态后才能给文件列表添加文件
-      // fileList.value.push({
-      //   status: 'success',
-      //   percentage: 100,
-      //   uid: curRequestOptions.file.uid,
-      //   name: curRequestOptions.file.name,
-      //   url: curRequestOptions.file.path,
-      //   response: {
-      //     path: curRequestOptions.file.path,
-      //     filename: curRequestOptions.file.name
-      //   }
-      // });
     } catch (err) {
       ElMessage.error({ message: '上传失败', grouping: true });
       willUpdateFile && (willUpdateFile.status = 'fail');
@@ -118,6 +116,62 @@ export function useUploadHandler(options?: UploadOptions) {
       uploadQueue.value.shift();
       _processQueueUpload();
     }
+  };
+
+  // 粘贴上传 --------------------------------------------------------------------------------
+  // 获取焦点不触发键盘，不显示系统键盘: //blog.csdn.net/wsy157/article/details/123048937
+  const pasteTiggerRef = ref(null);
+  const pasteInputValue = ref('');
+
+  /**
+   * 处理输入事件
+   *
+   * - 内容清空
+   * - 失去鼠标焦点
+   *
+   * @param {Event} ev
+   */
+  const handlePasteInput = (ev: Event) => {
+    pasteInputValue.value = '';
+    (ev.target as HTMLAreaElement)?.blur();
+  };
+
+  /**
+   * 处理文本框内容粘贴复制事件
+   *
+   * @param {ClipboardEvent} ev
+   * @return {*}
+   */
+  const handlePasteUpload = async (ev: ClipboardEvent) => {
+    const clipboardData = ev?.clipboardData;
+    const files = Array.from(clipboardData?.items ?? [])
+      .map((data) => data.getAsFile())
+      .filter(Boolean) as File[];
+
+    if ((files ?? []).length === 0) {
+      ElMessage.warning({ message: '未获取到粘贴的文件', grouping: true });
+      await nextTick();
+      handlePasteInput(ev as unknown as Event);
+      return;
+    }
+
+    // 超出超出个数限制
+    const isExceedLimit = (files ?? []).length + fileList.value.length > (attrs.limit as number);
+    if (isExceedLimit) {
+      handleExceed(files!, fileList.value);
+      return;
+    }
+
+    files.forEach((file, idx) => {
+      if (!file) {
+        return;
+      }
+      const rawFile = file as UploadRawFile;
+      rawFile.uid = Date.now() + idx;
+
+      uploadRawRef.value?.handleStart(rawFile);
+    });
+    uploadRawRef.value?.submit();
   };
 
   /**
@@ -273,9 +327,14 @@ export function useUploadHandler(options?: UploadOptions) {
   };
 
   return {
+    uploadRawRef,
     uploading,
     fileList,
     handleAddFileToUploadQueue,
-    setFileList
+    setFileList,
+    pasteTiggerRef,
+    pasteInputValue,
+    handlePasteInput,
+    handlePasteUpload
   };
 }

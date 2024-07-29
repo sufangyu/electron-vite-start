@@ -17,6 +17,8 @@ import { UploadLifeCycleOptions } from '../types';
  * @return {*}
  */
 export function useUploadLifeCycle(options?: UploadLifeCycleOptions) {
+  const { accept = '*' } = options ?? {};
+
   /**
    * 组件当超出限制时，执行的钩子函数
    *
@@ -24,6 +26,7 @@ export function useUploadLifeCycle(options?: UploadLifeCycleOptions) {
    * @param {UploadUserFile[]} uploadFiles
    */
   const handleExceed = (files: File[], uploadFiles: UploadUserFile[]) => {
+    console.log(files, uploadFiles);
     if (typeof options?.onExceed === 'function') {
       options?.onExceed(files, uploadFiles);
     } else {
@@ -44,9 +47,20 @@ export function useUploadLifeCycle(options?: UploadLifeCycleOptions) {
     if (typeof options?.onBeforeUpload === 'function') {
       return options?.onBeforeUpload(rawFile);
     } else {
-      const { size } = rawFile;
+      const { size, name } = rawFile;
       if (!options?.multipart && size > (options?.maxSize ?? 0) * 1024 * 1024) {
-        ElMessage.error({ message: `上传文件不能超过 ${options?.maxSize} M`, grouping: true });
+        ElMessage.error({
+          message: `文件（${name}）不能超过 ${options?.maxSize} M`,
+          grouping: true
+        });
+        return false;
+      }
+
+      if (accept !== '*' && !validateFileByAccept(rawFile, accept)) {
+        ElMessage.error({
+          message: `文件（${name}）格式不正确`,
+          grouping: true
+        });
         return false;
       }
 
@@ -108,3 +122,34 @@ export function useUploadLifeCycle(options?: UploadLifeCycleOptions) {
     handleRemove
   };
 }
+
+/**
+ * 根据 accept 校验文件类型
+ *
+ * @param {File} file 文件
+ * @param {string} accept 文件类型, 允许是 扩展名 或 MIME类型
+ * @return {*}  {boolean}
+ */
+const validateFileByAccept = (file: File, accept: string): boolean => {
+  const acceptedTypes = accept.split(',').map((type) => type.trim());
+
+  // 获取文件的 MIME 类型和扩展名
+  const fileType = file.type;
+  const fileExtension = fileType.split('/')[1];
+
+  const result = acceptedTypes.some((type) => {
+    if (type.startsWith('.')) {
+      // accept 类型是扩展名('.png,.jpeg'), 比较文件扩展名
+      return fileExtension === type.substring(1).toLowerCase();
+    } else {
+      // accept 类型是 MIME 类型('image/png, image/png'), 比较文件的 MIME 类型
+      // 允许 image/* 这样的通配符匹配
+      const [typeMain, typeSub] = type.split('/');
+      const [fileMain, fileSub] = fileType.split('/');
+      return typeMain === fileMain && (typeSub === '*' || typeSub === fileSub);
+    }
+  });
+
+  // console.log('检查文件类型 =>>', file, accept, acceptedTypes, result);
+  return result;
+};

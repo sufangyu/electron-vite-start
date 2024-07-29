@@ -1,5 +1,11 @@
 export type Props = {
   /**
+   * 是否开启粘贴上传, 默认 true
+   *
+   * @type {boolean}
+   */
+  paste?: boolean;
+  /**
    * 是否开启拖拽排序, 默认 false
    *
    * @type {boolean}
