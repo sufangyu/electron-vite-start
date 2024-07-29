@@ -1,6 +1,7 @@
 <template>
   <section ref="uploadRef" class="upload-image">
     <el-upload
+      ref="uploadRawRef"
       :class="{
         'hide-uploader': attrs.limit !== undefined ? fileList.length >= attrs.limit : false,
         [`upload-size__${size}`]: true
@@ -16,10 +17,25 @@
       :before-upload="handleBeforeUpload"
     >
       <!-- 上传触发句柄 -->
-      <template #default>
+      <template #trigger>
         <div class="text-center">
           <el-icon :size="32"><Plus :stroke-width="2" /></el-icon>
           <p class="block text-xs">{{ isDrag ? '拖拽或点击上传' : '点击上传' }}</p>
+        </div>
+      </template>
+
+      <template #default>
+        <div
+          v-if="paste && (attrs.limit === undefined ? false : fileList.length < attrs.limit)"
+          class="pase-trigger"
+        >
+          <textarea
+            ref="pasteTiggerRef"
+            v-model="pasteInputValue"
+            placeholder="粘贴上传"
+            @input="handlePasteInput"
+            @paste.stop="handlePasteUpload"
+          />
         </div>
       </template>
 
@@ -78,6 +94,7 @@ import { FileStatus, useUploadHandler, useUploadLifeCycle } from '@modules/commo
 import { Props } from './types';
 
 const props = withDefaults(defineProps<Props>(), {
+  paste: false,
   dragSort: false,
   maxSize: 5,
   multipart: true,
@@ -97,8 +114,18 @@ const isDrag = computed(() => {
   return attrs.drag === '' || !!attrs.drag;
 });
 
-const { fileList, handleAddFileToUploadQueue, setFileList } = useUploadHandler({
+const {
+  uploadRawRef,
+  fileList,
+  handleAddFileToUploadQueue,
+  setFileList,
+  pasteTiggerRef,
+  pasteInputValue,
+  handlePasteInput,
+  handlePasteUpload
+} = useUploadHandler({
   multipart: props.multipart,
+  maxSize: props.maxSize,
   chunkSizeLimit: props.chunkSizeLimit
 });
 
@@ -125,6 +152,7 @@ const _updateFileList = (uploadFiles: UploadFiles) => {
 
 // 上传生命周期
 const { handleExceed, handleBeforeUpload, handleUploadSuccess, handleRemove } = useUploadLifeCycle({
+  accept: attrs.accept,
   limit: attrs.limit,
   maxSize: props.maxSize,
   multipart: props.multipart,
@@ -193,6 +221,28 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .upload-image {
+  overflow: hidden;
+
+  > div {
+    overflow: hidden;
+  }
+
+  :deep(.el-upload-list--picture-card) {
+    // float: left;
+    display: block;
+    flex-wrap: inherit;
+
+    .el-upload-list__item {
+      float: left;
+    }
+  }
+
+  :deep(.el-upload--picture-card) {
+    float: left;
+    margin-bottom: 8px;
+    margin-right: 8px;
+  }
+
   // fix: 拖拽框与上传框边框重复并且大小不一致
   :deep(.el-upload--picture-card.is-drag) {
     border: none;
@@ -200,6 +250,10 @@ onMounted(() => {
     .el-upload-dragger {
       height: 100%;
     }
+  }
+
+  :deep(.el-upload__tip) {
+    clear: both;
   }
 
   .hide-uploader {
@@ -239,17 +293,40 @@ onMounted(() => {
     }
   }
 
+  // 粘贴上传触发区域
+  .pase-trigger {
+    background-color: var(--el-fill-color-blank);
+    margin: 0 0 8px 0;
+    @apply box-border inline-flex h-[148px] w-[148px] leading-[146px] overflow-hidden p-0 align-top;
+
+    float: left;
+
+    textarea {
+      @apply block h-full w-full leading-[inherit] text-xs text-center outline-none resize-none bg-transparent;
+      border: 1px dashed var(--el-border-color);
+      border-radius: 6px;
+
+      &:focus {
+        border: 1px dashed var(--el-color-primary);
+      }
+    }
+  }
+
   // 尺寸
   .upload-size__small {
     :deep(.el-upload--picture-card),
     :deep(.el-upload-list--picture-card .el-upload-list__item) {
-      @apply w-[100px] h-[100px];
+      @apply w-[110px] h-[110px];
     }
 
     :deep(.el-upload--picture-card.is-drag) {
       .el-upload-dragger {
         @apply p-0 pt-5;
       }
+    }
+
+    .pase-trigger {
+      @apply w-[110px] h-[110px] leading-[100px];
     }
   }
 
@@ -263,6 +340,10 @@ onMounted(() => {
       .el-upload-dragger {
         @apply p-0 pt-3;
       }
+    }
+
+    .pase-trigger {
+      @apply w-[90px] h-[90px] leading-[90px];
     }
   }
 }

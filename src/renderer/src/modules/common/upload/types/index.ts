@@ -20,6 +20,13 @@ export interface UploadOptions {
    */
   multipart?: boolean;
   /**
+   * 上传文件大小限制, 单位 M
+   *
+   * @type {number}
+   * @memberof UploadLifeCycleOptions
+   */
+  maxSize?: number;
+  /**
    * 分片上传边界文件大小, 单位是 M. 默认 5M
    *
    * @type {number}
@@ -86,6 +93,19 @@ export enum FileStatus {
  */
 export interface UploadLifeCycleOptions {
   /**
+   * 接受上传的文件类型
+   *
+   * - *
+   * - image/*
+   * - video/*
+   * - image/png, image/jpeg
+   * - ……
+   *
+   * @type {string}
+   * @memberof UploadLifeCycleOptions
+   */
+  accept?: string;
+  /**
    * 上传文件数量限制
    *
    * @type {number}
@@ -139,5 +159,5 @@ export interface UploadLifeCycleOptions {
    *
    * @memberof UploadOptions
    */
-  updateFilesCallback: (uploadFile: UploadFile, uploadFiles: UploadFiles) => void;
+  updateFilesCallback?: (uploadFile: UploadFile, uploadFiles: UploadFiles) => void;
 }
