@@ -10,7 +10,7 @@
           :limit="5"
           :multipart="true"
           drag-sort
-          drag
+          :drag="true"
           paste
           size="default"
         >
