@@ -106,10 +106,13 @@ export function useUploadHandler(options?: UploadOptions) {
       // 更新成功状态 (会同步更新进度)
       willUpdateFile && (willUpdateFile.status = 'success');
       curRequestOptions?.onSuccess(data);
-    } catch (err) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (_err) {
       ElMessage.error({ message: '上传失败', grouping: true });
       willUpdateFile && (willUpdateFile.status = 'fail');
-      curRequestOptions?.onError(new UploadAjaxError((err as Error)?.message, 200, 'POST', 'url'));
+      // curRequestOptions?.onError(
+      //   new UploadAjaxError(err?.message, err?.status ?? 500, 'POST', 'url')
+      // );
     } finally {
       uploading.value = false;
       // 移除已处理的文件并继续处理队列中下一个文件
