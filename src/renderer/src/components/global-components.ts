@@ -5,6 +5,7 @@ const allComponents = [
   { name: 'AppPage', component: () => import('./app-page/index') },
   { name: 'Pagination', component: () => import('./pagination/index') },
   { name: 'TableExtend', component: () => import('./table/index') },
+  { name: 'SelectExtend', component: () => import('./select/index') },
   { name: 'Card', component: () => import('./card/index') },
   { name: 'LabelTooltip', component: () => import('./label-tooltip/index') },
   { name: 'QRCode', component: () => import('./qr-code/index') },

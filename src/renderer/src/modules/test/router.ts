@@ -16,7 +16,8 @@ export enum TEST_ROUTER_NAME {
   TEST_IM_CHAT = 'TestImChat',
   TEST_CANVAS = 'TestCanvas',
   TEST_LIST_TABLE = 'TestListTable',
-  TEST_LIST_CARD = 'TestListCard'
+  TEST_LIST_CARD = 'TestListCard',
+  TEST_SELECT = 'TestListSelect'
 }
 
 export default [
@@ -95,6 +96,12 @@ export default [
         name: TEST_ROUTER_NAME.TEST_LIST_CARD,
         component: () => import('./list/views/card.vue'),
         meta: { title: '列表-卡片' }
+      },
+      {
+        path: 'select',
+        name: TEST_ROUTER_NAME.TEST_SELECT,
+        component: () => import('./select/views/index.vue'),
+        meta: { title: '选择器' }
       }
     ]
   },

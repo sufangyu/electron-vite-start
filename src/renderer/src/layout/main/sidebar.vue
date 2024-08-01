@@ -65,6 +65,7 @@ import {
   CubeThree,
   ListView,
   ViewGridCard,
+  List,
   HamburgerButton
 } from '@icon-park/vue-next';
 
@@ -90,6 +91,7 @@ const nav = [
   { icon: CubeThree, label: 'Canvas 应用', routeName: TEST_ROUTER_NAME.TEST_CANVAS },
   { icon: ListView, label: '列表-表格', routeName: TEST_ROUTER_NAME.TEST_LIST_TABLE },
   { icon: ViewGridCard, label: '列表-卡片', routeName: TEST_ROUTER_NAME.TEST_LIST_CARD },
+  { icon: List, label: '选择器', routeName: TEST_ROUTER_NAME.TEST_SELECT },
   { icon: Compression, label: '视频压缩', routeName: 'VideoCompress' }
 ];
 
