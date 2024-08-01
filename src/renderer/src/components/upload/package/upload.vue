@@ -1,5 +1,9 @@
 <template>
-  <section ref="uploadRef" class="upload-image">
+  <section
+    ref="uploadRef"
+    class="upload-image"
+    :class="{ 'is-disabled': attrs.disabled !== false }"
+  >
     <el-upload
       ref="uploadRawRef"
       :class="{
@@ -27,11 +31,12 @@
       <template #default>
         <div
           v-if="paste && (attrs.limit === undefined ? false : fileList.length < attrs.limit)"
-          class="pase-trigger"
+          class="paste-trigger"
         >
           <textarea
             ref="pasteTiggerRef"
             v-model="pasteInputValue"
+            :disabled="attrs.disabled"
             placeholder="粘贴上传"
             @input="handlePasteInput"
             @paste.stop="handlePasteUpload"
@@ -223,6 +228,13 @@ onMounted(() => {
 .upload-image {
   overflow: hidden;
 
+  &.is-disabled {
+    :deep(.el-upload-dragger),
+    .paste-trigger textarea {
+      @apply cursor-not-allowed opacity-60;
+    }
+  }
+
   > div {
     overflow: hidden;
   }
@@ -294,7 +306,7 @@ onMounted(() => {
   }
 
   // 粘贴上传触发区域
-  .pase-trigger {
+  .paste-trigger {
     background-color: var(--el-fill-color-blank);
     margin: 0 0 8px 0;
     @apply box-border inline-flex h-[148px] w-[148px] leading-[146px] overflow-hidden p-0 align-top;
@@ -325,7 +337,7 @@ onMounted(() => {
       }
     }
 
-    .pase-trigger {
+    .paste-trigger {
       @apply w-[110px] h-[110px] leading-[100px];
     }
   }
@@ -342,7 +354,7 @@ onMounted(() => {
       }
     }
 
-    .pase-trigger {
+    .paste-trigger {
       @apply w-[90px] h-[90px] leading-[90px];
     }
   }
