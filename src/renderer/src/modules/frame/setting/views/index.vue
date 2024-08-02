@@ -4,7 +4,11 @@
       <Card title="主题设置">
         <div class="flex items-center gap-2 text-sm">
           主题：
-          <el-radio-group :model-value="theme" size="small" @change="setTheme">
+          <el-radio-group
+            :model-value="theme"
+            size="small"
+            @change="(val) => setTheme(val as APP_THEME)"
+          >
             <el-radio-button
               v-for="item in themeOptions"
               :key="item.value"
@@ -88,7 +92,7 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
 
-import { DIRECTORY_TYPE } from '@share/modules';
+import { APP_THEME, DIRECTORY_TYPE } from '@share/modules';
 
 import UpdaterDialog from '@components/updater-dialog/index';
 import { GLOBAL_DATA } from '@core/constans/global';

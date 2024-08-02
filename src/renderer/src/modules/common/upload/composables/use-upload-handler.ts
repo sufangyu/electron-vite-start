@@ -8,7 +8,6 @@ import {
   type UploadInstance,
   type UploadRawFile
 } from 'element-plus';
-import { UploadAjaxError } from 'element-plus/es/components/upload/src/ajax';
 
 import { type HttpResponse } from '@core/http/types';
 
