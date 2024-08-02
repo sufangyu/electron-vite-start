@@ -65,8 +65,8 @@ const form = ref<{
     requestProxy.length === 0 ? [{ originalUrl: '', redirectUrl: '' }] : cloneDeep(requestProxy)
 });
 
-const handleChangeToggle = (val: boolean) => {
-  if (val && form.value.requestProxy.length === 0) {
+const handleChangeToggle = (val) => {
+  if ((val as boolean) && form.value.requestProxy.length === 0) {
     handleAddProxy();
   }
 };

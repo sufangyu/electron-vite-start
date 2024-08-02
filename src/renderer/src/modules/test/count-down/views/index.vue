@@ -35,7 +35,7 @@
           <el-button size="small" @click="startCountDown">开始 </el-button>
           <el-button size="small" @click="pauseCountDown">暂停</el-button>
           <el-button size="small" @click="continuCountDown">继续</el-button>
-          <el-button size="small" @click="resetCountDown">重置</el-button>
+          <el-button size="small" @click="() => resetCountDown()">重置</el-button>
         </div>
       </Card>
 

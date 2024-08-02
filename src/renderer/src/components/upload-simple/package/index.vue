@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ElUpload, type UploadProps, type UploadFiles, type UploadRawFile } from 'element-plus';
+import { ElUpload, type UploadProps, type UploadFiles } from 'element-plus';
 import Sortable from 'sortablejs';
 
 import { FileStatus, useUploadHandler, useUploadLifeCycle } from '@modules/common/upload';
