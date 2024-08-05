@@ -120,7 +120,8 @@ class HttpController {
   async request<T>(requestConfig: HttpRequestConfig): Promise<HttpResponse<T>> {
     if (interceptors.isRefreshing && interceptors.isRefreshTokenMode) {
       // 如果正在刷新 token, 则将请求放入队列中等待刷新完成后再发送
-      return interceptors.pushRequestsQueue(requestConfig);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return interceptors.pushRequestsQueue(requestConfig) as Promise<any>;
     }
 
     const response = await this.instance.request(requestConfig);
