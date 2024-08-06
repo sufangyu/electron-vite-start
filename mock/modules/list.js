@@ -4,20 +4,34 @@ const { Query } = require('../utils');
 const listModule = {
   'GET /api/list': (req, res) => {
     const { query } = req;
-    console.log('GET /api/list', query);
     const { page, size, dataSource } = Query(query, ListData.list);
+    console.log('GET /api/list', page, size);
 
-    res.status('200').json({
-      success: true,
-      message: '请求成功',
-      data: {
-        list: dataSource.slice((page - 1) * size, page * size),
-        page: Number(page),
-        size: Number(size),
-        pages: Math.ceil(dataSource.length / size),
-        total: dataSource.length
-      }
-    });
+    if (Number(page) === 5) {
+      res.status('200').json({
+        success: true,
+        message: '请求成功',
+        data: {
+          list: [],
+          page: Number(page),
+          size: Number(size),
+          pages: Math.ceil(dataSource.length / size),
+          total: dataSource.length
+        }
+      });
+    } else {
+      res.status('200').json({
+        success: true,
+        message: '请求成功',
+        data: {
+          list: dataSource.slice((page - 1) * size, page * size),
+          page: Number(page),
+          size: Number(size),
+          pages: Math.ceil(dataSource.length / size),
+          total: dataSource.length
+        }
+      });
+    }
   },
 
   'GET /api/search/:id': (req, res) => {

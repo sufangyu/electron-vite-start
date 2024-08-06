@@ -11,6 +11,8 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
 import '@core/plugins';
 // global components
 import components from '@components/global-components';
+// directives
+import directives from '@core/directives';
 
 // app view、router、styles
 import App from './App.vue';
@@ -33,4 +35,5 @@ app
     locale: zhCn
   })
   .use(components)
+  .use(directives)
   .mount('#app');
