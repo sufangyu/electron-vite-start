@@ -3,6 +3,7 @@ import { ElUpload, ElPagination, ElTable, ElSelect, ElSelectV2 } from 'element-p
 import AppMain from '@components/app-main/index';
 import AppPage from '@components/app-page/index';
 import Card from '@components/card/index';
+import InfiniteScroll from '@components/infinite-scroll/index';
 import LabelTooltip from '@components/label-tooltip/index';
 import Pagination from '@components/pagination/index';
 import QRCode from '@components/qr-code/index';
@@ -23,6 +24,7 @@ declare module 'vue' {
     TableExtend: typeof TableExtend & typeof ElTable;
     Card: typeof Card;
     LabelTooltip: typeof LabelTooltip;
+    InfiniteScroll: typeof InfiniteScroll;
     QRCode: typeof QRCode;
     // 扩展属性 & 原上传组件属性
     UploadExtend: typeof UploadExtend & typeof ElUpload;

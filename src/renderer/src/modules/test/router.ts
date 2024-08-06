@@ -17,7 +17,8 @@ export enum TEST_ROUTER_NAME {
   TEST_CANVAS = 'TestCanvas',
   TEST_LIST_TABLE = 'TestListTable',
   TEST_LIST_CARD = 'TestListCard',
-  TEST_SELECT = 'TestListSelect'
+  TEST_SELECT = 'TestListSelect',
+  TEST_OBSERVER = 'TestListObserver'
 }
 
 export default [
@@ -102,6 +103,12 @@ export default [
         name: TEST_ROUTER_NAME.TEST_SELECT,
         component: () => import('./select/views/index.vue'),
         meta: { title: '选择器' }
+      },
+      {
+        path: 'observer',
+        name: TEST_ROUTER_NAME.TEST_OBSERVER,
+        component: () => import('./observer/views/index.vue'),
+        meta: { title: '监听器' }
       }
     ]
   },

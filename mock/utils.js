@@ -12,7 +12,7 @@
 
 const Query = (options, dataSource) => {
   // eslint-disable-next-line prefer-const
-  let { page, size, ...other } = options;
+  let { pageNum: page, pageSize: size, ...other } = options;
   page = page || 1;
   size = size || 10;
 
