@@ -9,6 +9,7 @@ const allComponents = [
   { name: 'Card', component: () => import('./card/index') },
   { name: 'LabelTooltip', component: () => import('./label-tooltip/index') },
   { name: 'InfiniteScroll', component: () => import('./infinite-scroll') },
+  { name: 'DomToImage', component: () => import('./dom-to-image') },
   { name: 'QRCode', component: () => import('./qr-code/index') },
   { name: 'UploadExtend', component: () => import('./upload/index') },
   { name: 'UploadSimple', component: () => import('./upload-simple/index') }

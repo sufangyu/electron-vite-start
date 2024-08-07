@@ -18,7 +18,8 @@ export enum TEST_ROUTER_NAME {
   TEST_LIST_TABLE = 'TestListTable',
   TEST_LIST_CARD = 'TestListCard',
   TEST_SELECT = 'TestListSelect',
-  TEST_OBSERVER = 'TestListObserver'
+  TEST_OBSERVER = 'TestListObserver',
+  TEST_DOM_TO_IMAGE = 'TestDomToImage'
 }
 
 export default [
@@ -109,6 +110,12 @@ export default [
         name: TEST_ROUTER_NAME.TEST_OBSERVER,
         component: () => import('./observer/views/index.vue'),
         meta: { title: '监听器' }
+      },
+      {
+        path: 'dom-to-image',
+        name: TEST_ROUTER_NAME.TEST_DOM_TO_IMAGE,
+        component: () => import('./dom-to-image/views/index.vue'),
+        meta: { title: 'DOM 转图片' }
       }
     ]
   },
