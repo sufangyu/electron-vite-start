@@ -93,6 +93,9 @@ importers:
       axios:
         specifier: ^1.6.8
         version: 1.6.8
+      dom-to-image-more:
+        specifier: ^3.3.1
+        version: 3.3.1
       electron:
         specifier: ^30.0.2
         version: 30.0.2
@@ -2046,6 +2049,9 @@ packages:
   doctrine@3.0.0:
     resolution: {integrity: sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==}
     engines: {node: '>=6.0.0'}
+
+  dom-to-image-more@3.3.1:
+    resolution: {integrity: sha512-+NH+KEuFLJKVVS2NvStB+W2jOs3prDTzzEhvB/6xTh8SU/g4kqlRjbqyAIwZsOHmljR/pkgSBLHteeKIH40nBA==}
 
   dom-walk@0.1.2:
     resolution: {integrity: sha512-6QvTW9mrGeIegrFXdtQi9pk7O/nSK6lSdXW2eqUspN5LWD7UTji2Fqw5V2YLjBpHEoU9Xl/eUWNpDeZvoyOv2w==}
@@ -6204,6 +6210,8 @@ snapshots:
   doctrine@3.0.0:
     dependencies:
       esutils: 2.0.3
+
+  dom-to-image-more@3.3.1: {}
 
   dom-walk@0.1.2: {}
 
