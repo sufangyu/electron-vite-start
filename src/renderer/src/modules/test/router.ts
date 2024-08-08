@@ -19,7 +19,8 @@ export enum TEST_ROUTER_NAME {
   TEST_LIST_CARD = 'TestListCard',
   TEST_SELECT = 'TestListSelect',
   TEST_OBSERVER = 'TestListObserver',
-  TEST_DOM_TO_IMAGE = 'TestDomToImage'
+  TEST_DOM_TO_IMAGE = 'TestDomToImage',
+  TEST_FILE_CONVER = 'TestFileConver'
 }
 
 export default [
@@ -116,6 +117,12 @@ export default [
         name: TEST_ROUTER_NAME.TEST_DOM_TO_IMAGE,
         component: () => import('./dom-to-image/views/index.vue'),
         meta: { title: 'DOM 转图片' }
+      },
+      {
+        path: 'file-conver',
+        name: TEST_ROUTER_NAME.TEST_FILE_CONVER,
+        component: () => import('./file-conver/views/index.vue'),
+        meta: { title: '文件互转' }
       }
     ]
   },

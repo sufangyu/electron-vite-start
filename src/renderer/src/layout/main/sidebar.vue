@@ -68,6 +68,7 @@ import {
   List,
   Merge,
   DownPicture,
+  FileConversionOne,
   HamburgerButton
 } from '@icon-park/vue-next';
 
@@ -96,6 +97,7 @@ const nav = [
   { icon: List, label: '选择器', routeName: TEST_ROUTER_NAME.TEST_SELECT },
   { icon: Merge, label: '监听器', routeName: TEST_ROUTER_NAME.TEST_OBSERVER },
   { icon: DownPicture, label: 'DOM转图片', routeName: TEST_ROUTER_NAME.TEST_DOM_TO_IMAGE },
+  { icon: FileConversionOne, label: '文件互转', routeName: TEST_ROUTER_NAME.TEST_FILE_CONVER },
   { icon: Compression, label: '视频压缩', routeName: 'VideoCompress' }
 ];
 
