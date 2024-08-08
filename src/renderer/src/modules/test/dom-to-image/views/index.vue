@@ -2,7 +2,10 @@
   <AppMain title="DOM转图片">
     <div class="p-3">
       <Card title="展示内容">
-        <el-button type="primary" @click="handleDomToImage">生成图片</el-button>
+        <div class="mb-2">
+          <el-button size="small" type="primary" @click="handleDomToImage">生成图片</el-button>
+          <el-button size="small" type="success" @click="handleExportPdf">导出PDF</el-button>
+        </div>
         <DomToImage ref="domToImageRef">
           <div class="mb-4">
             <h3>常规文本</h3>
@@ -13,6 +16,7 @@
               <p>这是一个段落</p>
               <p>这是另一个段落</p>
               <p class="ignore-dom">这是要过滤的段落元素</p>
+              <p><button class="bg-red-600 rounded-xl p-2 m-0">这是按钮</button></p>
             </div>
             <div class="ignore-dom">
               这是要过滤的 DIV 元素
@@ -257,6 +261,7 @@
 import { Download } from '@icon-park/vue-next';
 
 import { DomToImage } from '@components/dom-to-image';
+import { useExportFile } from '@core/hooks';
 
 const tableData = [
   {
@@ -294,6 +299,21 @@ const handleDomToImage = async () => {
       }
     }
   })) as string;
+};
+
+const { exportBase64ToPdf } = useExportFile();
+const handleExportPdf = async () => {
+  const pdfContent = (await domToImageRef.value?.generateToImage({
+    // type: 'svg',
+    config: {
+      bgcolor: 'transparent',
+      filter(node) {
+        const hasIgnore = !!node?.classList?.contains('ignore-dom');
+        return !hasIgnore;
+      }
+    }
+  })) as string;
+  exportBase64ToPdf({ base64Content: pdfContent, filename: '导出PDF', singlePage: false });
 };
 
 onMounted(async () => {
