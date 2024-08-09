@@ -4,6 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   font-weight: normal;
+  border-style: none; // fix: dom-to-image-more 在使用 tailwind 情况下会有额外的边框、背景色
 }
 
 ul {
