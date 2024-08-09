@@ -10,7 +10,7 @@ loggerController.init();
 
 app.whenReady().then(() => {
   // 网络检查
-  networkController.check('baidu.com');
+  networkController.check('icanhazip.com');
 
   // 请求代理
   apiProxyController.proxy();
