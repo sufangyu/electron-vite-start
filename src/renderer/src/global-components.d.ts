@@ -3,7 +3,6 @@ import { ElUpload, ElPagination, ElTable, ElSelect, ElSelectV2 } from 'element-p
 import AppMain from '@components/app-main/index';
 import AppPage from '@components/app-page/index';
 import Card from '@components/card/index';
-import DomToImage from '@components/dom-to-image/index';
 import InfiniteScroll from '@components/infinite-scroll/index';
 import LabelTooltip from '@components/label-tooltip/index';
 import Pagination from '@components/pagination/index';
@@ -24,7 +23,6 @@ declare module 'vue' {
     SelectExtend: typeof SelectExtend & typeof ElSelect & Partial<typeof ElSelectV2>;
     TableExtend: typeof TableExtend & typeof ElTable;
     Card: typeof Card;
-    DomToImage: typeof DomToImage;
     LabelTooltip: typeof LabelTooltip;
     InfiniteScroll: typeof InfiniteScroll;
     QRCode: typeof QRCode;

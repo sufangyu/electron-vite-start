@@ -6,7 +6,7 @@
           <el-button size="small" type="primary" @click="handleDomToImage">生成图片</el-button>
           <el-button size="small" type="success" @click="handleExportPdf">导出PDF</el-button>
         </div>
-        <DomToImage ref="domToImageRef">
+        <div ref="domRef">
           <div class="mb-4">
             <h3>常规文本</h3>
             <div>
@@ -247,7 +247,7 @@
             </el-table>
             <el-button class="mt-2" type="primary">按钮</el-button>
           </div>
-        </DomToImage>
+        </div>
       </Card>
 
       <Card title="生成的图片">
@@ -260,8 +260,7 @@
 <script lang="ts" setup>
 import { Download } from '@icon-park/vue-next';
 
-import { DomToImage } from '@components/dom-to-image';
-import { useExportFile } from '@core/hooks';
+import { useDomConver } from '@core/hooks';
 
 const tableData = [
   {
@@ -286,10 +285,11 @@ const tableData = [
   }
 ];
 
-const domToImageRef = ref<InstanceType<typeof DomToImage> | null>(null);
 const imgData = ref('');
+const { domRef, converToImage, converToPdf } = useDomConver();
+
 const handleDomToImage = async () => {
-  imgData.value = (await domToImageRef.value?.generateToImage({
+  imgData.value = (await converToImage({
     // type: 'svg',
     config: {
       bgcolor: 'transparent',
@@ -301,19 +301,16 @@ const handleDomToImage = async () => {
   })) as string;
 };
 
-const { exportBase64ToPdf } = useExportFile();
 const handleExportPdf = async () => {
-  const pdfContent = (await domToImageRef.value?.generateToImage({
-    // type: 'svg',
-    config: {
-      bgcolor: 'transparent',
-      filter(node) {
-        const hasIgnore = !!node?.classList?.contains('ignore-dom');
-        return !hasIgnore;
+  await converToPdf({
+    filename: '导出PDF',
+    singlePage: false,
+    converToImageOptions: {
+      config: {
+        bgcolor: 'red'
       }
     }
-  })) as string;
-  exportBase64ToPdf({ base64Content: pdfContent, filename: '导出PDF', singlePage: false });
+  });
 };
 
 onMounted(async () => {
