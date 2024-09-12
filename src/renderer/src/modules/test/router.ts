@@ -20,7 +20,8 @@ export enum TEST_ROUTER_NAME {
   TEST_SELECT = 'TestListSelect',
   TEST_OBSERVER = 'TestListObserver',
   TEST_DOM_TO_IMAGE = 'TestDomToImage',
-  TEST_FILE_CONVER = 'TestFileConver'
+  TEST_FILE_CONVER = 'TestFileConver',
+  TEST_GET_IMAGE_COLORS = 'TestGetImageColors'
 }
 
 export default [
@@ -123,6 +124,12 @@ export default [
         name: TEST_ROUTER_NAME.TEST_FILE_CONVER,
         component: () => import('./file-conver/views/index.vue'),
         meta: { title: '文件互转' }
+      },
+      {
+        path: 'image-colors',
+        name: TEST_ROUTER_NAME.TEST_GET_IMAGE_COLORS,
+        component: () => import('./image-colors/views/index.vue'),
+        meta: { title: '图片取色' }
       }
     ]
   },

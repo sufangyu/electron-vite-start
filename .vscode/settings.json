@@ -10,6 +10,7 @@
   },
   "css.lint.unknownAtRules": "ignore",
   "scss.lint.unknownAtRules": "ignore",
+  "vue3snippets.enable-compile-vue-file-on-did-save-code": false,
   // "css.customData": [".vscode/tailwind.json"],
   // "scss.customData": [".vscode/tailwind.json"],
 }

@@ -42,6 +42,9 @@ export default defineConfig({
       vueJsx(),
       AutoImport({ imports: ['vue', 'vue-router'], dts: './src/auto-imports.d.ts' })
     ],
+    server: {
+      host: '0.0.0.0'
+    },
     resolve: {
       alias: {
         '@share': resolve('src/share'),
