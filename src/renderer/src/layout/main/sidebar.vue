@@ -100,6 +100,7 @@ const nav = [
   { icon: DownPicture, label: 'DOM转图片', routeName: TEST_ROUTER_NAME.TEST_DOM_TO_IMAGE },
   { icon: FileConversionOne, label: '文件互转', routeName: TEST_ROUTER_NAME.TEST_FILE_CONVER },
   { icon: BackgroundColor, label: '图片取色', routeName: TEST_ROUTER_NAME.TEST_GET_IMAGE_COLORS },
+  { icon: BackgroundColor, label: '字典表', routeName: TEST_ROUTER_NAME.TEST_DICTIONARY },
   { icon: Compression, label: '视频压缩', routeName: 'VideoCompress' }
 ];
 

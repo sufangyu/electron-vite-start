@@ -21,6 +21,7 @@ export enum TEST_ROUTER_NAME {
   TEST_OBSERVER = 'TestListObserver',
   TEST_DOM_TO_IMAGE = 'TestDomToImage',
   TEST_FILE_CONVER = 'TestFileConver',
+  TEST_DICTIONARY = 'TestDictionary',
   TEST_GET_IMAGE_COLORS = 'TestGetImageColors'
 }
 
@@ -124,6 +125,12 @@ export default [
         name: TEST_ROUTER_NAME.TEST_FILE_CONVER,
         component: () => import('./file-conver/views/index.vue'),
         meta: { title: '文件互转' }
+      },
+      {
+        path: 'dictionary',
+        name: TEST_ROUTER_NAME.TEST_DICTIONARY,
+        component: () => import('./dictionary/views/index.vue'),
+        meta: { title: '字典表' }
       },
       {
         path: 'image-colors',

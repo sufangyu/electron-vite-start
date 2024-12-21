@@ -10,3 +10,4 @@ export * from './intersection-observer.hooks';
 export * from './infinite-scroll.hooks';
 export * from './window.hooks';
 export * from './element-ui.hooks';
+export * from './dictionary.hooks';
